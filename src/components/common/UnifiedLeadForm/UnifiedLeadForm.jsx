@@ -37,7 +37,7 @@ import {
 import styles from "./UnifiedLeadForm.module.css";
 
 // Local storage key for leads
-const LEADS_STORAGE_KEY = "boilerplate_submitted_leads";
+const LEADS_STORAGE_KEY = "lp_submitted_leads";
 
 // Investment interest options
 {/* TODO: Replace with actual content */}

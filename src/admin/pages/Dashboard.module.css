@@ -163,6 +163,46 @@
   color: var(--text-gray);
 }
 
+/* Recent Leads Table */
+.recentTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recentTable thead th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #FAFBFC;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.recentTable tbody td {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--text-dark-gray);
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.recentTable tbody tr:hover {
+  background: #FAFBFC;
+}
+
+.leadName {
+  font-weight: var(--fw-medium);
+  color: var(--primary-dark);
+}
+
+.leadDate {
+  white-space: nowrap;
+  color: var(--text-gray);
+  font-size: var(--fs-xs);
+}
+
 @media (max-width: 1024px) {
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);

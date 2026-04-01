@@ -34,7 +34,7 @@ import {
 } from "../../../utils/validators";
 import styles from "./SecondaryCTASection.module.css";
 
-const LEADS_STORAGE_KEY = "boilerplate_submitted_leads";
+const LEADS_STORAGE_KEY = "lp_submitted_leads";
 
 // TODO: Replace with actual content
 const CLASS_OPTIONS = ["Service Type A", "Service Type B", "Service Type C", "Multi-Service"];
