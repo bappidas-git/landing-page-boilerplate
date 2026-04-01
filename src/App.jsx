@@ -5,7 +5,7 @@
    ============================================ */
 
 import React, { Suspense, lazy, useEffect, useState, memo } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { CircularProgress, useMediaQuery, useTheme, Skeleton, Box } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 

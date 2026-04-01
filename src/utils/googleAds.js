@@ -100,7 +100,9 @@ export const trackFormSubmission = (formId) => {
     value: DEFAULT_VALUE,
     currency: 'INR',
     event_callback: () => {
-      console.log(`[GoogleAds] Form conversion tracked: ${formId}`);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[GoogleAds] Form conversion tracked: ${formId}`);
+      }
     },
   });
 };

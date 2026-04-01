@@ -9,13 +9,10 @@ import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import SectionTitle from "../../common/SectionTitle/SectionTitle";
 import Button from "../../common/Button/Button";
-import { useModal } from "../../../context/ModalContext";
 import { locationData } from "../../../data/locationData";
 import styles from "./LocationSection.module.css";
 
 const LocationSection = () => {
-  const { openLeadDrawer } = useModal();
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -66,10 +63,6 @@ const LocationSection = () => {
       "_blank",
       "noopener,noreferrer",
     );
-  };
-
-  const handleBookDemo = () => {
-    openLeadDrawer("book-free-demo");
   };
 
   // TODO: Replace with actual content

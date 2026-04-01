@@ -134,20 +134,7 @@ const SecondaryCTASection = () => {
     }),
   };
 
-  const checkDuplicateLead = useCallback((email, mobile) => {
-    try {
-      const storedLeads = JSON.parse(
-        localStorage.getItem(LEADS_STORAGE_KEY) || "[]",
-      );
-      return storedLeads.some(
-        (lead) =>
-          lead.email.toLowerCase() === email.toLowerCase() ||
-          lead.mobile === mobile,
-      );
-    } catch {
-      return false;
-    }
-  }, []);
+
 
   const saveLeadToStorage = useCallback((leadData) => {
     try {

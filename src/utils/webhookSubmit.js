@@ -13,13 +13,13 @@ import { getStoredGclid } from './gclidManager';
 // PABBLY CONNECT WEBHOOK URL
 // =============================================
 const WEBHOOK_URL =
-  "https://connect.pabbly.com/webhook-listener/webhook/IjU3NjIwNTZkMDYzZTA0Mzc1MjZmNTUzZCI_3D_pc/IjU3NjcwNTZmMDYzMjA0MzU1MjZlNTUzZDUxMzIi_pc";
+  "https://connect.pabbly.com/webhook-listener/webhook/YOUR_WEBHOOK_ID_HERE";
 
 // Set to true when Pabbly webhook is configured
-const USE_PABBLY = true;
+const USE_PABBLY = false;
 
 // Dummy endpoint for testing (simulates success after 1.5s)
-const DUMMY_MODE = false;
+const DUMMY_MODE = true;
 
 // localStorage keys
 const LEADS_KEY = "lp_submitted_leads";

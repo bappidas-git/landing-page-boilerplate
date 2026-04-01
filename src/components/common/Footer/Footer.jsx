@@ -11,7 +11,7 @@ import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import styles from "./Footer.module.css";
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Privacy Policy Content Component
 const PrivacyPolicyContent = () => (
   <div className={styles.legalContent}>
@@ -116,7 +116,7 @@ const PrivacyPolicyContent = () => (
   </div>
 );
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Terms & Conditions Content Component
 const TermsConditionsContent = () => (
   <div className={styles.legalContent}>
@@ -232,7 +232,7 @@ const TermsConditionsContent = () => (
   </div>
 );
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Disclaimer Content Component
 const DisclaimerContent = () => (
   <div className={styles.legalContent}>
@@ -329,7 +329,7 @@ const LegalModal = ({ isOpen, onClose, title, children }) => {
   );
 };
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Quick Links data
 const quickLinks = [
   { label: "About Us", href: "#about" },
@@ -343,7 +343,7 @@ const quickLinks = [
   },
 ];
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Franchise links data
 const franchiseLinks = [
   { label: "Basic Plan", href: "#investment" },
@@ -560,7 +560,7 @@ const Footer = () => {
               {/* TODO: Replace with actual content */}
               Designed and Developed by{" "}
               <a
-                href="#"
+                href="https://yourdeveloper.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.developerLink}
