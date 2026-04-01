@@ -28,6 +28,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { showSuccess, showError, showInfo } from "../../../utils/swalHelper";
+import { trackFormSubmission } from "../../../utils/gtm";
 import Button from "../Button/Button";
 import {
   getMobileErrorMessage,
@@ -667,11 +668,8 @@ const UnifiedLeadForm = ({
       const result = await submitLeadToWebhook(leadData);
 
       if (result.success) {
-        // Push lead form submission event to GTM dataLayer
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'lead_form_submission',
-          formSource: formId || 'general',
+        // Push lead form submission + generate_lead conversion events to GTM
+        trackFormSubmission(formId || 'general', {
           investmentInterest: formData.investment_interest,
         });
 

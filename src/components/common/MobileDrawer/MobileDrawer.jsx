@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
+import { trackPhoneClick, trackWhatsAppClick, trackNavigation } from "../../../utils/gtm";
 import styles from "./MobileDrawer.module.css";
 
 // Navigation menu items
@@ -295,6 +296,7 @@ const MobileDrawer = ({ open, onClose, onOpen, activeSection = "home" }) => {
               className={styles.contactLink}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => trackPhoneClick('+91XXXXXXXXXX', 'mobile_drawer')}
             >
               <Icon icon="ic:baseline-phone" />
               <span>Call Us</span>
@@ -306,6 +308,7 @@ const MobileDrawer = ({ open, onClose, onOpen, activeSection = "home" }) => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => trackWhatsAppClick('mobile_drawer')}
             >
               <Icon icon="ic:baseline-whatsapp" />
               <span>WhatsApp</span>
