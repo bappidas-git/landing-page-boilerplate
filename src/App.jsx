@@ -25,6 +25,7 @@ import MobileNavigation from './components/common/MobileNavigation/MobileNavigat
 import MobileDrawer from './components/common/MobileDrawer/MobileDrawer';
 import LeadFormDrawer from './components/common/LeadFormDrawer/LeadFormDrawer';
 import EngagementTracker from './components/common/EngagementTracker/EngagementTracker';
+import SEOHead from './components/common/SEO/SEOHead';
 import useGTMTracking from './hooks/useGTMTracking';
 import { initGTM } from './utils/gtm';
 import { initConsentMode } from './utils/consentMode';
@@ -572,6 +573,9 @@ const App = () => {
       <CustomThemeProvider>
         <ModalProvider>
           <div className="app" id="app-root">
+            {/* SEO Head — manages meta tags and schemas per route */}
+            <SEOHead />
+
             {/* Scroll Progress Indicator */}
             <ScrollProgressIndicator />
 

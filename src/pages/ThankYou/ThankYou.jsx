@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import confetti from "canvas-confetti";
 import styles from "./ThankYou.module.css";
+import { updatePageSEO } from "../../utils/seo";
+import { seoConfig } from "../../config/seo";
 
 // TODO: Replace with actual content
 // Programme highlights for display
@@ -74,6 +76,14 @@ const ThankYou = () => {
 
     setIsAuthorized(true);
     setUserName(name || "there");
+
+    // Set noindex meta and update page title for Thank You page
+    updatePageSEO({
+      title: seoConfig.pages.thankYou.title,
+      description: seoConfig.pages.thankYou.description,
+      url: seoConfig.siteUrl + '/thank-you',
+      robots: 'noindex, nofollow',
+    });
 
     // Push virtual pageview and conversion event to GTM dataLayer
     window.dataLayer = window.dataLayer || [];
