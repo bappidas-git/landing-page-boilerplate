@@ -5,6 +5,9 @@
    webhook URL when ready for production.
    ============================================ */
 
+// GCLID manager for persistent gclid storage
+import { getStoredGclid } from './gclidManager';
+
 // =============================================
 // CONFIGURATION — REPLACE THIS URL WITH YOUR
 // PABBLY CONNECT WEBHOOK URL
@@ -87,7 +90,7 @@ export const submitLeadToWebhook = async (leadData) => {
     utm_term: new URLSearchParams(window.location.search).get("utm_term") || "",
     utm_content:
       new URLSearchParams(window.location.search).get("utm_content") || "",
-    gclid: new URLSearchParams(window.location.search).get("gclid") || "",
+    gclid: new URLSearchParams(window.location.search).get("gclid") || getStoredGclid() || "",
   };
 
   // === DUMMY MODE (for testing) ===

@@ -52,6 +52,7 @@ import {
 } from "../utils/leadService";
 import { sendConversionEvent } from "../../utils/metaCAPI";
 import { generateEventId } from "../../utils/eventDedup";
+import { exportGoogleAdsCSV } from "../utils/googleAdsExport";
 import styles from "./LeadManagement.module.css";
 
 // Status config
@@ -282,6 +283,24 @@ const LeadManagement = () => {
     showSnackbar(`Exported ${dataToExport.length} leads`);
   };
 
+  const handleGoogleAdsExport = () => {
+    const allLeads = getLeads({});
+    const result = exportGoogleAdsCSV(allLeads);
+    if (result.exported === 0) {
+      showSnackbar(
+        result.skipped > 0
+          ? `No leads with GCLID to export (${result.skipped} converted leads have no GCLID)`
+          : 'No converted leads found for Google Ads export',
+        'warning'
+      );
+    } else {
+      showSnackbar(
+        `Exported ${result.exported} conversions for Google Ads${result.skipped > 0 ? ` (${result.skipped} skipped — no GCLID)` : ''}`,
+        'success'
+      );
+    }
+  };
+
   const handleImport = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -341,11 +360,29 @@ const LeadManagement = () => {
       // Update lead status to converted
       updateLeadStatus(conversionLead.lead_id, 'converted');
 
+      // Store conversion value on the lead for Google Ads export
+      const allLeads = JSON.parse(localStorage.getItem('lp_submitted_leads') || '[]');
+      const targetLead = allLeads.find((l) => l.lead_id === conversionLead.lead_id);
+      if (targetLead) {
+        targetLead.conversion_value = parseFloat(conversionValue);
+        targetLead.conversion_type = conversionType;
+        targetLead.converted_at = new Date().toISOString();
+        localStorage.setItem('lp_submitted_leads', JSON.stringify(allLeads));
+      }
+
       // Add activity note about conversion
       addLeadNote(
         conversionLead.lead_id,
         `Conversion sent to Meta CAPI: ${conversionType} - \u20B9${parseFloat(conversionValue).toLocaleString('en-IN')} (Event ID: ${eventId})`
       );
+
+      // Log Google Ads offline conversion status
+      if (conversionLead.gclid) {
+        addLeadNote(
+          conversionLead.lead_id,
+          `Google Ads offline conversion ready for export (GCLID: ${conversionLead.gclid.slice(0, 12)}...)`
+        );
+      }
 
       loadData();
 
@@ -403,6 +440,15 @@ const LeadManagement = () => {
             sx={{ textTransform: "none", borderColor: "#ddd", color: "#555" }}
           >
             Export CSV
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<Icon icon="mdi:google-ads" />}
+            onClick={handleGoogleAdsExport}
+            sx={{ textTransform: "none", borderColor: "#4285F4", color: "#4285F4" }}
+          >
+            Export for Google Ads
           </Button>
         </div>
       </div>
@@ -842,13 +888,13 @@ const LeadManagement = () => {
       >
         <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Icon icon="mdi:send-check" width={22} style={{ color: "#4CAF50" }} />
-          Send Conversion to Meta
+          Record Conversion
         </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 2 }}>
-            Send a conversion event to Meta CAPI for{" "}
-            <strong>{conversionLead?.name || "this lead"}</strong>. This helps
-            Meta optimize ad delivery for actual conversions.
+            Record a conversion for{" "}
+            <strong>{conversionLead?.name || "this lead"}</strong>. This will
+            send a conversion event to Meta CAPI and{conversionLead?.gclid ? ' mark it for Google Ads offline conversion export' : ' record it locally'}.
           </DialogContentText>
           <TextField
             fullWidth
@@ -1044,6 +1090,44 @@ const LeadDetailPanel = ({
           <InfoRow label="GCLID" value={lead.gclid} />
         </Section>
 
+        {/* Conversion Tracking */}
+        <Section title="Conversion Tracking" icon="mdi:chart-timeline-variant-shimmer">
+          <InfoRow label="GCLID" value={lead.gclid ? (lead.gclid.length > 20 ? lead.gclid.slice(0, 20) + '...' : lead.gclid) : '—'} />
+          <InfoRow label="UTM Source" value={lead.utm_source || '—'} />
+          <InfoRow label="UTM Medium" value={lead.utm_medium || '—'} />
+          <InfoRow label="UTM Campaign" value={lead.utm_campaign || '—'} />
+          <InfoRow label="UTM Term" value={lead.utm_term || '—'} />
+          <InfoRow label="UTM Content" value={lead.utm_content || '—'} />
+          <Divider sx={{ my: 1 }} />
+          <InfoRow
+            label="Google Ads"
+            value={
+              lead.gclid
+                ? lead.status === 'converted'
+                  ? 'Ready for export'
+                  : 'GCLID captured'
+                : 'No GCLID'
+            }
+          />
+          <InfoRow
+            label="Meta CAPI"
+            value={
+              (lead.notes || []).some((n) => n.text?.includes('Meta CAPI'))
+                ? 'Conversion sent'
+                : 'Pending'
+            }
+          />
+          {lead.conversion_value && (
+            <InfoRow label="Conv. Value" value={`\u20B9${parseFloat(lead.conversion_value).toLocaleString('en-IN')}`} />
+          )}
+          {lead.conversion_type && (
+            <InfoRow label="Conv. Type" value={lead.conversion_type} />
+          )}
+          {lead.converted_at && (
+            <InfoRow label="Converted At" value={formatDate(lead.converted_at)} />
+          )}
+        </Section>
+
         {/* Submission Details */}
         <Section title="Submission Details" icon="mdi:information-outline">
           <InfoRow label="Submitted" value={formatDate(lead.submitted_at)} />
@@ -1148,7 +1232,7 @@ const LeadDetailPanel = ({
             "&:hover": { bgcolor: "#388E3C" },
           }}
         >
-          Send Conversion to Meta
+          Mark as Converted
         </Button>
         <Button
           fullWidth
