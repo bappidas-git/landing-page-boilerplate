@@ -333,7 +333,7 @@ const LegalModal = ({ isOpen, onClose, title, children }) => {
 // Quick Links data
 const quickLinks = [
   { label: "About Us", href: "#about" },
-  { label: "Why Us", href: "#why-gnrc" },
+  { label: "Why Us", href: "#why-us" },
   { label: "Services", href: "#investment" },
   { label: "Location", href: "#stores" },
   {

@@ -194,7 +194,7 @@ const LocationSection = () => {
                 <div className={styles.mapContainer}>
                   <div className={styles.mapPlaceholder}>
                     <img
-                      src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=400&fit=crop"
+                      src="https://placehold.co/800x400/E8EDF2/2D3561?text=Map+Placeholder+800x400"
                       alt="Business Location Map"
                       className={styles.mapImage}
                     />

@@ -19,13 +19,14 @@ import UnifiedLeadForm from "../../common/UnifiedLeadForm/UnifiedLeadForm";
 import { useModal } from "../../../context/ModalContext";
 import styles from "./HeroSection.module.css";
 
-// Unsplash hero images with fallbacks
+{/* Set REACT_APP_HERO_VIDEO_URL in .env to enable hero background video */}
+// Hero images with fallbacks
 const HERO_IMAGES = {
   desktop: [
-    "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1920&h=800&fit=crop&q=80",
+    "https://placehold.co/1920x800/E8EDF2/2D3561?text=Hero+Image+1920x800",
   ],
   mobile: [
-    "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=768&h=1000&fit=crop&q=80",
+    "https://placehold.co/768x1000/E8EDF2/2D3561?text=Hero+Image+768x1000",
   ],
 };
 

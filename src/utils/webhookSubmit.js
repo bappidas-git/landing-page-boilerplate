@@ -61,11 +61,11 @@ export const submitLeadToWebhook = async (leadData) => {
 
     // Store in localStorage for testing verification
     const existingLeads = JSON.parse(
-      localStorage.getItem("gnrc_franchise_test_leads") || "[]",
+      localStorage.getItem("app_test_leads") || "[]",
     );
     existingLeads.push(enrichedData);
     localStorage.setItem(
-      "gnrc_franchise_test_leads",
+      "app_test_leads",
       JSON.stringify(existingLeads),
     );
 
@@ -73,7 +73,7 @@ export const submitLeadToWebhook = async (leadData) => {
       `[DUMMY MODE] Lead stored. Total test leads: ${existingLeads.length}`,
     );
     console.log(
-      'To view all test leads, run in console: JSON.parse(localStorage.getItem("gnrc_franchise_test_leads"))',
+      'To view all test leads, run in console: JSON.parse(localStorage.getItem("app_test_leads"))',
     );
 
     return { success: true, message: "Lead captured successfully (test mode)" };
@@ -112,7 +112,7 @@ export const submitLeadToWebhook = async (leadData) => {
  * (Duplicate prevention)
  */
 export const isDuplicateLead = (mobile) => {
-  const storageKey = "gnrc_franchise_submitted_leads";
+  const storageKey = "app_submitted_leads";
   const existingLeads = JSON.parse(localStorage.getItem(storageKey) || "[]");
   return existingLeads.some((lead) => lead.mobile === mobile);
 };
@@ -121,7 +121,7 @@ export const isDuplicateLead = (mobile) => {
  * Mark a mobile number as submitted (for duplicate prevention)
  */
 export const markLeadAsSubmitted = (mobile) => {
-  const storageKey = "gnrc_franchise_submitted_leads";
+  const storageKey = "app_submitted_leads";
   const existingLeads = JSON.parse(localStorage.getItem(storageKey) || "[]");
   existingLeads.push({ mobile, timestamp: Date.now() });
   localStorage.setItem(storageKey, JSON.stringify(existingLeads));
