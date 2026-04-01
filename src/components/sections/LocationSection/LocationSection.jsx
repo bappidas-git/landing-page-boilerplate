@@ -10,7 +10,7 @@ import { Icon } from "@iconify/react";
 import SectionTitle from "../../common/SectionTitle/SectionTitle";
 import Button from "../../common/Button/Button";
 import { useModal } from "../../../context/ModalContext";
-import { centreData } from "../../../data/centreData";
+import { locationData } from "../../../data/locationData";
 import styles from "./LocationSection.module.css";
 
 const LocationSection = () => {
@@ -127,13 +127,13 @@ const LocationSection = () => {
                   </div>
                   <div>
                     <Typography variant="h5" className={styles.centreName}>
-                      {centreData.name}
+                      {locationData.name}
                     </Typography>
                     <Typography
                       variant="body2"
                       className={styles.centreAddress}
                     >
-                      {centreData.address}
+                      {locationData.address}
                     </Typography>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ const LocationSection = () => {
                         variant="body2"
                         className={styles.contactValue}
                       >
-                        <a href={`tel:${centreData.phone}`}>+91-7086036887</a>
+                        <a href={`tel:${locationData.phone}`}>+91-7086036887</a>
                       </Typography>
                     </div>
                   </div>
@@ -174,8 +174,8 @@ const LocationSection = () => {
                         variant="body2"
                         className={styles.contactValue}
                       >
-                        <a href={`mailto:${centreData.email}`}>
-                          {centreData.email}
+                        <a href={`mailto:${locationData.email}`}>
+                          {locationData.email}
                         </a>
                       </Typography>
                     </div>
@@ -240,7 +240,7 @@ const LocationSection = () => {
             </Typography>
           </motion.div>
           <motion.div variants={itemVariants} className={styles.areasGrid}>
-            {centreData.nearbyAreas.map((area, index) => (
+            {locationData.nearbyAreas.map((area, index) => (
               <motion.div
                 key={area}
                 initial={{ opacity: 0, scale: 0.8 }}

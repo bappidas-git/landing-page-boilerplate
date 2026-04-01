@@ -1,4 +1,4 @@
-export const coursesData = [
+export const servicesData = [
   {
     id: "plan-500",
     name: "500 Sq.Ft. Store",

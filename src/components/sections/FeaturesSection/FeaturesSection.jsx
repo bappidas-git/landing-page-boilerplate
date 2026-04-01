@@ -8,7 +8,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Container, Typography, Button } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { useModal } from "../../../context/ModalContext";
-import { benefitsData } from "../../../data/benefitsData";
+import { featuresData } from "../../../data/featuresData";
 import styles from "./FeaturesSection.module.css";
 
 // Category icons (replacing Lottie animations)
@@ -76,14 +76,14 @@ const cardVariants = {
 const FeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const [activeTab, setActiveTab] = useState(benefitsData[0]?.id ?? 1);
+  const [activeTab, setActiveTab] = useState(featuresData[0]?.id ?? 1);
   const { openLeadDrawer } = useModal();
 
   const handleApplyNow = () => {
     openLeadDrawer("apply-now");
   };
 
-  const activeCategory = benefitsData.find((c) => c.id === activeTab) || benefitsData[0];
+  const activeCategory = featuresData.find((c) => c.id === activeTab) || featuresData[0];
 
   return (
     <section className={styles.benefitsSection} id="support" ref={ref}>
@@ -126,7 +126,7 @@ const FeaturesSection = () => {
 
           {/* Category Tabs - Desktop */}
           <motion.div variants={itemVariants} className={styles.categoryTabs}>
-            {benefitsData.map((category) => (
+            {featuresData.map((category) => (
               <button
                 key={category.id}
                 className={`${styles.categoryTab} ${
@@ -197,7 +197,7 @@ const FeaturesSection = () => {
 
           {/* Benefits Grid - Mobile (all categories stacked) */}
           <div className={styles.mobileStack}>
-            {benefitsData.map((category) => (
+            {featuresData.map((category) => (
               <motion.div
                 key={category.id}
                 variants={itemVariants}

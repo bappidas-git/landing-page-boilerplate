@@ -8,7 +8,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Container, Typography, Grid, Button, useMediaQuery, useTheme } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useModal } from '../../../context/ModalContext';
-import { highlightsData } from '../../../data/highlightsData';
+import { statsData } from '../../../data/statsData';
 import styles from './StatsSection.module.css';
 
 // Animation variants
@@ -181,7 +181,7 @@ const StatsSection = () => {
 
                 {/* Main Highlights Grid */}
                 <Grid container spacing={isMobile ? 1.5 : 2} className={styles.highlightsGrid}>
-                  {highlightsData.map((highlight, index) => (
+                  {statsData.map((highlight, index) => (
                     <Grid item xs={6} key={highlight.id}>
                       <motion.div
                         className={styles.highlightCard}

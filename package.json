@@ -1,7 +1,7 @@
 {
-  "name": "gnrc-medishop-franchise",
+  "name": "landing-page-boilerplate",
   "version": "1.0.0",
-  "description": "GNRC Medishop Franchise Opportunity | NE India's Largest Pharma-Grocery Retail Chain | 20+ Years | ₹80 Cr Turnover | Invest ₹22L-38L | 20-22% Gross Margin | Apply Now",
+  "description": "High-converting landing page boilerplate with lead management, GTM integration, and conversion tracking. Built with React 18, MUI v5, and Framer Motion.",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -51,20 +51,17 @@
     ]
   },
   "homepage": ".",
-  "author": "GNRC Medishop Pvt. Ltd.",
+  "author": "Your Agency Name",
   "license": "UNLICENSED",
   "keywords": [
-    "gnrc-medishop",
-    "franchise-opportunity",
-    "pharmacy-franchise",
-    "retail-franchise-india",
-    "gnrc-franchise",
-    "medishop-franchise",
-    "grocery-franchise-assam",
-    "fmcg-retail-franchise",
-    "pharmacy-business",
-    "north-east-franchise",
-    "guwahati-franchise",
-    "low-investment-franchise"
+    "landing-page",
+    "lead-generation",
+    "boilerplate",
+    "react-landing-page",
+    "gtm-integration",
+    "conversion-tracking",
+    "meta-capi",
+    "google-ads",
+    "seo-optimized"
   ]
 }
