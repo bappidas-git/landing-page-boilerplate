@@ -238,6 +238,7 @@
 }
 
 /* ========== Admin Panel Colors (Assam Digital) ========== */
+:root {
   --admin-primary: #1A3A6B;
   --admin-primary-light: #2B5EA8;
   --admin-primary-dark: #0F2847;
