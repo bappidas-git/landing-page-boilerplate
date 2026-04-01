@@ -34,8 +34,6 @@ import {
 } from "../../../utils/validators";
 import styles from "./SecondaryCTASection.module.css";
 
-const LEADS_STORAGE_KEY = "lp_submitted_leads";
-
 // TODO: Replace with actual content
 const CLASS_OPTIONS = ["Service Type A", "Service Type B", "Service Type C", "Multi-Service"];
 // TODO: Replace with actual content
@@ -136,22 +134,6 @@ const SecondaryCTASection = () => {
 
 
 
-  const saveLeadToStorage = useCallback((leadData) => {
-    try {
-      const storedLeads = JSON.parse(
-        localStorage.getItem(LEADS_STORAGE_KEY) || "[]",
-      );
-      storedLeads.push({
-        email: leadData.email,
-        mobile: leadData.mobile,
-        submittedAt: new Date().toISOString(),
-      });
-      localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(storedLeads));
-    } catch (error) {
-      console.error("Error saving lead to storage:", error);
-    }
-  }, []);
-
   const handleChange = useCallback(
     (field) => (event) => {
       let value = event.target.value;
@@ -219,6 +201,8 @@ const SecondaryCTASection = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return; // Guard against double-click
+
     if (!validateForm()) {
       if (errors.name || !formData.name) nameRef.current?.focus();
       else if (errors.mobile || !formData.mobile) mobileRef.current?.focus();
@@ -251,7 +235,6 @@ const SecondaryCTASection = () => {
 
       if (result.success) {
         markLeadAsSubmitted(formData.mobile);
-        saveLeadToStorage(formData);
         sessionStorage.setItem("lead_submitted", "true");
         sessionStorage.setItem("lead_name", formData.name);
 
