@@ -28,6 +28,7 @@ import EngagementTracker from './components/common/EngagementTracker/EngagementT
 import useGTMTracking from './hooks/useGTMTracking';
 import { initGTM } from './utils/gtm';
 import { initConsentMode } from './utils/consentMode';
+import { initPixel, trackPageView as trackMetaPageView } from './utils/metaPixel';
 
 // Admin
 import { AdminAuthProvider } from './admin/context/AdminAuthContext';
@@ -369,6 +370,11 @@ const HomePageContent = () => {
   // Initialize GTM tracking (page views, scroll depth, time on page, section visibility)
   useGTMTracking();
 
+  // Track Meta Pixel PageView on route changes
+  useEffect(() => {
+    trackMetaPageView();
+  }, [location.pathname]);
+
   const handleMenuClick = () => setIsMobileDrawerOpen(true);
   const handleMobileDrawerClose = () => setIsMobileDrawerOpen(false);
   const handleMobileDrawerOpen = () => setIsMobileDrawerOpen(true);
@@ -508,13 +514,15 @@ const App = () => {
   // Enable idle preloading
   useIdlePreload();
 
-  // Initialize Google Consent Mode and GTM on mount
+  // Initialize Google Consent Mode, GTM, and Meta Pixel on mount
   useEffect(() => {
     initConsentMode();
     const gtmId = process.env.REACT_APP_GTM_ID;
     if (gtmId) {
       initGTM(gtmId);
     }
+    // Initialize Meta Pixel (only if REACT_APP_META_PIXEL_ID is set)
+    initPixel();
   }, []);
 
   // Hide initial loader after mount
