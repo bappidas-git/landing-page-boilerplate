@@ -2,64 +2,71 @@ export const statsData = [
   {
     id: 1,
     icon: "mdi:store-check",
-    title: "20+ Years of Profitable Business",
+    /* TODO: Replace with actual content */
+    title: "10+ Years of Proven Success",
     description:
-      "Profitable since inception with proven market resilience across North-East India.",
-    stat: "20+",
-    statLabel: "Years Legacy",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proven track record of success.",
+    stat: "10+",
+    statLabel: "Years Experience",
   },
   {
     id: 2,
     icon: "mdi:currency-inr",
-    title: "₹80 Crore Turnover",
+    /* TODO: Replace with actual content */
+    title: "Strong Annual Revenue",
     description:
-      "Time-tested business model refined through real market experience.",
-    stat: "₹80Cr",
-    statLabel: "Annual Turnover",
+      "Lorem ipsum dolor sit amet, time-tested business model with consistent growth.",
+    stat: "50Cr",
+    statLabel: "Annual Revenue",
   },
   {
     id: 3,
     icon: "mdi:shopping",
-    title: "50,000+ Products",
+    /* TODO: Replace with actual content */
+    title: "10,000+ Products",
     description:
-      "Comprehensive inventory across 1,200+ trusted brands and 30,000+ SKUs.",
-    stat: "50K+",
+      "Lorem ipsum dolor sit amet, comprehensive inventory across trusted brands.",
+    stat: "10K+",
     statLabel: "Products",
   },
   {
     id: 4,
     icon: "mdi:account-group",
-    title: "1.6 Million Customers",
+    /* TODO: Replace with actual content */
+    title: "500K+ Customers Served",
     description:
-      "GNRC community trust built over two decades of reliable service.",
-    stat: "1.6M",
+      "Lorem ipsum dolor sit amet, community trust built over years of reliable service.",
+    stat: "500K+",
     statLabel: "Customers Served",
   },
   {
     id: 5,
     icon: "mdi:storefront",
-    title: "9 Profitable Stores",
+    /* TODO: Replace with actual content */
+    title: "Multiple Locations",
     description:
-      "Consistently profitable company-owned stores across Guwahati proving the business model.",
-    stat: "9",
-    statLabel: "Own Stores",
+      "Lorem ipsum dolor sit amet, consistently profitable locations proving the business model.",
+    stat: "15+",
+    statLabel: "Locations",
   },
   {
     id: 6,
     icon: "mdi:handshake",
-    title: "1,200+ Brand Partners",
+    /* TODO: Replace with actual content */
+    title: "500+ Brand Partners",
     description:
-      "Access India's most trusted consumer brands — HUL, P&G, ITC, Nestlé, Amul, and more.",
-    stat: "1200+",
+      "Lorem ipsum dolor sit amet, access to trusted consumer brands and suppliers.",
+    stat: "500+",
     statLabel: "Brand Partners",
   },
   {
     id: 7,
     icon: "mdi:percent",
-    title: "20-22% Gross Margin",
+    /* TODO: Replace with actual content */
+    title: "Healthy Profit Margins",
     description:
-      "Healthy margins with unified online-offline pricing and high-margin GNRC-branded staples.",
-    stat: "22%",
-    statLabel: "Gross Margin",
+      "Lorem ipsum dolor sit amet, competitive margins with efficient operations.",
+    stat: "25%",
+    statLabel: "Avg. Margin",
   },
 ];

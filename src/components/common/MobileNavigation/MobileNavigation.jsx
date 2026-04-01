@@ -10,6 +10,7 @@ import { Icon } from "@iconify/react";
 import styles from "./MobileNavigation.module.css";
 
 // Navigation items configuration
+/* TODO: Replace with actual content */
 const navItems = [
   {
     id: "whatsapp",
@@ -17,7 +18,7 @@ const navItems = [
     icon: "ic:baseline-whatsapp",
     color: "#25D366",
     action: "whatsapp",
-    href: "https://wa.me/917086036887?text=Hi,%20I%20am%20interested%20in%20GNRC%20Medishop%20Franchise%20Opportunity",
+    href: "https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20am%20interested%20in%20your%20services",
   },
   {
     id: "call",
@@ -25,7 +26,7 @@ const navItems = [
     icon: "ic:baseline-phone",
     color: "#FF6B35",
     action: "call",
-    href: "tel:+917086036887",
+    href: "tel:+91XXXXXXXXXX",
   },
   {
     id: "enquiry",

@@ -1,6 +1,6 @@
 /* ============================================
-   CoursesSection Component - GNRC Medishop
-   Showcases franchise plans with cards grid
+   CoursesSection Component - Generic Boilerplate
+   Showcases plans with cards grid
    and comparison table
    ============================================ */
 
@@ -63,32 +63,33 @@ const cardVariants = {
 };
 
 // Comparison data
+// TODO: Replace with actual content
 const comparisonData = {
-  headers: ["Component", "500 SQFT", "700 SQFT", "1000 SQFT"],
+  headers: ["Component", "BASIC", "STANDARD", "PREMIUM"],
   rows: [
     {
-      label: "Franchise Fee",
-      values: ["₹2.95L", "₹2.95L", "₹2.95L"],
+      label: "Setup Fee",
+      values: ["Contact us", "Contact us", "Contact us"],
     },
     {
-      label: "Interior (₹1,550/sqft)",
-      values: ["₹7.75L", "₹10.85L", "₹15.50L"],
+      label: "Infrastructure",
+      values: ["Contact us", "Contact us", "Contact us"],
     },
     {
-      label: "Stock (₹1,650/sqft)",
-      values: ["₹8.25L", "₹11.55L", "₹16.50L"],
+      label: "Initial Stock",
+      values: ["Contact us", "Contact us", "Contact us"],
     },
     {
       label: "Software + License",
-      values: ["₹1.12L", "₹1.12L", "₹1.12L"],
+      values: ["Contact us", "Contact us", "Contact us"],
     },
     {
       label: "Security Deposit",
-      values: ["₹2L", "₹2L", "₹2L"],
+      values: ["Contact us", "Contact us", "Contact us"],
     },
     {
       label: "Grand Total",
-      values: ["₹22.07L", "₹28.47L", "₹38.07L"],
+      values: ["Contact us", "Contact us", "Contact us"],
       isBold: true,
     },
   ],
@@ -202,8 +203,9 @@ const ServicesSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className={styles.sectionHeader}>
+            {/* TODO: Replace with actual content */}
             <Chip
-              label="INVESTMENT PLANS"
+              label="PLANS"
               sx={{
                 backgroundColor: "rgba(46, 196, 182, 0.12)",
                 color: "#2EC4B6",
@@ -228,7 +230,8 @@ const ServicesSection = () => {
                 lineHeight: 1.2,
               }}
             >
-              Choose Your <span className={styles.accentText}>Store Size</span>
+              {/* TODO: Replace with actual content */}
+              Choose Your <span className={styles.accentText}>Plan</span>
             </Typography>
             <Typography
               className={styles.sectionSubtitle}
@@ -240,7 +243,8 @@ const ServicesSection = () => {
                 maxWidth: "480px",
               }}
             >
-              Transparent investment structure — every rupee carefully planned
+              {/* TODO: Replace with actual content */}
+              Lorem ipsum dolor sit amet — flexible plans for every need
             </Typography>
           </motion.div>
 
@@ -322,10 +326,11 @@ const ServicesSection = () => {
               <Icon icon="mdi:headset" className={styles.ctaIcon} />
               <div className={styles.ctaText}>
                 <span className={styles.ctaTitle}>
-                  Not sure which store size is right for you?
+                  {/* TODO: Replace with actual content */}
+                  Not sure which plan is right for you?
                 </span>
                 <span className={styles.ctaSubtitle}>
-                  Our franchise team will help you choose the best plan
+                  Our team will help you choose the best plan
                 </span>
               </div>
             </div>
@@ -335,7 +340,8 @@ const ServicesSection = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span>Talk to Franchise Team →</span>
+              {/* TODO: Replace with actual content */}
+              <span>Talk to Our Team →</span>
               <Icon icon="mdi:arrow-right" />
             </motion.button>
           </motion.div>
@@ -365,10 +371,11 @@ const ServicesSection = () => {
               <Box
                 sx={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}
               >
+                {/* TODO: Replace with actual content */}
                 <Box
                   component="img"
-                  src="https://res.cloudinary.com/dn9gyaiik/image/upload/v1773728399/founder-gnrc_rwdp8x.jpg"
-                  alt="Dr. Nomal Chandra Borah, Founder, GNRC Group"
+                  src="https://placehold.co/64x64/2D3561/FFFFFF?text=CEO"
+                  alt="Company Founder"
                   sx={{
                     width: { xs: 56, md: 64 },
                     height: { xs: 56, md: 64 },
@@ -398,9 +405,10 @@ const ServicesSection = () => {
                       mt: 0.5,
                     }}
                   >
-                    Every family in Assam and the North East should have access
-                    to trustworthy essentials at honest prices, close to their
-                    home. — Dr. Nomal Chandra Borah, Founder, GNRC Group
+                    {/* TODO: Replace with actual content */}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. — Your Founder Name, CEO
                   </Typography>
                 </Box>
               </Box>
@@ -435,6 +443,7 @@ const ServicesSection = () => {
                   },
                 }}
               >
+                {/* TODO: Replace with actual content */}
                 Learn More About Our Vision →
               </Button>
             </Box>

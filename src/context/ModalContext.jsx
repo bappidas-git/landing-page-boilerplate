@@ -1,5 +1,5 @@
 /* ============================================
-   Modal Context - GNRC Medishop
+   Modal Context
    Handles modal state management across the app
    ============================================ */
 
@@ -22,34 +22,35 @@ export const MODAL_TYPES = {
 };
 
 // Drawer title mapping based on source/context
+// {/* TODO: Replace with actual content */}
 export const DRAWER_TITLES = {
   'apply-now': {
-    title: 'Apply for Franchise',
-    subtitle: 'Start your journey as a GNRC Medishop franchise partner',
+    title: 'Get Started',
+    subtitle: 'Fill in your details and our team will assist you',
   },
   'get-details': {
-    title: 'Get Franchise Details',
-    subtitle: 'Receive complete franchise prospectus and investment details',
+    title: 'Get Details',
+    subtitle: 'Receive complete information about our services and plans',
   },
   'book-meeting': {
     title: 'Book a Meeting',
-    subtitle: 'Meet our franchise development team for a detailed discussion',
+    subtitle: 'Meet our team for a detailed discussion',
   },
   'download-brochure': {
-    title: 'Download Prospectus',
-    subtitle: 'Get the complete GNRC Medishop franchise prospectus',
+    title: 'Download Brochure',
+    subtitle: 'Get the complete brochure with all details',
   },
   'request-callback': {
     title: 'Request a Callback',
-    subtitle: 'Our franchise team will reach out within 24 hours',
+    subtitle: 'Our team will reach out within 24 hours',
   },
   'investment-plans': {
-    title: 'View Investment Plans',
-    subtitle: 'Explore store sizes and investment options',
+    title: 'View Plans',
+    subtitle: 'Explore our plans and pricing options',
   },
   'default': {
-    title: 'Franchise Enquiry',
-    subtitle: 'Fill the form and our franchise team will assist you',
+    title: 'Enquiry',
+    subtitle: 'Fill the form and our team will assist you',
   },
 };
 

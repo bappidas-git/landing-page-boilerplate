@@ -1,5 +1,5 @@
 /* ============================================
-   ContactSection Component - GNRC Medishop
+   ContactSection Component
    "Get in Touch" contact section with contact cards
    and embedded lead form
    ============================================ */
@@ -51,32 +51,33 @@ const ContactSection = () => {
     },
   };
 
+  // TODO: Replace with actual content
   // Contact info items
   const contactInfo = [
     {
       icon: "mdi:phone-outline",
       title: "Phone",
-      content: "+91-7086036887",
-      href: "tel:+917086036887",
+      content: "+91-XXXXXXXXXX",
+      href: "tel:+91XXXXXXXXXX",
     },
     {
       icon: "mdi:whatsapp",
       title: "WhatsApp",
       content: "Quick Chat",
-      href: "https://wa.me/917086036887?text=Hi,%20I%20am%20interested%20in%20GNRC%20Medishop%20Franchise%20Opportunity",
+      href: "https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20am%20interested%20in%20your%20services",
       external: true,
     },
     {
       icon: "mdi:email-outline",
       title: "Email",
-      content: "info@gnrcmedishop.com",
-      href: "mailto:info@gnrcmedishop.com",
+      content: "info@yourbusiness.com",
+      href: "mailto:info@yourbusiness.com",
     },
 
     {
       icon: "mdi:map-marker-outline",
       title: "Address",
-      content: "GNRC Medishop Pvt. Ltd., Guwahati, Assam",
+      content: "Your Company Pvt. Ltd., Your City, Your State",
     },
     {
       icon: "mdi:clock-outline",
@@ -89,7 +90,7 @@ const ContactSection = () => {
     openLeadDrawer("default", {
       title: "Request a Callback",
       subtitle:
-        "Fill in your details and our franchise team will call you back",
+        "Fill in your details and our team will call you back",
     });
   };
 
@@ -108,18 +109,19 @@ const ContactSection = () => {
               Get in <span className={styles.highlight}>Touch</span>
             </Typography>
             <Typography variant="body1" className={styles.sectionSubtitle}>
-              Have questions about the franchise? Our team is ready to help
+              Have questions? Our team is ready to help
             </Typography>
           </motion.div>
 
           {/* Quick Action Buttons (mobile-first, visible on all) */}
           <motion.div variants={itemVariants} className={styles.quickActions}>
-            <a href="tel:+917086036887" className={styles.quickActionBtn}>
+            {/* TODO: Replace with actual content */}
+            <a href="tel:+91XXXXXXXXXX" className={styles.quickActionBtn}>
               <Icon icon="mdi:phone" className={styles.quickActionIcon} />
               <span>Call Now</span>
             </a>
             <a
-              href="https://wa.me/917086036887?text=Hi,%20I%20am%20interested%20in%20GNRC%20Medishop%20Franchise%20Opportunity"
+              href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20am%20interested%20in%20your%20services"
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.quickActionBtn} ${styles.quickActionWhatsapp}`}
@@ -200,7 +202,7 @@ const ContactSection = () => {
                 {/* Form Header */}
                 <div className={styles.formHeader}>
                   <Typography variant="h5" className={styles.formTitle}>
-                    Franchise Enquiry
+                    Enquiry Form
                   </Typography>
                   <Typography variant="body2" className={styles.formSubtitle}>
                     Fill in your details and we'll get back to you

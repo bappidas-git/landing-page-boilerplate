@@ -1,5 +1,5 @@
 /* ============================================
-   SectionTitle Component - GNRC Medishop
+   SectionTitle Component - Landing Page Boilerplate
    Reusable section title with badge and animations
    ============================================ */
 

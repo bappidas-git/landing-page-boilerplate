@@ -1,5 +1,5 @@
 /* ============================================
-   useMediaQuery Hook - GNRC Medishop
+   useMediaQuery Hook - Landing Page Boilerplate
    Custom hook for responsive design
    ============================================ */
 

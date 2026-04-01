@@ -1,6 +1,6 @@
 /* ============================================
-   AboutSection Component - About GNRC Medishop
-   Franchise legacy, stats, content grid & differentiators
+   AboutSection Component
+   About section with stats, content grid & differentiators
    ============================================ */
 
 import React from "react";
@@ -40,40 +40,41 @@ const itemVariants = {
   },
 };
 
+{/* TODO: Replace with actual content */}
 // Stats data
 const keyStats = [
   {
-    value: "20",
+    value: "10",
     suffix: "+",
-    label: "Years of Profitable Business",
+    label: "Years of Experience",
     icon: "mdi:trophy-award",
     color: "#2EC4B6",
   },
   {
-    value: "80",
+    value: "50",
     suffix: "Cr",
-    label: "Annual Turnover",
+    label: "Annual Revenue",
     icon: "mdi:currency-inr",
     color: "#2D3561",
   },
   {
-    value: "50000",
+    value: "10000",
     suffix: "+",
     label: "Products",
     icon: "mdi:package-variant-closed",
     color: "#2EC4B6",
   },
   {
-    value: "16",
-    suffix: "L+",
+    value: "500",
+    suffix: "K+",
     label: "Customers Served",
     icon: "mdi:account-group",
     color: "#2D3561",
   },
   {
-    value: "9",
-    suffix: "",
-    label: "Company-Owned Stores",
+    value: "15",
+    suffix: "+",
+    label: "Locations",
     icon: "mdi:store",
     color: "#2EC4B6",
   },
@@ -83,15 +84,15 @@ const keyStats = [
 const gridImages = [
   {
     src: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400&h=300&fit=crop&q=80",
-    alt: "GNRC Medishop Pharmacy Store",
+    alt: "Business location exterior",
   },
   {
     src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=80",
-    alt: "GNRC Medishop Retail Shopping",
+    alt: "Customer shopping experience",
   },
   {
     src: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=400&h=300&fit=crop&q=80",
-    alt: "GNRC Medishop Healthcare Products",
+    alt: "Product showcase",
   },
 ];
 
@@ -99,23 +100,23 @@ const gridImages = [
 const differentiators = [
   {
     icon: "mdi:store-check",
-    title: "Pharmacy + Grocery + Household Essentials",
-    description: "Multi-category model under one roof",
+    title: "Multi-Category Offering",
+    description: "Lorem ipsum dolor sit amet, multiple product lines under one roof",
   },
   {
     icon: "mdi:chart-line",
-    title: "Profitable Since Day One",
-    description: "Proven business model across 9 stores",
+    title: "Proven Business Model",
+    description: "Lorem ipsum dolor sit amet, profitable across all locations",
   },
   {
     icon: "mdi:tag-multiple",
-    title: "1,200+ Brand Partners",
-    description: "HUL, P&G, ITC, Nestlé, Amul, and more",
+    title: "500+ Brand Partners",
+    description: "Lorem ipsum dolor sit amet, access to leading consumer brands",
   },
   {
     icon: "mdi:account-star",
     title: "End-to-End Support",
-    description: "Location, interior, training, technology, marketing",
+    description: "Lorem ipsum dolor sit amet, complete setup and ongoing assistance",
   },
 ];
 
@@ -148,6 +149,7 @@ const AboutSection = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className={styles.sectionHeader}>
             <span className={styles.badge}>PROVEN SUCCESS</span>
+            {/* TODO: Replace with actual content */}
             <Typography
               variant="h2"
               className={styles.sectionTitle}
@@ -159,7 +161,7 @@ const AboutSection = () => {
                 letterSpacing: "-0.01em",
               }}
             >
-              About GNRC Medishop
+              About Our Company
             </Typography>
             <Typography
               variant="h3"
@@ -172,7 +174,7 @@ const AboutSection = () => {
                 marginTop: "0.5rem",
               }}
             >
-              NE India's Most Trusted Essentials Retail Chain Since 2006
+              A Trusted Name in the Industry Since 2014
             </Typography>
           </motion.div>
 
@@ -210,21 +212,19 @@ const AboutSection = () => {
           <div className={styles.contentGrid}>
             {/* Left Column - Text */}
             <motion.div variants={itemVariants} className={styles.textColumn}>
+              {/* TODO: Replace with actual content */}
               <Typography className={styles.contentParagraph}>
-                GNRC Medishop is one of the fastest-growing, multi-category
-                essentials retail chains in North East India, offering Pharmacy,
-                FMCG, Grocery, Personal Care, and high-margin GNRC-branded
-                staples — all under one trusted roof. Built on the strong
-                foundation of GNRC Group's credibility and the legacy of Dr.
-                Nomal Chandra Borah, GNRC Medishop has been profitable since
-                inception with ₹80 Crore annual turnover.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Our company has been a
+                trusted name in the industry for over a decade.
               </Typography>
               <Typography className={styles.contentParagraph}>
-                With 9 consistently profitable company-owned stores across
-                Guwahati, 30,000+ SKUs across 1,200+ trusted brands, and a
-                dedicated team of 175+ professionals, GNRC Medishop is now
-                expanding through a franchise model — offering aspiring
-                entrepreneurs the opportunity to become Retailpreneurs.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. With multiple profitable
+                locations, thousands of products, and a dedicated team, we are
+                now expanding through partnerships.
               </Typography>
               <Button
                 variant="contained"
@@ -250,7 +250,7 @@ const AboutSection = () => {
                   },
                 }}
               >
-                View Investment Plans →
+                View Plans →
               </Button>
             </motion.div>
 
@@ -279,6 +279,7 @@ const AboutSection = () => {
             variants={itemVariants}
             className={styles.differentiatorsRow}
           >
+            {/* TODO: Replace with actual content */}
             <Typography
               variant="h4"
               className={styles.differentiatorsTitle}
@@ -291,7 +292,7 @@ const AboutSection = () => {
                 marginBottom: { xs: "1.5rem", md: "2rem" },
               }}
             >
-              What Sets GNRC Medishop Apart
+              What Sets Us Apart
             </Typography>
             <div className={styles.differentiatorsGrid}>
               {differentiators.map((item, index) => (

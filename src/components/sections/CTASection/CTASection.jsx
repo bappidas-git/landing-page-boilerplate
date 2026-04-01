@@ -1,5 +1,5 @@
 /* ============================================
-   CTASection Component - GNRC Medishop
+   CTASection Component
    "Your Dream Franchise is One Step Away"
    Dark indigo CTA with stats and franchise application buttons
    ============================================ */
@@ -54,10 +54,11 @@ const CTASection = () => {
     openLeadDrawer("apply-now");
   };
 
+  /* TODO: Replace with actual content */
   const stats = [
-    { value: "20+", label: "Years", icon: "mdi:trophy-award" },
-    { value: "₹80Cr", label: "Turnover", icon: "mdi:currency-inr" },
-    { value: "22%", label: "Margin", icon: "mdi:percent-circle" },
+    { value: "10+", label: "Years", icon: "mdi:trophy-award" },
+    { value: "50Cr", label: "Revenue", icon: "mdi:currency-inr" },
+    { value: "25%", label: "Margin", icon: "mdi:percent-circle" },
     { value: "30%", label: "ROI", icon: "mdi:chart-line" },
   ];
 
@@ -77,8 +78,9 @@ const CTASection = () => {
         >
           {/* Headline */}
           <motion.div variants={itemVariants}>
+            {/* TODO: Replace with actual content */}
             <Typography variant="h3" className={styles.title}>
-              Join the GNRC Medishop{" "}
+              Join Our{" "}
               <span className={styles.highlight}>Success Story</span>
             </Typography>
           </motion.div>
@@ -90,9 +92,9 @@ const CTASection = () => {
               className={styles.description}
               sx={{ color: "#fff" }}
             >
-              Partner with NE India's most trusted pharma-grocer retail
-              franchise. Proven profitable model. Complete support. Limited
-              franchise territories available.
+              {/* TODO: Replace with actual content */}
+              Lorem ipsum dolor sit amet. Partner with a proven business model.
+              Complete support. Limited territories available.
             </Typography>
           </motion.div>
 
@@ -124,18 +126,19 @@ const CTASection = () => {
                 onClick={handleApplyNow}
                 className={styles.primaryBtn}
               >
-                Apply for Franchise Now
+                Get Started Now
               </Button>
             </motion.div>
 
+            {/* TODO: Replace with actual content */}
             <Button
               variant="outline"
               size="large"
               startIcon="mdi:phone-outline"
-              href="tel:+917086036887"
+              href="tel:+91XXXXXXXXXX"
               className={styles.secondaryBtn}
             >
-              Call: 7086-036-887
+              Call: +91-XXXXXXXXXX
             </Button>
           </motion.div>
         </motion.div>

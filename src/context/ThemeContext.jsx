@@ -1,5 +1,5 @@
 /* ============================================
-   Theme Context - GNRC Medishop
+   Theme Context - Landing Page Boilerplate
    Handles theme preferences (light/dark mode)
    ============================================ */
 

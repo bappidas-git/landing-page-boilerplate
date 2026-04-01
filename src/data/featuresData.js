@@ -1,32 +1,32 @@
 export const featuresData = [
   {
     id: 1,
-    category: 'Setup & Launch Support',
+    category: 'Setup & Launch',
     items: [
-      { icon: 'mdi:map-marker-check', title: 'Location & License Support', description: 'Expert analysis for high-potential retail locations + trade & drug license assistance' },
-      { icon: 'mdi:palette', title: 'Complete Branding', description: 'Full brand identity, store design docket within 5 days, visual merchandising' },
-      { icon: 'mdi:tools', title: 'Turnkey Interior Setup', description: 'False ceiling, modular fittings, AC, electrical, counter setup — all at ₹1,550/sqft' },
-      { icon: 'mdi:account-multiple-plus', title: 'Hiring & Training', description: 'Comprehensive staff recruitment, screening, and operational training support' },
+      { icon: 'mdi:map-marker-check', title: 'Location Analysis', description: 'Lorem ipsum dolor sit amet, expert site selection and feasibility assessment' },
+      { icon: 'mdi:palette', title: 'Complete Branding', description: 'Lorem ipsum dolor sit amet, full brand identity and visual design package' },
+      { icon: 'mdi:tools', title: 'Turnkey Setup', description: 'Lorem ipsum dolor sit amet, end-to-end interior and infrastructure setup' },
+      { icon: 'mdi:account-multiple-plus', title: 'Hiring & Training', description: 'Lorem ipsum dolor sit amet, comprehensive staff recruitment and training' },
     ],
   },
   {
     id: 2,
     category: 'Operations & Technology',
     items: [
-      { icon: 'mdi:laptop', title: 'Zoho Technology Platform', description: 'Complete ordering, inventory, and billing through Zoho with 7-day IT support' },
-      { icon: 'mdi:truck-delivery', title: 'Swift Logistics Network', description: 'Stock delivery costs fully borne by GNRC — reliable delivery across NE India' },
-      { icon: 'mdi:package-variant-closed', title: 'Automated Inventory', description: 'Auto-replenishment, stock rotation, expiry management via predictive algorithms' },
-      { icon: 'mdi:ticket-confirmation', title: 'B2B Ticketing System', description: 'Dedicated support platform for rapid issue resolution and transparent tracking' },
+      { icon: 'mdi:laptop', title: 'Technology Platform', description: 'Lorem ipsum dolor sit amet, complete ordering, inventory, and billing system' },
+      { icon: 'mdi:truck-delivery', title: 'Logistics Network', description: 'Lorem ipsum dolor sit amet, reliable delivery and supply chain management' },
+      { icon: 'mdi:package-variant-closed', title: 'Automated Inventory', description: 'Lorem ipsum dolor sit amet, auto-replenishment and stock management' },
+      { icon: 'mdi:ticket-confirmation', title: 'Support System', description: 'Lorem ipsum dolor sit amet, dedicated support platform for issue resolution' },
     ],
   },
   {
     id: 3,
     category: 'Marketing & Growth',
     items: [
-      { icon: 'mdi:hospital-building', title: 'Hospital-Driven Marketing', description: 'High awareness through GNRC Hospital network reaching target demographics' },
-      { icon: 'mdi:facebook', title: 'Digital Promotion', description: 'Facebook & Instagram marketing campaigns managed by GNRC' },
-      { icon: 'mdi:billboard', title: 'Offline Marketing', description: 'Banners, standees, pamphlets, auto-rickshaw branding, SMS & email campaigns' },
-      { icon: 'mdi:shield-check', title: 'Good Stock Return Policy', description: '100% CTC refund on medicines (before 3-month expiry), 60-70% on grocery' },
+      { icon: 'mdi:bullhorn', title: 'Brand Marketing', description: 'Lorem ipsum dolor sit amet, multi-channel marketing campaigns' },
+      { icon: 'mdi:facebook', title: 'Digital Promotion', description: 'Lorem ipsum dolor sit amet, social media marketing and online campaigns' },
+      { icon: 'mdi:billboard', title: 'Offline Marketing', description: 'Lorem ipsum dolor sit amet, banners, standees, pamphlets, and local campaigns' },
+      { icon: 'mdi:shield-check', title: 'Quality Assurance', description: 'Lorem ipsum dolor sit amet, strict quality control and return policies' },
     ],
   },
 ];

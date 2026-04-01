@@ -1,5 +1,5 @@
 /* ============================================
-   useScrollPosition Hook - GNRC Medishop
+   useScrollPosition Hook - Landing Page Boilerplate
    Custom hook for tracking scroll position
    ============================================ */
 

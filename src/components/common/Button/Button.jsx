@@ -1,5 +1,5 @@
 /* ============================================
-   Button Component - GNRC Medishop
+   Button Component - Landing Page Boilerplate
    Reusable button with multiple variants and animations
    ============================================ */
 

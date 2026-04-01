@@ -1,5 +1,5 @@
 /* ============================================
-   Header Component - GNRC Medishop
+   Header Component
    Fixed header with scroll behavior and navigation
    ============================================ */
 
@@ -15,18 +15,18 @@ import {
 import { Icon } from "@iconify/react";
 import styles from "./Header.module.css";
 
-// GNRC Medishop logo URL
-const gnrcLogo =
-  "https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png";
+// TODO: Replace with actual content
+const logoUrl =
+  "https://placehold.co/180x50/2D3561/FFFFFF?text=YOUR+LOGO";
 
 // Navigation items
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "About GNRC", href: "#about" },
-  { label: "Investment", href: "#investment" },
-  { label: "Why GNRC", href: "#why-gnrc" },
-  { label: "Support", href: "#support" },
-  { label: "Stores", href: "#stores" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#investment" },
+  { label: "Why Us", href: "#why-gnrc" },
+  { label: "Features", href: "#support" },
+  { label: "Location", href: "#stores" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -169,8 +169,8 @@ const Header = ({ forceCloseMenu = false }) => {
           >
             <div className={styles.logoWrapper}>
               <img
-                src={gnrcLogo}
-                alt="GNRC Medishop"
+                src={logoUrl}
+                alt="Your Business Name"
                 className={styles.mainLogo}
                 style={{
                   filter: isScrolled ? "none" : "brightness(0) invert(1)",
@@ -215,9 +215,9 @@ const Header = ({ forceCloseMenu = false }) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.3 }}
             >
-              <a href="tel:+917086036887" className={styles.callButton}>
+              <a href="tel:+91XXXXXXXXXX" className={styles.callButton}>
                 <Icon icon="mdi:phone" className={styles.callButtonIcon} />
-                +91-7086036887
+                +91-XXXXXXXXXX
               </a>
             </motion.div>
           )}
@@ -273,12 +273,12 @@ const Header = ({ forceCloseMenu = false }) => {
               </ul>
               <div className={styles.mobileNavCTA}>
                 <a
-                  href="tel:+917086036887"
+                  href="tel:+91XXXXXXXXXX"
                   className={styles.mobileCallButton}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Icon icon="mdi:phone" className={styles.callButtonIcon} />
-                  +91-7086036887
+                  +91-XXXXXXXXXX
                 </a>
               </div>
             </nav>
@@ -293,11 +293,11 @@ const Header = ({ forceCloseMenu = false }) => {
 const getNavIcon = (label) => {
   const icons = {
     Home: "mdi:home-outline",
-    "About GNRC": "mdi:information-outline",
-    Investment: "mdi:currency-inr",
-    "Why GNRC": "mdi:star-outline",
-    Support: "mdi:check-decagram-outline",
-    Stores: "mdi:storefront-outline",
+    About: "mdi:information-outline",
+    Services: "mdi:currency-inr",
+    "Why Us": "mdi:star-outline",
+    Features: "mdi:check-decagram-outline",
+    Location: "mdi:storefront-outline",
     Contact: "mdi:phone-outline",
   };
   return icons[label] || "mdi:circle-outline";

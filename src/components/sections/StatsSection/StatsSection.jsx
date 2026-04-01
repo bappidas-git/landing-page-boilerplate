@@ -1,5 +1,5 @@
 /* ============================================
-   StatsSection Component - GNRC Medishop
+   StatsSection Component
    Project highlights with expand/collapse functionality
    ============================================ */
 
@@ -142,7 +142,7 @@ const StatsSection = () => {
                 <div className={styles.towerImageContainer}>
                   <img
                     src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=800&fit=crop"
-                    alt="GNRC Medishop Store"
+                    alt="Business location"
                     className={styles.towerImage}
                     loading="lazy"
                   />
@@ -164,6 +164,7 @@ const StatsSection = () => {
             <Grid item xs={12} md={7} lg={8}>
               <motion.div variants={itemVariants} className={styles.contentWrapper}>
                 {/* Section Title */}
+                {/* TODO: Replace with actual content */}
                 <Typography
                   variant="h2"
                   className={styles.sectionTitle}

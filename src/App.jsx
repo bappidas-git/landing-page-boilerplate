@@ -1,5 +1,5 @@
 /* ============================================
-   App Component - GNRC Medishop
+   App Component - Landing Page Boilerplate
    Main application component with providers,
    lazy loading, and performance optimizations
    ============================================ */

@@ -30,31 +30,31 @@ const menuItems = [
   },
   {
     id: "about",
-    label: "About GNRC",
+    label: "About",
     icon: "ic:outline-info",
     href: "#about",
   },
   {
     id: "investment",
-    label: "Investment",
+    label: "Services",
     icon: "mdi:currency-inr",
     href: "#investment",
   },
   {
     id: "why-gnrc",
-    label: "Why GNRC",
+    label: "Why Us",
     icon: "ic:outline-star",
     href: "#why-gnrc",
   },
   {
     id: "support",
-    label: "Support",
+    label: "Features",
     icon: "ic:outline-verified",
     href: "#support",
   },
   {
     id: "stores",
-    label: "Stores",
+    label: "Location",
     icon: "ic:outline-storefront",
     href: "#stores",
   },
@@ -191,9 +191,10 @@ const MobileDrawer = ({ open, onClose, onOpen, activeSection = "home" }) => {
       {/* Header */}
       <Box className={styles.drawerHeader}>
         <Box className={styles.logoSection}>
+          {/* TODO: Replace with actual content */}
           <img
-            src="https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png"
-            alt="GNRC Medishop"
+            src="https://placehold.co/180x50/2D3561/FFFFFF?text=YOUR+LOGO"
+            alt="Your Business Name"
             style={{ height: "28px", width: "auto" }}
           />
         </Box>
@@ -290,7 +291,7 @@ const MobileDrawer = ({ open, onClose, onOpen, activeSection = "home" }) => {
           </Typography>
           <Box className={styles.contactActions}>
             <motion.a
-              href="tel:+917086036887"
+              href="tel:+91XXXXXXXXXX"
               className={styles.contactLink}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -299,7 +300,7 @@ const MobileDrawer = ({ open, onClose, onOpen, activeSection = "home" }) => {
               <span>Call Us</span>
             </motion.a>
             <motion.a
-              href="https://wa.me/917086036887?text=Hi,%20I%20am%20interested%20in%20GNRC%20Medishop%20Franchise%20Opportunity"
+              href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20am%20interested%20in%20your%20services"
               className={styles.contactLinkWhatsapp}
               target="_blank"
               rel="noopener noreferrer"

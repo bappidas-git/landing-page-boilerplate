@@ -1,6 +1,6 @@
 /* ============================================
    HighlightsSection Component - Results & Achievements
-   Showcases GNRC Medishop Franchise performance and support ecosystem
+   Showcases performance and support ecosystem
    ============================================ */
 
 import React, { useRef } from "react";
@@ -35,16 +35,17 @@ const itemVariants = {
   },
 };
 
+// TODO: Replace with actual content
 // Results highlight data
 const resultsData = [
   {
     id: 1,
     icon: "mdi:cart-outline",
     iconColor: "#FFD700",
-    title: "Multi-Category Revenue",
+    title: "Multiple Revenue Streams",
     stat: null,
     statLabel:
-      "Pharmacy + Grocery + Household Essentials = Multiple revenue streams from day one",
+      "Lorem ipsum dolor sit amet, multiple service lines for diversified revenue from day one",
     subStats: null,
   },
   {
@@ -54,58 +55,59 @@ const resultsData = [
     title: "Proven & Profitable",
     stat: null,
     statLabel:
-      "9 company-owned stores, all consistently profitable. ₹80 Cr annual turnover proves the model.",
+      "Lorem ipsum dolor sit amet, multiple locations all consistently profitable",
     subStats: null,
   },
   {
     id: 3,
     icon: "mdi:hospital-building",
     iconColor: "#66BB6A",
-    title: "Hospital Network Advantage",
+    title: "Network Advantage",
     stat: null,
     statLabel:
-      "Built-in customer base through GNRC Hospital's 1.6M+ patient community across NE India",
+      "Lorem ipsum dolor sit amet, built-in customer base through established brand presence",
     subStats: null,
   },
 ];
 
+// TODO: Replace with actual content
 // Product categories data
 const testTypes = [
   {
     icon: "mdi:pill",
-    name: "Pharmacy & Healthcare",
+    name: "Primary Services",
     tag: null,
-    description: "Medicines, OTC, Surgical",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing",
   },
   {
     icon: "mdi:cart-outline",
-    name: "Grocery & Household Essentials",
+    name: "Secondary Services",
     tag: null,
-    description: "Daily staples, branded products",
+    description: "Lorem ipsum dolor sit amet, sed do eiusmod",
   },
   {
     icon: "mdi:spray-bottle",
-    name: "Personal & Home Care",
+    name: "Consulting",
     tag: null,
-    description: "Toiletries, cleaning supplies",
+    description: "Lorem ipsum dolor sit amet, tempor incididunt",
   },
   {
     icon: "mdi:baby-carriage",
-    name: "Baby & Child Care",
+    name: "Support Services",
     tag: null,
-    description: "Nutrition, diapers, toys",
+    description: "Lorem ipsum dolor sit amet, ut labore et dolore",
   },
   {
     icon: "mdi:lipstick",
-    name: "Beauty Products",
+    name: "Digital Solutions",
     tag: null,
-    description: "Cosmetics, skincare",
+    description: "Lorem ipsum dolor sit amet, magna aliqua",
   },
   {
     icon: "mdi:cup-water",
-    name: "Beverages & Frozen Foods",
+    name: "Custom Solutions",
     tag: null,
-    description: "Drinks, dairy, snacks",
+    description: "Lorem ipsum dolor sit amet, ut enim ad minim",
   },
 ];
 
@@ -132,7 +134,8 @@ const HighlightsSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>WHY GNRC MEDISHOP</span>
+            {/* TODO: Replace with actual content */}
+            <span className={styles.sectionBadge}>WHY CHOOSE US</span>
             <Typography
               variant="h2"
               className={styles.sectionTitle}
@@ -147,13 +150,13 @@ const HighlightsSection = () => {
               }}
             >
               Why Partner With{" "}
-              <span className={styles.highlightText}>GNRC?</span>
+              <span className={styles.highlightText}>Us?</span>
             </Typography>
             <div className={styles.titleUnderline}>
               <span className={styles.underlineBar} />
             </div>
             <Typography className={styles.sectionSubtitle}>
-              A complete franchise ecosystem designed for your success
+              A complete ecosystem designed for your success
             </Typography>
           </motion.div>
 
@@ -261,19 +264,20 @@ const HighlightsSection = () => {
                 <Icon icon="mdi:store" />
               </div>
               <div className={styles.scholarshipTextBlock}>
+                {/* TODO: Replace with actual content */}
                 <Typography
                   className={styles.scholarshipHeading}
                   sx={{ color: "#fff", fontWeight: "bold" }}
                 >
-                  20-22% Gross Margin | 30% Expected ROI
+                  Healthy Margins | Strong ROI
                 </Typography>
                 <Typography
                   className={styles.scholarshipDesc}
                   sx={{ color: "#fff" }}
                 >
-                  With unified online-offline pricing, high-margin GNRC-branded
-                  staples, and zero-waste inventory management, every franchise
-                  partner can expect healthy, predictable returns.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. With
+                  streamlined operations and optimized pricing, every partner
+                  can expect healthy, predictable returns.
                 </Typography>
               </div>
               <motion.button
@@ -282,7 +286,7 @@ const HighlightsSection = () => {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <span>Get Detailed P&L Projection →</span>
+                <span>Get Detailed Projections →</span>
                 <Icon icon="mdi:arrow-right" />
               </motion.button>
             </div>
@@ -290,9 +294,10 @@ const HighlightsSection = () => {
 
           {/* Bottom CTA */}
           <motion.div variants={itemVariants} className={styles.bottomCta}>
+            {/* TODO: Replace with actual content */}
             <Typography className={styles.bottomCtaText}>
-              1,200+ Brand Partnerships — Access India's most trusted brands
-              through our established distribution network
+              500+ Brand Partnerships — Lorem ipsum dolor sit amet, access
+              trusted brands through our distribution network
             </Typography>
             <motion.button
               className={styles.brochureBtn}

@@ -1,5 +1,5 @@
 /* ============================================
-   Modal Component - GNRC Medishop
+   Modal Component - Landing Page Boilerplate
    Animated modal/dialog with multiple variants
    ============================================ */
 
