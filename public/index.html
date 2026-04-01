@@ -102,7 +102,11 @@
     <!-- =========================================
          Canonical & Alternate URLs
          ========================================= -->
-    <link rel="canonical" href="%PUBLIC_URL%/" />
+    <link rel="canonical" href="https://yourbusiness.com/" />
+    <!-- Hreflang: Uncomment and update if multi-language support is needed -->
+    <!-- <link rel="alternate" hreflang="en" href="https://yourbusiness.com/" /> -->
+    <!-- <link rel="alternate" hreflang="hi" href="https://yourbusiness.com/hi/" /> -->
+    <!-- <link rel="alternate" hreflang="x-default" href="https://yourbusiness.com/" /> -->
 
     <!-- =========================================
          PWA Manifest & Icons
@@ -172,16 +176,17 @@
          Structured Data / JSON-LD for SEO
          ========================================= -->
 
-    <!-- Schema 1: Organization -->
-    <!-- TODO: Replace with actual content -->
-    <script type="application/ld+json">
+    <!-- Schema: Organization -->
+    <!-- TODO: Update with your business details. See src/config/seo.js -->
+    <!-- These static schemas serve as fallbacks; the SEOHead component injects dynamic versions at runtime -->
+    <script type="application/ld+json" id="schema-organization">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Your Company Pvt. Ltd.",
         "alternateName": "Your Business Name",
         "url": "https://yourbusiness.com",
-        "logo": "https://placehold.co/180x50/2D3561/FFFFFF?text=YOUR+LOGO",
+        "logo": "https://yourbusiness.com/logo.png",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "telephone": "+91-XXXXXXXXXX",
         "email": "info@yourbusiness.com",
@@ -191,13 +196,13 @@
           "addressRegion": "Your State",
           "addressCountry": "IN"
         },
-        "sameAs": ["https://yourbusiness.com"]
+        "sameAs": []
       }
     </script>
 
-    <!-- Schema 2: FAQPage -->
-    <!-- TODO: Replace with actual content -->
-    <script type="application/ld+json">
+    <!-- Schema: FAQPage -->
+    <!-- TODO: Update with your actual FAQs. See src/config/seo.js -->
+    <script type="application/ld+json" id="schema-faq">
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -246,14 +251,15 @@
       }
     </script>
 
-    <!-- Schema 3: LocalBusiness -->
-    <!-- TODO: Replace with actual content -->
-    <script type="application/ld+json">
+    <!-- Schema: LocalBusiness -->
+    <!-- TODO: Update with your business details. See src/config/seo.js -->
+    <script type="application/ld+json" id="schema-localbusiness">
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Your Company Pvt. Ltd.",
-        "image": "https://placehold.co/180x50/2D3561/FFFFFF?text=YOUR+LOGO",
+        "image": "https://yourbusiness.com/logo.png",
+        "url": "https://yourbusiness.com",
         "telephone": "+91-XXXXXXXXXX",
         "email": "info@yourbusiness.com",
         "address": {
@@ -276,6 +282,48 @@
           ],
           "opens": "08:00",
           "closes": "22:00"
+        }
+      }
+    </script>
+
+    <!-- Schema: BreadcrumbList -->
+    <!-- Dynamically updated by SEOHead component -->
+    <script type="application/ld+json" id="schema-breadcrumb">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://yourbusiness.com/"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Schema: WebPage -->
+    <!-- Dynamically updated by SEOHead component -->
+    <script type="application/ld+json" id="schema-webpage">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Your Business Name | Tagline",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Learn more about our services, plans, and offerings.",
+        "url": "https://yourbusiness.com/",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Your Business Name",
+          "url": "https://yourbusiness.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Your Company Pvt. Ltd.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://yourbusiness.com/logo.png"
+          }
         }
       }
     </script>

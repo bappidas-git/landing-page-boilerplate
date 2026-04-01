@@ -4,7 +4,7 @@
    and comparison table
    ============================================ */
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Container,
@@ -22,6 +22,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { servicesData } from "../../../data/servicesData";
 import { useModal } from "../../../context/ModalContext";
+import { injectSchema, removeSchema, generateServiceSchema } from "../../../utils/seo";
 import styles from "./ServicesSection.module.css";
 
 // Animation variants
@@ -101,6 +102,12 @@ const ServicesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { openLeadDrawer } = useModal();
+
+  // Inject Service schema for structured data
+  useEffect(() => {
+    injectSchema('schema-services', generateServiceSchema(servicesData));
+    return () => removeSchema('schema-services');
+  }, []);
 
   const handleGetCourseDetails = (courseName) => {
     openLeadDrawer("get-course-details", {
