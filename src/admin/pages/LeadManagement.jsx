@@ -53,15 +53,16 @@ import {
 import { sendConversionEvent } from "../../utils/metaCAPI";
 import { generateEventId } from "../../utils/eventDedup";
 import { exportGoogleAdsCSV } from "../utils/googleAdsExport";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import styles from "./LeadManagement.module.css";
 
 // Status config
 const STATUS_OPTIONS = [
-  { value: "new", label: "New", color: "#2196F3", bg: "#E3F2FD" },
-  { value: "contacted", label: "Contacted", color: "#FF9800", bg: "#FFF3E0" },
-  { value: "qualified", label: "Qualified", color: "#9C27B0", bg: "#F3E5F5" },
-  { value: "converted", label: "Converted", color: "#4CAF50", bg: "#E8F5E9" },
-  { value: "lost", label: "Lost", color: "#F44336", bg: "#FFEBEE" },
+  { value: "new", label: "New", color: "#2B7BD5", bg: "#EBF5FF" },
+  { value: "contacted", label: "Contacted", color: "#F59E0B", bg: "#FFF7ED" },
+  { value: "qualified", label: "Qualified", color: "#8B5CF6", bg: "#F3E8FF" },
+  { value: "converted", label: "Converted", color: "#10B981", bg: "#ECFDF5" },
+  { value: "lost", label: "Lost", color: "#EF4444", bg: "#FEF2F2" },
 ];
 
 const DATE_RANGE_OPTIONS = [
@@ -96,13 +97,12 @@ const formatShortDate = (dateStr) => {
 // Columns config
 const COLUMNS = [
   { id: "name", label: "Name", sortable: true },
-  { id: "mobile", label: "Mobile", sortable: true },
+  { id: "mobile", label: "Mobile", sortable: true, width: 130 },
   { id: "email", label: "Email", sortable: true },
-  { id: "investment_interest", label: "Interest", sortable: true },
-  { id: "current_occupation", label: "Occupation", sortable: false },
-  { id: "source", label: "Source", sortable: true },
-  { id: "status", label: "Status", sortable: true },
-  { id: "submitted_at", label: "Date", sortable: true },
+  { id: "investment_interest", label: "Interest", sortable: true, hideTablet: true },
+  { id: "source", label: "Source", sortable: true, width: 140 },
+  { id: "status", label: "Status", sortable: true, width: 120 },
+  { id: "submitted_at", label: "Date", sortable: true, width: 100 },
 ];
 
 // Conversion type options
@@ -148,7 +148,10 @@ const LeadManagement = () => {
   const [conversionValue, setConversionValue] = useState("");
   const [conversionType, setConversionType] = useState("");
   const [conversionSending, setConversionSending] = useState(false);
+  const [moreMenuAnchor, setMoreMenuAnchor] = useState(null);
   const fileInputRef = useRef(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(max-width: 1024px)");
 
   // Sources from data
   const [availableSources, setAvailableSources] = useState([]);
@@ -428,7 +431,7 @@ const LeadManagement = () => {
             size="small"
             startIcon={<Icon icon="mdi:upload" />}
             onClick={() => fileInputRef.current?.click()}
-            sx={{ textTransform: "none", borderColor: "#ddd", color: "#555" }}
+            sx={{ textTransform: "none", borderColor: "var(--admin-border)", color: "var(--admin-text-secondary)", "&:hover": { borderColor: "var(--admin-accent)", color: "var(--admin-accent)" } }}
           >
             Import CSV
           </Button>
@@ -437,7 +440,7 @@ const LeadManagement = () => {
             size="small"
             startIcon={<Icon icon="mdi:download" />}
             onClick={handleExport}
-            sx={{ textTransform: "none", borderColor: "#ddd", color: "#555" }}
+            sx={{ textTransform: "none", borderColor: "var(--admin-border)", color: "var(--admin-text-secondary)", "&:hover": { borderColor: "var(--admin-accent)", color: "var(--admin-accent)" } }}
           >
             Export CSV
           </Button>
@@ -446,11 +449,35 @@ const LeadManagement = () => {
             size="small"
             startIcon={<Icon icon="mdi:google-ads" />}
             onClick={handleGoogleAdsExport}
-            sx={{ textTransform: "none", borderColor: "#4285F4", color: "#4285F4" }}
+            sx={{ textTransform: "none", borderColor: "var(--admin-accent)", color: "var(--admin-accent)" }}
           >
             Export for Google Ads
           </Button>
         </div>
+        {/* Mobile more menu */}
+        <IconButton
+          className={styles.moreMenuBtn}
+          onClick={(e) => setMoreMenuAnchor(e.currentTarget)}
+          size="small"
+          sx={{ border: "1px solid var(--admin-border)", borderRadius: "8px" }}
+        >
+          <Icon icon="mdi:dots-vertical" width={20} />
+        </IconButton>
+        <Menu
+          anchorEl={moreMenuAnchor}
+          open={Boolean(moreMenuAnchor)}
+          onClose={() => setMoreMenuAnchor(null)}
+        >
+          <MenuItem onClick={() => { fileInputRef.current?.click(); setMoreMenuAnchor(null); }}>
+            <Icon icon="mdi:upload" width={18} style={{ marginRight: 8 }} /> Import CSV
+          </MenuItem>
+          <MenuItem onClick={() => { handleExport(); setMoreMenuAnchor(null); }}>
+            <Icon icon="mdi:download" width={18} style={{ marginRight: 8 }} /> Export CSV
+          </MenuItem>
+          <MenuItem onClick={() => { handleGoogleAdsExport(); setMoreMenuAnchor(null); }}>
+            <Icon icon="mdi:google-ads" width={18} style={{ marginRight: 8 }} /> Export for Google Ads
+          </MenuItem>
+        </Menu>
       </div>
 
       {/* Stats Summary */}
@@ -458,7 +485,7 @@ const LeadManagement = () => {
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={`${styles.statIcon} ${styles.statIconBlue}`}>
-              <Icon icon="mdi:account-multiple" width={22} />
+              <Icon icon="mdi:account-multiple" width={20} />
             </div>
             <div>
               <p className={styles.statValue}>{stats.totalLeads}</p>
@@ -467,7 +494,7 @@ const LeadManagement = () => {
           </div>
           <div className={styles.statCard}>
             <div className={`${styles.statIcon} ${styles.statIconGreen}`}>
-              <Icon icon="mdi:account-plus" width={22} />
+              <Icon icon="mdi:account-plus" width={20} />
             </div>
             <div>
               <p className={styles.statValue}>{stats.newLeads24h}</p>
@@ -476,7 +503,7 @@ const LeadManagement = () => {
           </div>
           <div className={styles.statCard}>
             <div className={`${styles.statIcon} ${styles.statIconTeal}`}>
-              <Icon icon="mdi:percent" width={22} />
+              <Icon icon="mdi:percent" width={20} />
             </div>
             <div>
               <p className={styles.statValue}>{stats.conversionRate}%</p>
@@ -485,7 +512,7 @@ const LeadManagement = () => {
           </div>
           <div className={styles.statCard}>
             <div className={`${styles.statIcon} ${styles.statIconOrange}`}>
-              <Icon icon="mdi:target" width={22} />
+              <Icon icon="mdi:target" width={20} />
             </div>
             <div>
               <p className={styles.statValue} title={stats.topSource}>
@@ -499,8 +526,9 @@ const LeadManagement = () => {
         </div>
       )}
 
-      {/* Filters */}
+      {/* Filters & Table Card */}
       <div className={styles.card}>
+        {/* Filter Bar */}
         <div className={styles.filtersBar}>
           <TextField
             size="small"
@@ -510,11 +538,18 @@ const LeadManagement = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <Icon icon="mdi:magnify" width={20} style={{ color: "#999" }} />
+                  <Icon icon="mdi:magnify" width={20} style={{ color: "var(--admin-text-muted)" }} />
                 </InputAdornment>
               ),
             }}
-            sx={{ minWidth: 240, flex: "1 1 240px" }}
+            sx={{
+              flex: "1 1 240px",
+              minWidth: isMobile ? "100%" : 240,
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "8px",
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--admin-accent)" },
+              },
+            }}
           />
           <FormControl size="small" sx={{ minWidth: 130 }}>
             <InputLabel>Status</InputLabel>
@@ -522,6 +557,7 @@ const LeadManagement = () => {
               value={statusFilter}
               label="Status"
               onChange={(e) => { setStatusFilter(e.target.value); setPage(0); }}
+              sx={{ borderRadius: "8px", "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--admin-accent)" } }}
             >
               <MenuItem value="all">All Status</MenuItem>
               {STATUS_OPTIONS.map((s) => (
@@ -535,6 +571,7 @@ const LeadManagement = () => {
               value={sourceFilter}
               label="Source"
               onChange={(e) => { setSourceFilter(e.target.value); setPage(0); }}
+              sx={{ borderRadius: "8px", "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--admin-accent)" } }}
             >
               <MenuItem value="all">All Sources</MenuItem>
               {availableSources.map((s) => (
@@ -548,6 +585,7 @@ const LeadManagement = () => {
               value={dateRange}
               label="Date Range"
               onChange={(e) => { setDateRange(e.target.value); setPage(0); }}
+              sx={{ borderRadius: "8px", "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--admin-accent)" } }}
             >
               {DATE_RANGE_OPTIONS.map((d) => (
                 <MenuItem key={d.value} value={d.value}>{d.label}</MenuItem>
@@ -578,7 +616,7 @@ const LeadManagement = () => {
           )}
         </div>
 
-        {/* Active filters chips */}
+        {/* Active filter chips */}
         {hasActiveFilters && (
           <div className={styles.filterChips}>
             {search && (
@@ -586,6 +624,7 @@ const LeadManagement = () => {
                 label={`Search: "${search}"`}
                 size="small"
                 onDelete={() => setSearch("")}
+                sx={{ bgcolor: "#EBF5FF", color: "var(--admin-accent)", "& .MuiChip-deleteIcon": { color: "var(--admin-accent)" } }}
               />
             )}
             {statusFilter !== "all" && (
@@ -593,6 +632,7 @@ const LeadManagement = () => {
                 label={`Status: ${getStatusConfig(statusFilter).label}`}
                 size="small"
                 onDelete={() => setStatusFilter("all")}
+                sx={{ bgcolor: getStatusConfig(statusFilter).bg, color: getStatusConfig(statusFilter).color, "& .MuiChip-deleteIcon": { color: getStatusConfig(statusFilter).color } }}
               />
             )}
             {sourceFilter !== "all" && (
@@ -600,6 +640,7 @@ const LeadManagement = () => {
                 label={`Source: ${sourceFilter}`}
                 size="small"
                 onDelete={() => setSourceFilter("all")}
+                sx={{ bgcolor: "#EBF5FF", color: "var(--admin-accent)", "& .MuiChip-deleteIcon": { color: "var(--admin-accent)" } }}
               />
             )}
             {dateRange !== "all" && (
@@ -607,6 +648,7 @@ const LeadManagement = () => {
                 label={`Date: ${DATE_RANGE_OPTIONS.find((d) => d.value === dateRange)?.label}`}
                 size="small"
                 onDelete={() => { setDateRange("all"); setCustomStart(""); setCustomEnd(""); }}
+                sx={{ bgcolor: "#EBF5FF", color: "var(--admin-accent)", "& .MuiChip-deleteIcon": { color: "var(--admin-accent)" } }}
               />
             )}
             <Chip
@@ -614,7 +656,7 @@ const LeadManagement = () => {
               size="small"
               variant="outlined"
               onClick={clearFilters}
-              sx={{ cursor: "pointer" }}
+              sx={{ cursor: "pointer", borderColor: "var(--admin-text-muted)", color: "var(--admin-text-muted)" }}
             />
           </div>
         )}
@@ -622,7 +664,7 @@ const LeadManagement = () => {
         {/* Bulk actions bar */}
         {selected.length > 0 && (
           <div className={styles.bulkBar}>
-            <Typography variant="body2" sx={{ fontWeight: 500 }}>
+            <Typography variant="body2" sx={{ fontWeight: 600, color: "var(--admin-accent)", flex: 1 }}>
               {selected.length} lead{selected.length > 1 ? "s" : ""} selected
             </Typography>
             <Button
@@ -630,7 +672,7 @@ const LeadManagement = () => {
               variant="outlined"
               onClick={(e) => setBulkStatusMenu(e.currentTarget)}
               startIcon={<Icon icon="mdi:swap-horizontal" />}
-              sx={{ textTransform: "none" }}
+              sx={{ textTransform: "none", borderColor: "var(--admin-accent)", color: "var(--admin-accent)" }}
             >
               Change Status
             </Button>
@@ -665,25 +707,24 @@ const LeadManagement = () => {
           </div>
         )}
 
-        {/* Table */}
+        {/* Content: Empty / Table / Cards */}
         {leads.length === 0 ? (
           <div className={styles.emptyState}>
             <div className={styles.emptyIcon}>
-              <Icon icon="mdi:account-group-outline" width={56} height={56} />
+              <Icon icon="mdi:account-group-outline" width={64} height={64} />
             </div>
-            <p className={styles.emptyText}>
-              {hasActiveFilters ? "No leads match your filters" : "No leads yet"}
-            </p>
+            <p className={styles.emptyText}>No leads found</p>
             <p className={styles.emptySubtext}>
               {hasActiveFilters
-                ? "Try adjusting your filters or search terms."
+                ? "No results match your current filters. Try adjusting your search or filters."
                 : "New leads will appear here as they come in from your landing page forms."}
             </p>
             {hasActiveFilters && (
               <Button
                 size="small"
+                variant="outlined"
                 onClick={clearFilters}
-                sx={{ mt: 2, textTransform: "none" }}
+                sx={{ mt: 2, textTransform: "none", borderColor: "var(--admin-accent)", color: "var(--admin-accent)" }}
               >
                 Clear Filters
               </Button>
@@ -691,133 +732,252 @@ const LeadManagement = () => {
           </div>
         ) : (
           <>
-            <TableContainer>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        indeterminate={
-                          selected.length > 0 && selected.length < paginatedLeads.length
-                        }
-                        checked={
-                          paginatedLeads.length > 0 && selected.length === paginatedLeads.length
-                        }
-                        onChange={handleSelectAll}
-                        size="small"
-                      />
-                    </TableCell>
-                    {COLUMNS.map((col) => (
-                      <TableCell key={col.id} sx={{ fontWeight: 600, whiteSpace: "nowrap" }}>
-                        {col.sortable ? (
-                          <TableSortLabel
-                            active={orderBy === col.id}
-                            direction={orderBy === col.id ? order : "asc"}
-                            onClick={() => handleSort(col.id)}
-                          >
-                            {col.label}
-                          </TableSortLabel>
-                        ) : (
-                          col.label
-                        )}
+            {/* Desktop Table */}
+            <div className={styles.desktopTable}>
+              <div className={styles.tableWrap}>
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell padding="checkbox" sx={{ bgcolor: "var(--admin-bg)", width: 48 }}>
+                        <Checkbox
+                          indeterminate={selected.length > 0 && selected.length < paginatedLeads.length}
+                          checked={paginatedLeads.length > 0 && selected.length === paginatedLeads.length}
+                          onChange={handleSelectAll}
+                          size="small"
+                        />
                       </TableCell>
-                    ))}
-                    <TableCell sx={{ fontWeight: 600 }}>Actions</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {paginatedLeads.map((lead) => {
-                    const sc = getStatusConfig(lead.status);
-                    const isSelected = selected.includes(lead.lead_id);
-                    return (
-                      <TableRow
-                        key={lead.lead_id}
-                        hover
-                        selected={isSelected}
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => handleViewDetail(lead)}
-                      >
-                        <TableCell padding="checkbox" onClick={(e) => e.stopPropagation()}>
-                          <Checkbox
-                            checked={isSelected}
-                            onChange={() => handleSelectOne(lead.lead_id)}
-                            size="small"
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                            {lead.name || "—"}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>{lead.mobile || "—"}</TableCell>
-                        <TableCell>
-                          <Typography variant="body2" sx={{ maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                            {lead.email || "—"}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>{lead.investment_interest || "—"}</TableCell>
-                        <TableCell>{lead.current_occupation || "—"}</TableCell>
-                        <TableCell>
-                          <Chip
-                            label={lead.source || "—"}
-                            size="small"
-                            variant="outlined"
-                            sx={{ fontSize: "0.7rem" }}
-                          />
-                        </TableCell>
-                        <TableCell onClick={(e) => e.stopPropagation()}>
-                          <Select
-                            value={lead.status || "new"}
-                            size="small"
-                            onChange={(e) => handleStatusChange(lead.lead_id, e.target.value)}
-                            sx={{
-                              fontSize: "0.75rem",
-                              fontWeight: 600,
-                              bgcolor: sc.bg,
-                              color: sc.color,
-                              height: 30,
-                              "& .MuiSelect-select": { py: 0.5, px: 1 },
-                              "& .MuiOutlinedInput-notchedOutline": { borderColor: sc.color + "44" },
-                            }}
-                          >
-                            {STATUS_OPTIONS.map((s) => (
-                              <MenuItem key={s.value} value={s.value}>
-                                <Chip
-                                  label={s.label}
-                                  size="small"
-                                  sx={{ bgcolor: s.bg, color: s.color, fontWeight: 600 }}
-                                />
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="caption" sx={{ whiteSpace: "nowrap" }}>
-                            {formatShortDate(lead.submitted_at)}
-                          </Typography>
-                        </TableCell>
-                        <TableCell onClick={(e) => e.stopPropagation()}>
-                          <Tooltip title="View Details">
-                            <IconButton size="small" onClick={() => handleViewDetail(lead)}>
-                              <Icon icon="mdi:eye-outline" width={18} />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Delete">
-                            <IconButton
-                              size="small"
-                              color="error"
-                              onClick={() => { setDeleteTarget(lead.lead_id); setDeleteDialogOpen(true); }}
+                      {COLUMNS.filter((col) => !(col.hideTablet && isTablet)).map((col) => (
+                        <TableCell
+                          key={col.id}
+                          sx={{
+                            bgcolor: "var(--admin-bg)",
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.05em",
+                            color: "var(--admin-text-muted)",
+                            whiteSpace: "nowrap",
+                            width: col.width || "auto",
+                            borderBottom: "1px solid var(--admin-border)",
+                          }}
+                        >
+                          {col.sortable ? (
+                            <TableSortLabel
+                              active={orderBy === col.id}
+                              direction={orderBy === col.id ? order : "asc"}
+                              onClick={() => handleSort(col.id)}
+                              sx={{
+                                color: "var(--admin-text-muted) !important",
+                                "&.Mui-active": { color: "var(--admin-accent) !important" },
+                                "& .MuiTableSortLabel-icon": { color: "var(--admin-accent) !important" },
+                              }}
                             >
-                              <Icon icon="mdi:delete-outline" width={18} />
-                            </IconButton>
-                          </Tooltip>
+                              {col.label}
+                            </TableSortLabel>
+                          ) : (
+                            col.label
+                          )}
                         </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                      ))}
+                      <TableCell
+                        sx={{
+                          bgcolor: "var(--admin-bg)",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.05em",
+                          color: "var(--admin-text-muted)",
+                          width: 80,
+                          borderBottom: "1px solid var(--admin-border)",
+                        }}
+                      >
+                        Actions
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {paginatedLeads.map((lead) => {
+                      const sc = getStatusConfig(lead.status);
+                      const isSelected = selected.includes(lead.lead_id);
+                      return (
+                        <TableRow
+                          key={lead.lead_id}
+                          onClick={() => handleViewDetail(lead)}
+                          sx={{
+                            cursor: "pointer",
+                            bgcolor: isSelected ? "rgba(43, 123, 213, 0.06)" : "#fff",
+                            borderLeft: isSelected ? "3px solid var(--admin-accent)" : "3px solid transparent",
+                            "&:hover": { bgcolor: "#F8FAFF" },
+                            transition: "background 0.15s ease",
+                            "& td": { borderBottom: "1px solid var(--admin-border)" },
+                          }}
+                        >
+                          <TableCell padding="checkbox" onClick={(e) => e.stopPropagation()}>
+                            <Checkbox
+                              checked={isSelected}
+                              onChange={() => handleSelectOne(lead.lead_id)}
+                              size="small"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body2" sx={{ fontWeight: 600, color: "var(--admin-text-primary)" }}>
+                              {lead.name || "—"}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body2" sx={{ fontFamily: "'SF Mono', 'Fira Code', 'Roboto Mono', monospace", fontSize: "0.8125rem" }}>
+                              {lead.mobile || "—"}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body2" sx={{ maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              {lead.email || "—"}
+                            </Typography>
+                          </TableCell>
+                          {!(isTablet) && (
+                            <TableCell>
+                              <Typography variant="body2" sx={{ fontSize: "0.8125rem", color: "var(--admin-text-secondary)" }}>
+                                {lead.investment_interest || "—"}
+                              </Typography>
+                            </TableCell>
+                          )}
+                          <TableCell>
+                            <Chip
+                              label={lead.source || "—"}
+                              size="small"
+                              variant="outlined"
+                              sx={{ fontSize: "0.7rem", maxWidth: 130, "& .MuiChip-label": { overflow: "hidden", textOverflow: "ellipsis" } }}
+                            />
+                          </TableCell>
+                          <TableCell onClick={(e) => e.stopPropagation()}>
+                            <Select
+                              value={lead.status || "new"}
+                              size="small"
+                              onChange={(e) => handleStatusChange(lead.lead_id, e.target.value)}
+                              sx={{
+                                fontSize: "0.75rem",
+                                fontWeight: 600,
+                                bgcolor: sc.bg,
+                                color: sc.color,
+                                height: 28,
+                                borderRadius: "6px",
+                                "& .MuiSelect-select": { py: 0.3, px: 1 },
+                                "& .MuiOutlinedInput-notchedOutline": { borderColor: sc.color + "44" },
+                                "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: sc.color + "88" },
+                              }}
+                            >
+                              {STATUS_OPTIONS.map((s) => (
+                                <MenuItem key={s.value} value={s.value}>
+                                  <Chip
+                                    label={s.label}
+                                    size="small"
+                                    sx={{ bgcolor: s.bg, color: s.color, fontWeight: 600 }}
+                                  />
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="caption" sx={{ whiteSpace: "nowrap", color: "var(--admin-text-secondary)" }}>
+                              {formatShortDate(lead.submitted_at)}
+                            </Typography>
+                          </TableCell>
+                          <TableCell onClick={(e) => e.stopPropagation()}>
+                            <Tooltip title="View Details">
+                              <IconButton size="small" onClick={() => handleViewDetail(lead)} sx={{ color: "var(--admin-text-muted)", "&:hover": { color: "var(--admin-accent)" } }}>
+                                <Icon icon="mdi:eye-outline" width={18} />
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                              <IconButton
+                                size="small"
+                                onClick={() => { setDeleteTarget(lead.lead_id); setDeleteDialogOpen(true); }}
+                                sx={{ color: "var(--admin-text-muted)", "&:hover": { color: "var(--admin-error)" } }}
+                              >
+                                <Icon icon="mdi:delete-outline" width={18} />
+                              </IconButton>
+                            </Tooltip>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            {/* Mobile Card Layout */}
+            <div className={styles.mobileCards}>
+              {paginatedLeads.map((lead) => {
+                const sc = getStatusConfig(lead.status);
+                const isSelected = selected.includes(lead.lead_id);
+                return (
+                  <div
+                    key={lead.lead_id}
+                    className={`${styles.leadCard} ${isSelected ? styles.leadCardSelected : ""}`}
+                  >
+                    <div className={styles.leadCardRow}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+                        <Checkbox
+                          checked={isSelected}
+                          onChange={() => handleSelectOne(lead.lead_id)}
+                          size="small"
+                          sx={{ p: 0 }}
+                        />
+                        <span className={styles.leadCardName}>{lead.name || "—"}</span>
+                      </div>
+                      <span className={styles.leadCardDate}>{formatShortDate(lead.submitted_at)}</span>
+                    </div>
+                    <div className={styles.leadCardMobile} style={{ paddingLeft: 32 }}>
+                      {lead.mobile || "—"}
+                    </div>
+                    <div className={styles.leadCardChips} style={{ paddingLeft: 32 }}>
+                      <Chip
+                        label={lead.source || "—"}
+                        size="small"
+                        variant="outlined"
+                        sx={{ fontSize: "0.7rem", height: 24 }}
+                      />
+                      <Select
+                        value={lead.status || "new"}
+                        size="small"
+                        onChange={(e) => handleStatusChange(lead.lead_id, e.target.value)}
+                        sx={{
+                          fontSize: "0.7rem",
+                          fontWeight: 600,
+                          bgcolor: sc.bg,
+                          color: sc.color,
+                          height: 24,
+                          borderRadius: "12px",
+                          "& .MuiSelect-select": { py: 0, px: 1 },
+                          "& .MuiOutlinedInput-notchedOutline": { borderColor: sc.color + "44" },
+                        }}
+                      >
+                        {STATUS_OPTIONS.map((s) => (
+                          <MenuItem key={s.value} value={s.value}>
+                            <Chip label={s.label} size="small" sx={{ bgcolor: s.bg, color: s.color, fontWeight: 600 }} />
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </div>
+                    <div className={styles.leadCardActions} style={{ paddingLeft: 32 }}>
+                      <IconButton size="small" onClick={() => handleViewDetail(lead)} sx={{ color: "var(--admin-text-muted)" }}>
+                        <Icon icon="mdi:eye-outline" width={18} />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        onClick={() => { setDeleteTarget(lead.lead_id); setDeleteDialogOpen(true); }}
+                        sx={{ color: "var(--admin-text-muted)", "&:hover": { color: "var(--admin-error)" } }}
+                      >
+                        <Icon icon="mdi:delete-outline" width={18} />
+                      </IconButton>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Pagination */}
             <TablePagination
               component="div"
               count={sortedLeads.length}
@@ -826,6 +986,18 @@ const LeadManagement = () => {
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={(e) => { setRowsPerPage(parseInt(e.target.value, 10)); setPage(0); }}
               rowsPerPageOptions={[10, 25, 50]}
+              sx={{
+                borderTop: "1px solid var(--admin-border)",
+                "& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows": {
+                  fontSize: "0.8125rem",
+                  color: "var(--admin-text-secondary)",
+                },
+                ...(isMobile && {
+                  "& .MuiTablePagination-selectLabel": { display: "none" },
+                  "& .MuiTablePagination-select": { display: "none" },
+                  "& .MuiInputBase-root": { display: "none" },
+                }),
+              }}
             />
           </>
         )}

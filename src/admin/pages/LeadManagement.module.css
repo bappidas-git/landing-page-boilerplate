@@ -1,19 +1,21 @@
 /* ============================================
-   Lead Management Page Styles
+   Lead Management Page Styles — Redesigned
+   Professional responsive data table
    ============================================ */
 
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: 20px;
 }
 
+/* ---- Page Header ---- */
 .pageHeader {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: 12px;
 }
 
 .pageTitle {
@@ -27,41 +29,46 @@
 .pageSubtitle {
   font-size: var(--fs-sm);
   color: var(--admin-text-secondary);
-  margin: var(--space-1) 0 0;
+  margin: 4px 0 0;
 }
 
 .headerActions {
   display: flex;
-  gap: var(--space-2);
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-/* Stats Grid */
+/* Mobile more menu trigger — hidden on desktop */
+.moreMenuBtn {
+  display: none;
+}
+
+/* ---- Stats Grid ---- */
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-3);
+  gap: 12px;
 }
 
 .statCard {
   background: var(--admin-card-bg);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  transition: var(--transition-base);
+  gap: 12px;
+  transition: box-shadow 0.2s ease;
 }
 
 .statCard:hover {
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .statIcon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-md);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,109 +97,229 @@
 
 .statValue {
   font-family: var(--font-heading);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--admin-primary);
   margin: 0;
   line-height: 1.2;
 }
 
 .statLabel {
-  font-size: var(--fs-xs);
+  font-size: 0.75rem;
   color: var(--admin-text-secondary);
   margin: 2px 0 0;
 }
 
-/* Card & Filters */
+/* ---- Card Container ---- */
 .card {
   background: var(--admin-card-bg);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   overflow: hidden;
 }
 
+/* ---- Filters Bar ---- */
 .filtersBar {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  padding: var(--space-4);
+  gap: 10px;
+  padding: 16px;
   border-bottom: 1px solid var(--admin-border);
   align-items: center;
 }
 
+/* ---- Filter Chips ---- */
 .filterChips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-4);
+  gap: 6px;
+  padding: 10px 16px;
   background: var(--admin-bg);
   border-bottom: 1px solid var(--admin-border);
+  align-items: center;
 }
 
+/* ---- Bulk Actions Bar ---- */
 .bulkBar {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-4);
-  background: rgba(43, 123, 213, 0.08);
+  gap: 12px;
+  padding: 10px 16px;
+  background: #EBF5FF;
   border-bottom: 1px solid rgba(43, 123, 213, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-/* Empty State */
+/* ---- Desktop Table ---- */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.desktopTable {
+  display: block;
+}
+
+.mobileCards {
+  display: none;
+}
+
+/* ---- Mobile Lead Card ---- */
+.leadCard {
+  background: var(--admin-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--admin-border);
+  padding: 16px;
+}
+
+.leadCardSelected {
+  background: rgba(43, 123, 213, 0.06);
+  border-left: 3px solid var(--admin-accent);
+}
+
+.leadCardRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leadCardName {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.leadCardDate {
+  font-size: 0.75rem;
+  color: var(--admin-text-muted);
+  white-space: nowrap;
+}
+
+.leadCardMobile {
+  font-size: 0.8125rem;
+  color: var(--admin-text-secondary);
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  margin: 4px 0 0;
+}
+
+.leadCardChips {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.leadCardActions {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* ---- Empty State ---- */
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-16) var(--space-6);
+  padding: 64px 24px;
   color: var(--admin-text-secondary);
   text-align: center;
 }
 
 .emptyIcon {
-  color: var(--admin-border);
-  margin-bottom: var(--space-4);
+  color: var(--admin-text-muted);
+  margin-bottom: 16px;
 }
 
 .emptyText {
-  font-size: var(--fs-lg);
-  margin: 0 0 var(--space-1);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 4px;
   color: var(--admin-text-primary);
 }
 
 .emptySubtext {
-  font-size: var(--fs-sm);
+  font-size: 0.875rem;
   margin: 0;
   color: var(--admin-text-secondary);
 }
 
-/* Responsive */
+/* ---- Responsive ---- */
+
+/* Tablet: 2-col stats */
 @media (max-width: 1024px) {
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+/* Mobile breakpoint */
+@media (max-width: 768px) {
   .statsGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .statCard {
+    padding: 12px;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .statValue {
+    font-size: 1.05rem;
   }
 
   .filtersBar {
     flex-direction: column;
+    padding: 12px;
   }
 
+  /* Hide desktop header actions, show more menu */
   .headerActions {
-    width: 100%;
+    display: none;
+  }
+
+  .moreMenuBtn {
+    display: inline-flex;
+  }
+
+  /* Switch table/cards */
+  .desktopTable {
+    display: none;
+  }
+
+  .mobileCards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
   }
 
   .bulkBar {
     flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .emptyState {
+    padding: 48px 16px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
   }
 }
 
 @media (max-width: 400px) {
   .statsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
