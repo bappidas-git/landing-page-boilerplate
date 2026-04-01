@@ -7,12 +7,12 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-alt) 50%, var(--primary-dark-light) 100%);
+  background: var(--admin-gradient);
   padding: var(--space-4);
 }
 
 .loginCard {
-  background: var(--white);
+  background: var(--admin-card-bg);
   border-radius: var(--radius-xl);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 100%;
@@ -26,28 +26,27 @@
 }
 
 .loginLogo {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto var(--space-4);
-  color: var(--white);
+}
+
+.loginLogo img {
+  height: 48px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .loginTitle {
   font-family: var(--font-heading);
   font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
-  color: var(--primary-dark);
+  color: var(--admin-primary);
   margin: 0 0 var(--space-1);
 }
 
 .loginSubtitle {
   font-size: var(--fs-sm);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   margin: 0;
 }
 
@@ -66,7 +65,7 @@
 .inputLabel {
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
-  color: var(--text-dark-gray);
+  color: var(--admin-text-primary);
 }
 
 .rememberRow {
@@ -77,23 +76,23 @@
 
 .rememberLabel {
   font-size: var(--fs-sm);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   cursor: pointer;
   user-select: none;
 }
 
 .errorMessage {
-  background: rgba(211, 47, 47, 0.08);
-  color: var(--error);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--admin-error);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
   font-size: var(--fs-sm);
   text-align: center;
-  border: 1px solid rgba(211, 47, 47, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .submitButton {
-  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+  background: var(--admin-gradient-accent);
   color: var(--white);
   border: none;
   padding: var(--space-3) var(--space-6);
@@ -108,7 +107,7 @@
 
 .submitButton:hover {
   opacity: 0.9;
-  box-shadow: var(--shadow-button-hover);
+  box-shadow: 0 6px 20px rgba(43, 123, 213, 0.35);
 }
 
 .submitButton:disabled {

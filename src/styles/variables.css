@@ -237,6 +237,30 @@
   --blur-xl: 24px;
 }
 
+/* ========== Admin Panel Colors (Assam Digital) ========== */
+  --admin-primary: #1A3A6B;
+  --admin-primary-light: #2B5EA8;
+  --admin-primary-dark: #0F2847;
+  --admin-accent: #2B7BD5;
+  --admin-accent-light: #5A9DE8;
+  --admin-magenta: #D6246E;
+  --admin-magenta-light: #E85A94;
+  --admin-cyan: #3CC8C8;
+  --admin-cyan-light: #6DDADA;
+  --admin-gradient: linear-gradient(135deg, #1A3A6B 0%, #2B7BD5 100%);
+  --admin-gradient-accent: linear-gradient(135deg, #2B7BD5 0%, #3CC8C8 100%);
+  --admin-bg: #F4F7FC;
+  --admin-card-bg: #FFFFFF;
+  --admin-border: #E2E8F0;
+  --admin-text-primary: #1A2332;
+  --admin-text-secondary: #5A6B7F;
+  --admin-text-muted: #8E9BAD;
+  --admin-success: #10B981;
+  --admin-warning: #F59E0B;
+  --admin-error: #EF4444;
+  --admin-info: #3B82F6;
+}
+
 /* ========== Dark Mode Variables (for potential future use) ========== */
 [data-theme="dark"] {
   --bg-primary: var(--primary-dark);

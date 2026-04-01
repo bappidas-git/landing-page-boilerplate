@@ -5,7 +5,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { TextField, Checkbox, CircularProgress } from '@mui/material';
-import { Icon } from '@iconify/react';
 import { useAdminAuth } from '../context/AdminAuthContext';
 import styles from './AdminLogin.module.css';
 
@@ -41,10 +40,13 @@ const AdminLogin = () => {
       <div className={styles.loginCard}>
         <div className={styles.loginHeader}>
           <div className={styles.loginLogo}>
-            <Icon icon="mdi:shield-lock" width={28} height={28} />
+            <img
+              src="https://assamdigital.com/wp-content/uploads/2022/04/logo.png"
+              alt="Assam Digital"
+            />
           </div>
-          <h1 className={styles.loginTitle}>Admin Panel</h1>
-          <p className={styles.loginSubtitle}>Sign in to manage your dashboard</p>
+          <h1 className={styles.loginTitle}>Lead Management System</h1>
+          <p className={styles.loginSubtitle}>Powered by Assam Digital</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -61,6 +63,13 @@ const AdminLogin = () => {
               placeholder="Enter username"
               autoComplete="username"
               autoFocus
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2B7BD5',
+                  },
+                },
+              }}
             />
           </div>
 
@@ -77,6 +86,13 @@ const AdminLogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"
               autoComplete="current-password"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2B7BD5',
+                  },
+                },
+              }}
             />
           </div>
 
@@ -86,7 +102,7 @@ const AdminLogin = () => {
               size="small"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              sx={{ padding: 0, color: '#2EC4B6', '&.Mui-checked': { color: '#2EC4B6' } }}
+              sx={{ padding: 0, color: '#2B7BD5', '&.Mui-checked': { color: '#2B7BD5' } }}
             />
             <label htmlFor="remember" className={styles.rememberLabel}>
               Remember me

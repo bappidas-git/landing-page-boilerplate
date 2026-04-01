@@ -7,7 +7,7 @@
   top: 0;
   height: 64px;
   background: var(--white);
-  border-bottom: 1px solid var(--medium-gray);
+  border-bottom: 1px solid var(--admin-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +53,7 @@
 }
 
 .breadcrumbLink:hover {
-  color: var(--accent-gold);
+  color: var(--admin-accent);
 }
 
 .breadcrumbCurrent {
@@ -83,7 +83,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-light) 100%);
+  background: var(--admin-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
