@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WXGR5JM6');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
+
+    <!-- =========================================
+         Viewport & Mobile Optimization
+         ========================================= -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#2D3561"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#2D3561"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="GNRC Medishop" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-TileColor" content="#2D3561" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- =========================================
+         SEO Meta Tags
+         ========================================= -->
+    <meta
+      name="description"
+      content="Own a GNRC Medishop Franchise — North East India's fastest-growing pharmacy & essentials retail chain. 20+ years legacy, ₹80 Cr turnover, 9 operational stores, 50,000+ products, 20-22% gross margin. Investment starts ₹12 Lakh. Call 7086036887."
+    />
+    <meta
+      name="keywords"
+      content="GNRC Medishop franchise, pharmacy franchise Assam, medical shop franchise Guwahati, GNRC franchise opportunity, pharmacy business North East India, medishop franchise investment, retail pharmacy franchise, GNRC Medishop Pvt Ltd, pharmacy franchise India, medical store franchise Assam"
+    />
+    <meta name="author" content="GNRC Medishop Pvt. Ltd." />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="geo.region" content="IN-AS" />
+    <meta name="geo.placename" content="Guwahati" />
+
+    <!-- =========================================
+         Open Graph / Facebook
+         ========================================= -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%/" />
+    <meta
+      property="og:title"
+      content="GNRC Medishop Franchise | Own a Pharmacy & Essentials Store in North East India"
+    />
+    <meta
+      property="og:description"
+      content="Start your GNRC Medishop franchise. 20+ years legacy, ₹80 Cr turnover, 50,000+ products, 20-22% gross margin. Investment from ₹12 Lakh. Now expanding across North East India!"
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="GNRC Medishop Franchise Opportunity"
+    />
+    <meta property="og:site_name" content="GNRC Medishop" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- =========================================
+         Twitter Card
+         ========================================= -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="%PUBLIC_URL%/" />
+    <meta
+      name="twitter:title"
+      content="GNRC Medishop Franchise | Own a Pharmacy & Essentials Store in North East India"
+    />
+    <meta
+      name="twitter:description"
+      content="Start your GNRC Medishop franchise. 20+ years legacy, ₹80 Cr turnover, 50,000+ products, 20-22% gross margin. Investment from ₹12 Lakh. Now expanding across North East India!"
+    />
+    <meta name="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- =========================================
+         Canonical & Alternate URLs
+         ========================================= -->
+    <link rel="canonical" href="%PUBLIC_URL%/" />
+
+    <!-- =========================================
+         PWA Manifest & Icons
+         ========================================= -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="%PUBLIC_URL%/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/apple-touch-icon-180x180.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="167x167"
+      href="%PUBLIC_URL%/apple-touch-icon-167x167.png"
+    />
+    <link
+      rel="mask-icon"
+      href="%PUBLIC_URL%/safari-pinned-tab.svg"
+      color="#2EC4B6"
+    />
+
+    <!-- =========================================
+         Preconnect & DNS Prefetch
+         ========================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://api.iconify.design" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <!-- =========================================
+         Preload Critical Resources
+         ========================================= -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- =========================================
+         Page Title
+         ========================================= -->
+    <title>
+      GNRC Medishop Franchise | Own a Pharmacy & Essentials Store | 20+ Years |
+      Apply Now
+    </title>
+
+    <!-- =========================================
+         Structured Data / JSON-LD for SEO
+         ========================================= -->
+
+    <!-- Schema 1: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GNRC Medishop Pvt. Ltd.",
+        "alternateName": "GNRC Medishop",
+        "url": "https://www.gnrcmedishop.com",
+        "logo": "https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png",
+        "description": "GNRC Medishop is North East India's fastest-growing pharmacy and essentials retail chain. With 20+ years of legacy, ₹80 Cr turnover, 9 operational stores, 50,000+ products, 1,200+ brands, and 20-22% gross margin. Now offering franchise opportunities across North East India.",
+        "telephone": "+917086036887",
+        "email": "info@gnrcmedishop.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Guwahati",
+          "addressRegion": "Assam",
+          "addressCountry": "IN"
+        },
+        "areaServed": [
+          { "@type": "State", "name": "Assam" },
+          { "@type": "State", "name": "Meghalaya" },
+          { "@type": "State", "name": "Nagaland" },
+          { "@type": "State", "name": "Manipur" },
+          { "@type": "State", "name": "Mizoram" },
+          { "@type": "State", "name": "Tripura" },
+          { "@type": "State", "name": "Arunachal Pradesh" },
+          { "@type": "State", "name": "Sikkim" }
+        ],
+        "sameAs": ["https://www.gnrcmedishop.com"],
+        "founder": {
+          "@type": "Person",
+          "name": "Dr. Nomal Chandra Borah"
+        },
+        "foundingDate": "2004"
+      }
+    </script>
+
+    <!-- Schema 2: FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the investment required for a GNRC Medishop franchise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GNRC Medishop offers three franchise models: 500 sq ft store starting at ₹12 Lakh, 700 sq ft store starting at ₹18 Lakh, and 1000 sq ft store starting at ₹25 Lakh. Investment includes store setup, initial inventory, technology, and training."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the expected profit margin for a GNRC Medishop franchise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GNRC Medishop franchises enjoy a gross margin of 20-22% across product categories including pharmaceuticals, FMCG, personal care, and daily essentials. Actual profits depend on location, management, and market conditions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What support does GNRC Medishop provide to franchise partners?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GNRC Medishop provides comprehensive support including store design and setup, POS and inventory management technology, supply chain and logistics, marketing and branding, staff training, and ongoing operational guidance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are GNRC Medishop franchise opportunities available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GNRC Medishop is expanding across North East India including Assam, Meghalaya, Nagaland, Manipur, Mizoram, Tripura, Arunachal Pradesh, and Sikkim. Currently operating 9 stores with plans for rapid expansion."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I apply for a GNRC Medishop franchise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can apply for a GNRC Medishop franchise by filling out the enquiry form on our website, calling +91-7086036887, or sending a WhatsApp message. Our franchise team will guide you through the application and approval process."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Schema 3: LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "GNRC Medishop Pvt. Ltd.",
+        "image": "https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png",
+        "telephone": "+917086036887",
+        "email": "info@gnrcmedishop.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Guwahati",
+          "addressRegion": "Assam",
+          "addressCountry": "IN"
+        },
+        "priceRange": "₹₹",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "22:00"
+        }
+      }
+    </script>
+
+    <!-- =========================================
+         Critical CSS (Above the Fold)
+         ========================================= -->
+    <style>
+      /* Critical CSS - Inline for fastest first paint */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.5;
+      }
+
+      /* Root element setup */
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        isolation: isolate;
+      }
+
+      /* Skip link for accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #2ec4b6;
+        color: #2d3561;
+        padding: 8px 16px;
+        z-index: 10000;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0 0 4px 0;
+        transition: top 0.2s ease;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+
+      /* ============================================
+         Initial Loader — Branded Splash Screen
+         Shown until React mounts, then fades out
+         ============================================ */
+      .initial-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      .initial-loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      /* Wrapper */
+      .loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        padding: 24px;
+        max-width: 280px;
+        width: 100%;
+      }
+
+      /* Brand Block */
+      .loader-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .loader-logo-img {
+        width: 180px;
+        height: auto;
+        object-fit: contain;
+        animation: loaderFadeIn 0.6s ease both;
+      }
+
+      .loader-tagline {
+        margin: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #546e7a;
+        letter-spacing: 0.04em;
+        text-align: center;
+        animation: loaderFadeIn 0.6s 0.2s ease both;
+      }
+
+      /* Progress Bar Track */
+      .loader-bar-track {
+        width: 100%;
+        height: 3px;
+        background: #eceef5;
+        border-radius: 3px;
+        overflow: hidden;
+        animation: loaderFadeIn 0.4s 0.3s ease both;
+      }
+
+      .loader-bar-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #2d3561, #4a5888, #2ec4b6);
+        background-size: 200% 100%;
+        animation:
+          loaderProgress 2s 0.4s ease-in-out forwards,
+          loaderShimmer 1.5s 0.4s ease-in-out infinite;
+      }
+
+      /* Loading Status Text */
+      .loader-status {
+        margin: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #90a4ae;
+        letter-spacing: 0.02em;
+        animation: loaderFadeIn 0.4s 0.4s ease both;
+      }
+
+      /* Animated dots "Loading..." */
+      .loader-dots::after {
+        content: "";
+        animation: loaderDots 1.4s steps(4, end) infinite;
+      }
+
+      /* ============================================
+         Loader Keyframes
+         ============================================ */
+      @keyframes loaderFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes loaderProgress {
+        0% {
+          width: 0%;
+        }
+        30% {
+          width: 40%;
+        }
+        60% {
+          width: 70%;
+        }
+        100% {
+          width: 92%;
+        }
+      }
+
+      @keyframes loaderShimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      @keyframes loaderDots {
+        0% {
+          content: "";
+        }
+        25% {
+          content: ".";
+        }
+        50% {
+          content: "..";
+        }
+        75% {
+          content: "...";
+        }
+        100% {
+          content: "";
+        }
+      }
+
+      /* Safe area for notched devices (iPhone X+) */
+      @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        body {
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+      }
+
+      /* ============================================
+         Reduced Motion — Respect user preference
+         ============================================ */
+      @media (prefers-reduced-motion: reduce) {
+        .loader-logo-img,
+        .loader-tagline,
+        .loader-bar-track,
+        .loader-status {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        .loader-bar-fill {
+          animation: loaderProgress 2s ease-in-out forwards;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ============================================
+         Dark mode support (if user's OS is dark)
+         ============================================ */
+      @media (prefers-color-scheme: dark) {
+        .initial-loader {
+          background: #1e2440;
+        }
+        .loader-tagline {
+          color: rgba(255, 255, 255, 0.6);
+        }
+        .loader-bar-track {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .loader-status {
+          color: rgba(255, 255, 255, 0.4);
+        }
+        .loader-logo-img {
+          filter: brightness(0) invert(1);
+        }
+      }
+
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        body {
+          background-color: #000;
+          color: #fff;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        .initial-loader {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXGR5JM6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Noscript fallback -->
+    <noscript>
+      <div
+        style="
+          padding: 20px;
+          text-align: center;
+          background: #2d3561;
+          color: #ffffff;
+          font-family: sans-serif;
+        "
+      >
+        <h1 style="color: #2ec4b6; margin-bottom: 10px">JavaScript Required</h1>
+        <p>You need to enable JavaScript to run this app.</p>
+        <p style="margin-top: 10px">
+          Please enable JavaScript in your browser settings and refresh the
+          page.
+        </p>
+      </div>
+    </noscript>
+
+    <!-- Initial Loader — Professional Branded Splash Screen -->
+    <div
+      class="initial-loader"
+      id="initial-loader"
+      role="progressbar"
+      aria-label="Loading GNRC Medishop Franchise"
+    >
+      <div class="loader-wrapper">
+        <!-- Logo + Brand -->
+        <div class="loader-brand">
+          <img
+            src="https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png"
+            alt="GNRC Medishop"
+            class="loader-logo-img"
+            width="180"
+            height="auto"
+          />
+          <p class="loader-tagline">Franchise Opportunity</p>
+        </div>
+
+        <!-- Animated Progress Bar -->
+        <div class="loader-bar-track">
+          <div class="loader-bar-fill"></div>
+        </div>
+
+        <!-- Loading text -->
+        <p class="loader-status">Loading<span class="loader-dots"></span></p>
+      </div>
+    </div>
+
+    <!-- React Root -->
+    <div id="root"></div>
+
+    <!-- Hide initial loader when React is ready -->
+    <script>
+      (function () {
+        // Performance mark for load timing
+        if (window.performance && window.performance.mark) {
+          window.performance.mark("loader-start");
+        }
+
+        // Hide loader on window load
+        window.addEventListener("load", function () {
+          // Give React time to mount
+          setTimeout(function () {
+            var loader = document.getElementById("initial-loader");
+            if (loader) {
+              loader.classList.add("hidden");
+
+              // Remove from DOM after transition
+              setTimeout(function () {
+                if (loader && loader.parentNode) {
+                  loader.style.display = "none";
+                }
+
+                // Performance mark for load complete
+                if (window.performance && window.performance.mark) {
+                  window.performance.mark("loader-end");
+                  window.performance.measure(
+                    "app-load-time",
+                    "loader-start",
+                    "loader-end",
+                  );
+                }
+              }, 400);
+            }
+          }, 200);
+        });
+
+        // Fallback: Hide loader after max timeout
+        setTimeout(function () {
+          var loader = document.getElementById("initial-loader");
+          if (loader && !loader.classList.contains("hidden")) {
+            loader.classList.add("hidden");
+            setTimeout(function () {
+              loader.style.display = "none";
+            }, 400);
+          }
+        }, 5000);
+      })();
+    </script>
+
+    <!-- Register touch events for mobile performance -->
+    <script>
+      document.addEventListener("touchstart", function () {}, {
+        passive: true,
+      });
+    </script>
+  </body>
+</html>
