@@ -1,4 +1,4 @@
-export const benefitsData = [
+export const featuresData = [
   {
     id: 1,
     category: 'Setup & Launch Support',

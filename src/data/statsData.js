@@ -1,4 +1,4 @@
-export const highlightsData = [
+export const statsData = [
   {
     id: 1,
     icon: "mdi:store-check",

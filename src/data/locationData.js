@@ -1,4 +1,4 @@
-export const centreData = {
+export const locationData = {
   name: "GNRC Medishop Pvt. Ltd.",
   address: "Guwahati, Assam",
   city: "Guwahati",

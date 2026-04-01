@@ -20,7 +20,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { coursesData } from "../../../data/coursesData";
+import { servicesData } from "../../../data/servicesData";
 import { useModal } from "../../../context/ModalContext";
 import styles from "./ServicesSection.module.css";
 
@@ -256,7 +256,7 @@ const ServicesSection = () => {
                 autoplay={{ delay: 4000, disableOnInteraction: true }}
                 className={styles.swiperContainer}
               >
-                {coursesData.map((course, index) => (
+                {servicesData.map((course, index) => (
                   <SwiperSlide key={course.id}>
                     {renderCourseCard(course, index)}
                   </SwiperSlide>
@@ -264,7 +264,7 @@ const ServicesSection = () => {
               </Swiper>
             ) : (
               <div className={styles.coursesGrid}>
-                {coursesData.map((course, index) =>
+                {servicesData.map((course, index) =>
                   renderCourseCard(course, index),
                 )}
               </div>

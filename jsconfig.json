@@ -11,9 +11,7 @@
       "@data/*": ["data/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
-      "@theme/*": ["theme/*"],
-      "@assets/*": ["assets/*"],
-      "@images/*": ["assets/images/*"]
+      "@theme/*": ["theme/*"]
     },
     "target": "ES6",
     "module": "ESNext",
