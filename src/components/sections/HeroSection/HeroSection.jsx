@@ -17,6 +17,7 @@ import {
 import { Icon } from "@iconify/react";
 import UnifiedLeadForm from "../../common/UnifiedLeadForm/UnifiedLeadForm";
 import { useModal } from "../../../context/ModalContext";
+import { trackCTAClick } from "../../../utils/gtm";
 import styles from "./HeroSection.module.css";
 
 {/* Set REACT_APP_HERO_VIDEO_URL in .env to enable hero background video */}
@@ -244,7 +245,10 @@ const HeroSection = () => {
                   variant="contained"
                   size="large"
                   className={styles.primaryCta}
-                  onClick={() => openLeadDrawer("apply-now")}
+                  onClick={() => {
+                    trackCTAClick('hero_primary_cta', 'hero', 'Get Started Today');
+                    openLeadDrawer("apply-now");
+                  }}
                   sx={{
                     backgroundColor: "#FF6B35",
                     color: "#FFFFFF",
@@ -269,7 +273,10 @@ const HeroSection = () => {
                   variant="outlined"
                   size="large"
                   className={styles.secondaryCta}
-                  onClick={() => openLeadDrawer("download-brochure")}
+                  onClick={() => {
+                    trackCTAClick('hero_secondary_cta', 'hero', 'Download Brochure');
+                    openLeadDrawer("download-brochure");
+                  }}
                   sx={{
                     borderColor: "rgba(255, 255, 255, 0.6)",
                     color: "#FFFFFF",

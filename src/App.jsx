@@ -24,6 +24,10 @@ import Modal from './components/common/Modal/Modal';
 import MobileNavigation from './components/common/MobileNavigation/MobileNavigation';
 import MobileDrawer from './components/common/MobileDrawer/MobileDrawer';
 import LeadFormDrawer from './components/common/LeadFormDrawer/LeadFormDrawer';
+import EngagementTracker from './components/common/EngagementTracker/EngagementTracker';
+import useGTMTracking from './hooks/useGTMTracking';
+import { initGTM } from './utils/gtm';
+import { initConsentMode } from './utils/consentMode';
 
 // Admin
 import { AdminAuthProvider } from './admin/context/AdminAuthContext';
@@ -362,6 +366,9 @@ const HomePageContent = () => {
   const { openLeadDrawer } = useModal();
   const location = useLocation();
 
+  // Initialize GTM tracking (page views, scroll depth, time on page, section visibility)
+  useGTMTracking();
+
   const handleMenuClick = () => setIsMobileDrawerOpen(true);
   const handleMobileDrawerClose = () => setIsMobileDrawerOpen(false);
   const handleMobileDrawerOpen = () => setIsMobileDrawerOpen(true);
@@ -501,6 +508,15 @@ const App = () => {
   // Enable idle preloading
   useIdlePreload();
 
+  // Initialize Google Consent Mode and GTM on mount
+  useEffect(() => {
+    initConsentMode();
+    const gtmId = process.env.REACT_APP_GTM_ID;
+    if (gtmId) {
+      initGTM(gtmId);
+    }
+  }, []);
+
   // Hide initial loader after mount
   useEffect(() => {
     const initialLoader = document.getElementById('initial-loader');
@@ -587,6 +603,9 @@ const App = () => {
 
             {/* Lead Form Drawer - Available globally */}
             <LeadFormDrawerWrapper />
+
+            {/* Engagement Tracker - Invisible component for analytics */}
+            <EngagementTracker />
           </div>
         </ModalProvider>
       </CustomThemeProvider>

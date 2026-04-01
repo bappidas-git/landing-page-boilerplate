@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import { IconButton, Typography, Badge } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
+import { trackPhoneClick, trackWhatsAppClick, trackNavigation } from "../../../utils/gtm";
 import styles from "./MobileNavigation.module.css";
 
 // Navigation items configuration
@@ -82,13 +83,18 @@ const MobileNavigation = ({
 
     switch (item.action) {
       case "whatsapp":
+        trackWhatsAppClick('mobile_nav');
+        window.open(item.href, "_blank");
+        break;
       case "call":
+        trackPhoneClick('+91XXXXXXXXXX', 'mobile_nav');
         window.open(item.href, "_blank");
         break;
       case "enquiry":
         if (onEnquiryClick) onEnquiryClick();
         break;
       case "menu":
+        trackNavigation('mobile_drawer', 'open');
         if (onMenuClick) onMenuClick();
         break;
       default:

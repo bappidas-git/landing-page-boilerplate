@@ -13,6 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { Icon } from "@iconify/react";
+import { trackPhoneClick, trackNavigation } from "../../../utils/gtm";
 import styles from "./Header.module.css";
 
 // TODO: Replace with actual content
@@ -196,7 +197,10 @@ const Header = ({ forceCloseMenu = false }) => {
                 >
                   <a
                     href={item.href}
-                    onClick={(e) => scrollToSection(e, item.href)}
+                    onClick={(e) => {
+                      trackNavigation('desktop_nav', 'click', item.label);
+                      scrollToSection(e, item.href);
+                    }}
                     className={`${styles.navLink} ${activeSection === item.href.substring(1) ? styles.active : ""}`}
                   >
                     {item.label}
@@ -215,7 +219,11 @@ const Header = ({ forceCloseMenu = false }) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.3 }}
             >
-              <a href="tel:+91XXXXXXXXXX" className={styles.callButton}>
+              <a
+                href="tel:+91XXXXXXXXXX"
+                className={styles.callButton}
+                onClick={() => trackPhoneClick('+91XXXXXXXXXX', 'header_desktop')}
+              >
                 <Icon icon="mdi:phone" className={styles.callButtonIcon} />
                 +91-XXXXXXXXXX
               </a>
@@ -226,7 +234,11 @@ const Header = ({ forceCloseMenu = false }) => {
           {isMobile && (
             <IconButton
               className={styles.menuButton}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                const newState = !isMobileMenuOpen;
+                trackNavigation('mobile_menu', newState ? 'open' : 'close');
+                setIsMobileMenuOpen(newState);
+              }}
               aria-label="Toggle menu"
             >
               <Icon
@@ -275,7 +287,10 @@ const Header = ({ forceCloseMenu = false }) => {
                 <a
                   href="tel:+91XXXXXXXXXX"
                   className={styles.mobileCallButton}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    trackPhoneClick('+91XXXXXXXXXX', 'header_mobile_menu');
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   <Icon icon="mdi:phone" className={styles.callButtonIcon} />
                   +91-XXXXXXXXXX

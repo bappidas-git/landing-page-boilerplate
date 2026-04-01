@@ -4,6 +4,7 @@
    ============================================ */
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
+import { trackCTAClick } from '../utils/gtm';
 
 // Create context
 const ModalContext = createContext(null);
@@ -163,6 +164,8 @@ export const ModalProvider = ({ children }) => {
       ...extraData,
     });
     setIsDrawerOpen(true);
+    // Track which CTA triggered the drawer
+    trackCTAClick(`drawer_${titleKey}`, 'drawer', titleConfig.title);
     // Save current scroll position before locking body
     const scrollY = window.scrollY;
     document.body.dataset.scrollY = scrollY;
