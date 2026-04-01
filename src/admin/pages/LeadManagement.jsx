@@ -50,6 +50,8 @@ import {
   importLeadsCSV,
   getLeadStats,
 } from "../utils/leadService";
+import { sendConversionEvent } from "../../utils/metaCAPI";
+import { generateEventId } from "../../utils/eventDedup";
 import styles from "./LeadManagement.module.css";
 
 // Status config
@@ -102,6 +104,16 @@ const COLUMNS = [
   { id: "submitted_at", label: "Date", sortable: true },
 ];
 
+// Conversion type options
+const CONVERSION_TYPES = [
+  "Sale",
+  "Qualified Lead",
+  "Meeting Booked",
+  "Site Visit",
+  "Document Signed",
+  "Other",
+];
+
 const LeadManagement = () => {
   // Data state
   const [leads, setLeads] = useState([]);
@@ -130,6 +142,11 @@ const LeadManagement = () => {
   const [deleteTarget, setDeleteTarget] = useState(null); // null = bulk, string = single id
   const [bulkStatusMenu, setBulkStatusMenu] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
+  const [conversionModalOpen, setConversionModalOpen] = useState(false);
+  const [conversionLead, setConversionLead] = useState(null);
+  const [conversionValue, setConversionValue] = useState("");
+  const [conversionType, setConversionType] = useState("");
+  const [conversionSending, setConversionSending] = useState(false);
   const fileInputRef = useRef(null);
 
   // Sources from data
@@ -293,6 +310,63 @@ const LeadManagement = () => {
   };
 
   const hasActiveFilters = search || statusFilter !== "all" || sourceFilter !== "all" || dateRange !== "all";
+
+  const handleOpenConversionModal = (lead) => {
+    setConversionLead(lead);
+    setConversionValue("");
+    setConversionType("");
+    setConversionModalOpen(true);
+  };
+
+  const handleSendConversion = async () => {
+    if (!conversionLead || !conversionValue || !conversionType) return;
+    setConversionSending(true);
+
+    try {
+      const eventId = generateEventId();
+      const result = await sendConversionEvent(
+        {
+          name: conversionLead.name,
+          email: conversionLead.email,
+          mobile: conversionLead.mobile,
+        },
+        {
+          value: parseFloat(conversionValue),
+          currency: 'INR',
+          conversion_type: conversionType,
+          event_id: eventId,
+        }
+      );
+
+      // Update lead status to converted
+      updateLeadStatus(conversionLead.lead_id, 'converted');
+
+      // Add activity note about conversion
+      addLeadNote(
+        conversionLead.lead_id,
+        `Conversion sent to Meta CAPI: ${conversionType} - \u20B9${parseFloat(conversionValue).toLocaleString('en-IN')} (Event ID: ${eventId})`
+      );
+
+      loadData();
+
+      if (detailLead && detailLead.lead_id === conversionLead.lead_id) {
+        setDetailLead(getLeadById(conversionLead.lead_id));
+      }
+
+      setConversionModalOpen(false);
+      showSnackbar(
+        result.success
+          ? 'Conversion event sent to Meta successfully'
+          : 'Conversion recorded locally (CAPI endpoint not available)',
+        result.success ? 'success' : 'warning'
+      );
+    } catch (error) {
+      console.error('Conversion error:', error);
+      showSnackbar('Failed to send conversion event', 'error');
+    } finally {
+      setConversionSending(false);
+    }
+  };
 
   return (
     <div className={styles.page}>
@@ -729,6 +803,7 @@ const LeadManagement = () => {
             setNoteText={setNoteText}
             onAddNote={handleAddNote}
             onDelete={() => { setDeleteTarget(detailLead.lead_id); setDeleteDialogOpen(true); }}
+            onSendConversion={() => handleOpenConversionModal(detailLead)}
           />
         )}
       </Drawer>
@@ -754,6 +829,80 @@ const LeadManagement = () => {
             sx={{ textTransform: "none" }}
           >
             Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Conversion Modal */}
+      <Dialog
+        open={conversionModalOpen}
+        onClose={() => setConversionModalOpen(false)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Icon icon="mdi:send-check" width={22} style={{ color: "#4CAF50" }} />
+          Send Conversion to Meta
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ mb: 2 }}>
+            Send a conversion event to Meta CAPI for{" "}
+            <strong>{conversionLead?.name || "this lead"}</strong>. This helps
+            Meta optimize ad delivery for actual conversions.
+          </DialogContentText>
+          <TextField
+            fullWidth
+            label="Conversion Value"
+            type="number"
+            value={conversionValue}
+            onChange={(e) => setConversionValue(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">{"\u20B9"}</InputAdornment>
+              ),
+            }}
+            sx={{ mb: 2 }}
+          />
+          <FormControl fullWidth>
+            <InputLabel>Conversion Type</InputLabel>
+            <Select
+              value={conversionType}
+              label="Conversion Type"
+              onChange={(e) => setConversionType(e.target.value)}
+            >
+              {CONVERSION_TYPES.map((type) => (
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setConversionModalOpen(false)}
+            sx={{ textTransform: "none" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSendConversion}
+            variant="contained"
+            disabled={!conversionValue || !conversionType || conversionSending}
+            startIcon={
+              conversionSending ? (
+                <Icon icon="mdi:loading" width={18} className="spin" />
+              ) : (
+                <Icon icon="mdi:send" width={18} />
+              )
+            }
+            sx={{
+              textTransform: "none",
+              bgcolor: "#4CAF50",
+              "&:hover": { bgcolor: "#388E3C" },
+            }}
+          >
+            {conversionSending ? "Sending..." : "Send Conversion"}
           </Button>
         </DialogActions>
       </Dialog>
@@ -789,6 +938,7 @@ const LeadDetailPanel = ({
   setNoteText,
   onAddNote,
   onDelete,
+  onSendConversion,
 }) => {
   const sc = getStatusConfig(lead.status);
 
@@ -985,7 +1135,21 @@ const LeadDetailPanel = ({
       </Box>
 
       {/* Footer Actions */}
-      <Box sx={{ px: 2.5, py: 1.5, borderTop: "1px solid #E2E8F0", bgcolor: "#F8FAFC" }}>
+      <Box sx={{ px: 2.5, py: 1.5, borderTop: "1px solid #E2E8F0", bgcolor: "#F8FAFC", display: "flex", flexDirection: "column", gap: 1 }}>
+        <Button
+          fullWidth
+          size="small"
+          variant="contained"
+          startIcon={<Icon icon="mdi:send-check" />}
+          onClick={onSendConversion}
+          sx={{
+            textTransform: "none",
+            bgcolor: "#4CAF50",
+            "&:hover": { bgcolor: "#388E3C" },
+          }}
+        >
+          Send Conversion to Meta
+        </Button>
         <Button
           fullWidth
           size="small"

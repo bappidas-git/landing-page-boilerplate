@@ -29,6 +29,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { showSuccess, showError, showInfo } from "../../../utils/swalHelper";
 import { trackFormSubmission } from "../../../utils/gtm";
+import { trackLead as trackMetaLead } from "../../../utils/metaPixel";
+import { sendLeadEvent } from "../../../utils/metaCAPI";
+import { generateEventId } from "../../../utils/eventDedup";
 import Button from "../Button/Button";
 import {
   getMobileErrorMessage,
@@ -671,6 +674,27 @@ const UnifiedLeadForm = ({
         // Push lead form submission + generate_lead conversion events to GTM
         trackFormSubmission(formId || 'general', {
           investmentInterest: formData.investment_interest,
+        });
+
+        // Meta Pixel + CAPI dual tracking with shared event_id for deduplication
+        const metaEventId = generateEventId();
+
+        // 1. Fire browser-side Meta Pixel Lead event (no PII)
+        trackMetaLead({
+          event_id: metaEventId,
+          content_name: formId || 'lead_form',
+          content_category: 'lead_generation',
+        });
+
+        // 2. Send server-side CAPI Lead event with hashed PII (non-blocking)
+        sendLeadEvent({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          event_id: metaEventId,
+          source: formId || 'general',
+        }).catch((err) => {
+          console.error('[MetaCAPI] Lead event failed:', err);
         });
 
         // Mark as submitted for duplicate prevention
