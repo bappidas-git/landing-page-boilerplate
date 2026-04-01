@@ -1,7 +1,7 @@
 {
-  "short_name": "GNRC Medishop",
-  "name": "GNRC Medishop - Franchise Opportunity",
-  "description": "Own a GNRC Medishop franchise — North East India's fastest-growing pharmacy & essentials retail chain. 20+ years legacy, 50,000+ products, 20-22% gross margin.",
+  "short_name": "Your Business",
+  "name": "Your Business Name - Landing Page",
+  "description": "Learn more about our services and get in touch with our team.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -26,8 +26,8 @@
   "orientation": "portrait-primary",
   "theme_color": "#2D3561",
   "background_color": "#FFFFFF",
-  "categories": ["business", "pharmacy", "franchise", "retail"],
-  "lang": "en-IN",
+  "categories": ["business"],
+  "lang": "en",
   "dir": "ltr",
   "scope": "/",
   "prefer_related_applications": false

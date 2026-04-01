@@ -1,5 +1,5 @@
 /* ============================================
-   ThankYou Page - GNRC Medishop
+   ThankYou Page
    Post lead submission confirmation page
    ============================================ */
 
@@ -11,6 +11,7 @@ import { Icon } from "@iconify/react";
 import confetti from "canvas-confetti";
 import styles from "./ThankYou.module.css";
 
+// TODO: Replace with actual content
 // Programme highlights for display
 const projectHighlights = [
   {
@@ -20,36 +21,38 @@ const projectHighlights = [
   },
   {
     icon: "mdi:percent-circle",
-    label: "20-22% Gross Margin",
+    label: "Strong Margins",
     color: "#4CAF50",
   },
   {
     icon: "mdi:package-variant-closed",
-    label: "50K+ Products",
+    label: "10K+ Products",
     color: "#2196F3",
   },
   {
     icon: "mdi:account-group",
-    label: "1,200+ Brand Partners",
+    label: "500+ Partners",
     color: "#9C27B0",
   },
 ];
 
+// TODO: Replace with actual content
 // Contact details
 const contactInfo = {
-  companyName: "GNRC Medishop Pvt. Ltd.",
-  designation: "Franchise Excellence",
-  phone: "+91-7086036887",
-  email: "info@gnrcmedishop.com",
-  address: "Guwahati Centre, Assam",
-  workingHours: "Mon - Sat: 8:00 AM - 7:00 PM",
+  companyName: "Your Company Pvt. Ltd.",
+  designation: "Business Excellence",
+  phone: "+91-XXXXXXXXXX",
+  email: "info@yourbusiness.com",
+  address: "Your City, Your State",
+  workingHours: "Mon - Sat: 9:00 AM - 7:00 PM",
 };
 
+// TODO: Replace with actual content
 // Quick links
 const quickLinks = [
-  { icon: "mdi:currency-inr", label: "Investment", href: "/#investment" },
-  { icon: "mdi:star-circle", label: "Why GNRC", href: "/#why-gnrc" },
-  { icon: "mdi:store", label: "Stores", href: "/#stores" },
+  { icon: "mdi:currency-inr", label: "Services", href: "/#investment" },
+  { icon: "mdi:star-circle", label: "Why Us", href: "/#why-gnrc" },
+  { icon: "mdi:store", label: "Location", href: "/#stores" },
   { icon: "mdi:headset", label: "Support", href: "/#support" },
 ];
 
@@ -215,21 +218,21 @@ const ThankYou = () => {
             <div className={styles.iconRing2} />
           </motion.div>
 
+          {/* TODO: Replace with actual content */}
           {/* Thank You Message */}
           <motion.div
             variants={itemVariants}
             className={styles.thankYouMessage}
           >
             <Typography variant="h2" className={styles.title}>
-              Thank You for Your Interest! 🏪
+              Thank You for Your Interest!
             </Typography>
             <Typography
               className={styles.subtitle}
               sx={{ color: "#FFFFFFB3 !important" }}
             >
-              Your franchise enquiry has been received. Our business development
-              team from GNRC Medishop will contact you within 24 hours to
-              discuss the opportunity in detail.
+              Your enquiry has been received. Our team will contact you within
+              24 hours to discuss the details.
             </Typography>
           </motion.div>
 
@@ -246,8 +249,7 @@ const ThankYou = () => {
                 className={styles.noticeDesc}
                 sx={{ color: "#FFFFFFA6 !important" }}
               >
-                Our franchise team will reach out to discuss the best investment
-                plan for you
+                Our team will reach out to discuss the best plan for you
               </Typography>
             </div>
           </motion.div>
@@ -261,7 +263,7 @@ const ThankYou = () => {
               className={styles.sectionLabel}
               sx={{ color: "#FFFFFF80 !important" }}
             >
-              Why GNRC Medishop?
+              Why Choose Us?
             </Typography>
             <div className={styles.highlightsGrid}>
               {projectHighlights.map((item, index) => (
@@ -288,6 +290,7 @@ const ThankYou = () => {
             </div>
           </motion.div>
 
+          {/* TODO: Replace with actual content */}
           {/* Contact Information Card */}
           <motion.div variants={itemVariants} className={styles.contactCard}>
             <div className={styles.contactHeader}>

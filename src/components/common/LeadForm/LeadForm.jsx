@@ -273,8 +273,8 @@ const LeadForm = ({
       // Show success message with SweetAlert2
       await showAlert({
         icon: 'success',
-        title: 'Franchise Enquiry Received!',
-        text: 'Thank you for your interest in GNRC Medishop franchise! Our franchise team will contact you within 24 hours.',
+        title: 'Enquiry Received!',
+        text: 'Thank you for your interest! Our team will contact you within 24 hours.',
         confirmButtonColor: '#2D3561',
         confirmButtonText: 'Great!',
         timer: 3000,

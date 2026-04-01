@@ -1,5 +1,5 @@
 /* ============================================
-   Card Component - GNRC Medishop
+   Card Component - Landing Page Boilerplate
    Reusable card with multiple variants and animations
    ============================================ */
 

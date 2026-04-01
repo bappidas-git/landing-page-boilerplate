@@ -1,7 +1,7 @@
 /* ============================================
-   SecondaryCTASection Component - GNRC Medishop
-   Franchise CTA with inline lead form
-   Placed before footer for prospective franchise partners
+   SecondaryCTASection Component
+   CTA with inline lead form
+   Placed before footer for prospective partners
    ============================================ */
 
 import React, { useState, useCallback, useRef } from "react";
@@ -34,13 +34,15 @@ import {
 } from "../../../utils/validators";
 import styles from "./SecondaryCTASection.module.css";
 
-const LEADS_STORAGE_KEY = "gnrc_franchise_submitted_leads";
+const LEADS_STORAGE_KEY = "boilerplate_submitted_leads";
 
-const CLASS_OPTIONS = ["Pharmacy", "General Store", "Wellness & Health", "Multi-Category"];
+// TODO: Replace with actual content
+const CLASS_OPTIONS = ["Service Type A", "Service Type B", "Service Type C", "Multi-Service"];
+// TODO: Replace with actual content
 const PROGRAMME_OPTIONS = [
-  "Standard Franchise",
-  "Premium Franchise",
-  "Master Franchise",
+  "Basic Plan",
+  "Standard Plan",
+  "Premium Plan",
 ];
 
 const initialFormState = {
@@ -59,31 +61,34 @@ const initialErrorState = {
   interested_programme: "",
 };
 
+// TODO: Replace with actual content
 const storeOpeningSteps = [
-  { step: 1, title: "Location Finalization", icon: "mdi:map-marker-check" },
-  { step: 2, title: "Signing LOI (Letter of Intent)", icon: "mdi:file-sign" },
-  { step: 3, title: "Property Finalization", icon: "mdi:home-city" },
+  { step: 1, title: "Initial Consultation", icon: "mdi:map-marker-check" },
+  { step: 2, title: "Signing Agreement", icon: "mdi:file-sign" },
+  { step: 3, title: "Location Finalization", icon: "mdi:home-city" },
   { step: 4, title: "Document Submission", icon: "mdi:file-document-check" },
-  { step: 5, title: "Franchise Agreement", icon: "mdi:handshake" },
-  { step: 6, title: "Interior Design (docket in 5 days)", icon: "mdi:floor-plan" },
-  { step: 7, title: "Interior Work Begins", icon: "mdi:hammer-wrench" },
-  { step: 8, title: "Operations Planning (stock, branding, HR, training)", icon: "mdi:cog-sync" },
-  { step: 9, title: "Stock Payment", icon: "mdi:cash-check" },
-  { step: 10, title: "Grand Store Launch! 🎉", icon: "mdi:party-popper" },
+  { step: 5, title: "Partnership Agreement", icon: "mdi:handshake" },
+  { step: 6, title: "Design & Planning", icon: "mdi:floor-plan" },
+  { step: 7, title: "Setup Begins", icon: "mdi:hammer-wrench" },
+  { step: 8, title: "Operations Planning", icon: "mdi:cog-sync" },
+  { step: 9, title: "Final Preparations", icon: "mdi:cash-check" },
+  { step: 10, title: "Grand Launch!", icon: "mdi:party-popper" },
 ];
 
+// TODO: Replace with actual content
 const highlights = [
-  { text: "20+ Years Legacy", icon: "mdi:trophy-award" },
-  { text: "₹80 Cr Turnover", icon: "mdi:currency-inr" },
-  { text: "9 Profitable Stores", icon: "mdi:store" },
-  { text: "1,200+ Brand Partners", icon: "mdi:tag-multiple" },
+  { text: "10+ Years Legacy", icon: "mdi:trophy-award" },
+  { text: "Strong Revenue", icon: "mdi:currency-inr" },
+  { text: "15+ Locations", icon: "mdi:store" },
+  { text: "500+ Partners", icon: "mdi:tag-multiple" },
 ];
 
+// TODO: Replace with actual content
 const whyStartEarly = [
-  "20+ years of brand trust and credibility",
+  "10+ years of brand trust and credibility",
   "Complete turnkey setup in 30-45 days",
-  "Centralized supply chain with 3 warehouses",
-  "Technology-driven operations with Zoho platform",
+  "Centralized supply chain with multiple warehouses",
+  "Technology-driven operations platform",
 ];
 
 const SecondaryCTASection = () => {
@@ -190,7 +195,7 @@ const SecondaryCTASection = () => {
           break;
         case "current_class":
           if (!formData.current_class)
-            errorMessage = "Please select a store type";
+            errorMessage = "Please select a service type";
           break;
         case "interested_programme":
           if (!formData.interested_programme)
@@ -209,7 +214,7 @@ const SecondaryCTASection = () => {
       name: getNameErrorMessage(formData.name),
       mobile: getMobileErrorMessage(formData.mobile),
       email: getEmailErrorMessage(formData.email),
-      current_class: !formData.current_class ? "Please select a store type" : "",
+      current_class: !formData.current_class ? "Please select a service type" : "",
       interested_programme: !formData.interested_programme
         ? "Please select a programme"
         : "",
@@ -238,7 +243,7 @@ const SecondaryCTASection = () => {
     if (isDuplicateLead(formData.mobile)) {
       await showInfo(
         "Already Registered!",
-        "This mobile number has already been registered. Our counsellor will contact you soon.",
+        "This mobile number has already been registered. Our representative will contact you soon.",
       );
       return;
     }
@@ -264,7 +269,7 @@ const SecondaryCTASection = () => {
         sessionStorage.setItem("lead_name", formData.name);
 
         await showSuccess(
-          "Franchise Enquiry Received!",
+          "Enquiry Received!",
           "Our team will contact you soon.",
         );
 
@@ -280,7 +285,7 @@ const SecondaryCTASection = () => {
       console.error("Form submission error:", error);
       await showError(
         "Something went wrong",
-        "Please try again or call us directly at +91-7086036887.",
+        "Please try again or call us directly at +91-XXXXXXXXXX.",
       );
     } finally {
       setIsSubmitting(false);
@@ -301,7 +306,8 @@ const SecondaryCTASection = () => {
         >
           {/* Badge */}
           <motion.div variants={itemVariants} className={styles.badgeWrapper}>
-            <span className={styles.badge}>🌟 The Vision Behind GNRC Medishop</span>
+            {/* TODO: Replace with actual content */}
+            <span className={styles.badge}>🌟 The Vision Behind Our Business</span>
           </motion.div>
 
           {/* Headline */}
@@ -311,16 +317,17 @@ const SecondaryCTASection = () => {
               className={styles.title}
               sx={{ color: "#fff" }}
             >
-              From Hospital to Every Home
+              From Vision to Every Home
             </Typography>
           </motion.div>
 
           {/* Founder Quote with Image */}
           <motion.div variants={itemVariants} className={styles.founderQuote}>
+            {/* TODO: Replace with actual content */}
             <Box
               component="img"
-              src="https://res.cloudinary.com/dn9gyaiik/image/upload/v1773728399/founder-gnrc_rwdp8x.jpg"
-              alt="Dr. Nomal Chandra Borah, Founder, GNRC Group"
+              src="https://placehold.co/64x64/2D3561/FFFFFF?text=CEO"
+              alt="Founder and CEO"
               className={styles.founderImage}
             />
             <Typography
@@ -328,12 +335,12 @@ const SecondaryCTASection = () => {
               className={styles.subtitle}
               sx={{ color: "#fff" }}
             >
-              "My dream has always been simple — every family in Assam and the North East should have access to trustworthy essentials at honest prices, close to their home. GNRC Medishop offers a platform where native entrepreneurs can become Retailpreneurs."
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our mission has always been to make quality services accessible to every household, empowering local entrepreneurs to build sustainable businesses in their communities."
             </Typography>
             <Typography
               className={styles.founderName}
             >
-              — Dr. Nomal Chandra Borah, Founder, GNRC Group
+              — Your Founder Name, CEO
             </Typography>
           </motion.div>
 
@@ -360,7 +367,7 @@ const SecondaryCTASection = () => {
                 mt: 2,
               }}
             >
-              10-Step Store Opening Process
+              10-Step Launch Process
             </Typography>
           </motion.div>
           <div className={styles.cardsGrid}>
@@ -392,7 +399,7 @@ const SecondaryCTASection = () => {
                 <Icon icon="mdi:school" className={styles.formHeaderIcon} />
                 <div>
                   <h4 className={styles.formTitle}>
-                    Start Your Franchise Journey Today
+                    Start Your Journey Today
                   </h4>
                   <p className={styles.formSubtitle}>
                     Fill in your details to get started
@@ -516,7 +523,7 @@ const SecondaryCTASection = () => {
                     renderValue={(selected) => {
                       if (!selected) {
                         return (
-                          <span style={{ opacity: 0.5 }}>Store Type</span>
+                          <span style={{ opacity: 0.5 }}>Service Type</span>
                         );
                       }
                       return selected;
@@ -608,7 +615,7 @@ const SecondaryCTASection = () => {
                         icon="mdi:send"
                         style={{ marginRight: 8, fontSize: "1.1rem" }}
                       />
-                      <span>Apply for Franchise</span>
+                      <span>Submit Enquiry</span>
                     </>
                   )}
                 </Button>
@@ -619,7 +626,8 @@ const SecondaryCTASection = () => {
             <motion.div variants={itemVariants} className={styles.whyEarlyCard}>
               <h4 className={styles.whyEarlyTitle}>
                 <Icon icon="mdi:lightbulb-on" className={styles.whyEarlyIcon} />
-                Why GNRC Medishop?
+                {/* TODO: Replace with actual content */}
+                Why Our Business?
               </h4>
               <ul className={styles.whyEarlyList}>
                 {whyStartEarly.map((point) => (

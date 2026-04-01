@@ -130,7 +130,7 @@ const LeadFormDrawer = ({
                 animate="visible"
               >
                 <div className={styles.headerIcon}>
-                  <Icon icon="mdi:store" />
+                  <Icon icon="mdi:briefcase" />
                 </div>
                 <Typography variant="h4" id="drawer-title" className={styles.title}>
                   {title}

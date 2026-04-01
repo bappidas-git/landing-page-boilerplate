@@ -1,5 +1,5 @@
 /* ============================================
-   AnimatedCounter Component - GNRC Medishop
+   AnimatedCounter Component - Landing Page Boilerplate
    Animated number counter with scroll trigger
    ============================================ */
 

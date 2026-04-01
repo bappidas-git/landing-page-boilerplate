@@ -1,6 +1,6 @@
 /* ============================================
-   HeroSection Component - GNRC Medishop
-   Franchise opportunity hero section with animations
+   HeroSection Component
+   Hero section with animations
    ============================================ */
 
 import React, { useState, useEffect } from "react";
@@ -19,7 +19,7 @@ import UnifiedLeadForm from "../../common/UnifiedLeadForm/UnifiedLeadForm";
 import { useModal } from "../../../context/ModalContext";
 import styles from "./HeroSection.module.css";
 
-// Unsplash hero images with fallbacks (no video for GNRC)
+// Unsplash hero images with fallbacks
 const HERO_IMAGES = {
   desktop: [
     "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1920&h=800&fit=crop&q=80",
@@ -77,13 +77,14 @@ const buttonVariants = {
   },
 };
 
+{/* TODO: Replace with actual content */}
 // Trust indicators data
 const trustIndicators = [
-  { icon: "mdi:trophy-outline", text: "20+ Years" },
-  { icon: "mdi:currency-inr", text: "₹80 Cr Turnover" },
-  { icon: "mdi:package-variant-closed", text: "50K+ Products" },
-  { icon: "mdi:tag-outline", text: "1200+ Brands" },
-  { icon: "mdi:percent-outline", text: "22% Margin" },
+  { icon: "mdi:trophy-outline", text: "10+ Years" },
+  { icon: "mdi:chart-line", text: "Proven Model" },
+  { icon: "mdi:package-variant-closed", text: "10K+ Products" },
+  { icon: "mdi:tag-outline", text: "500+ Partners" },
+  { icon: "mdi:percent-outline", text: "25% Margin" },
 ];
 
 const HeroSection = () => {
@@ -96,7 +97,7 @@ const HeroSection = () => {
   const [heroImageUrl, setHeroImageUrl] = useState("");
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Video disabled for GNRC — use gradient + image only
+  // Video disabled — use gradient + image only
   const videoError = true;
 
   // Try loading fallback images in order
@@ -165,9 +166,10 @@ const HeroSection = () => {
             >
               {/* Pre-headline Badge */}
               <motion.div variants={badgeVariants}>
+                {/* TODO: Replace with actual content */}
                 <Chip
                   icon={<span className={styles.pulseDot} />}
-                  label="🏪 NE India's #1 Pharma-Grocer Retail Franchise"
+                  label="Your Industry-Leading Business"
                   className={styles.launchBadge}
                   sx={{
                     backgroundColor: "#2EC4B6",
@@ -185,6 +187,7 @@ const HeroSection = () => {
 
               {/* Main Headline */}
               <motion.div variants={itemVariants}>
+                {/* TODO: Replace with actual content */}
                 <Typography
                   variant="h1"
                   className={styles.heroTitle}
@@ -202,16 +205,17 @@ const HeroSection = () => {
                     marginTop: "1.5rem",
                   }}
                 >
-                  Own a
+                  Partner With
                   <span className={styles.orangeText}>
                     {" "}
-                    GNRC Medishop Franchise
+                    Your Business Name
                   </span>
                 </Typography>
               </motion.div>
 
               {/* Sub-headline */}
               <motion.div variants={itemVariants}>
+                {/* TODO: Replace with actual content */}
                 <Typography
                   variant="h6"
                   className={styles.heroSubtitle}
@@ -224,9 +228,8 @@ const HeroSection = () => {
                     lineHeight: 1.6,
                   }}
                 >
-                  20+ Years Legacy | ₹80 Cr Turnover | 20-22% Gross Margin |
-                  1,200+ Brand Partners | 9 Profitable Stores | Turnkey Setup
-                  from ₹22 Lakhs
+                  10+ Years Experience | Proven Business Model | Healthy Margins |
+                  500+ Partners | Multiple Locations | Complete Support
                 </Typography>
               </motion.div>
 
@@ -235,6 +238,7 @@ const HeroSection = () => {
                 variants={buttonVariants}
                 className={styles.ctaButtons}
               >
+                {/* TODO: Replace with actual content */}
                 <Button
                   variant="contained"
                   size="large"
@@ -258,7 +262,7 @@ const HeroSection = () => {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  Apply for Franchise →
+                  Get Started Today →
                 </Button>
                 <Button
                   variant="outlined"
@@ -283,7 +287,7 @@ const HeroSection = () => {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  Download Prospectus
+                  Download Brochure
                 </Button>
               </motion.div>
 
@@ -313,6 +317,7 @@ const HeroSection = () => {
               >
                 <div className={styles.formCard}>
                   <div className={styles.formHeader}>
+                    {/* TODO: Replace with actual content */}
                     <Typography
                       variant="h5"
                       sx={{
@@ -323,7 +328,7 @@ const HeroSection = () => {
                         fontSize: "1.25rem",
                       }}
                     >
-                      Franchise Enquiry
+                      Enquiry Form
                     </Typography>
                     <Typography
                       variant="body2"
@@ -334,7 +339,7 @@ const HeroSection = () => {
                         fontSize: "0.875rem",
                       }}
                     >
-                      Get complete investment details
+                      Get complete details about our plans
                     </Typography>
                   </div>
                   <div className={styles.formBody}>

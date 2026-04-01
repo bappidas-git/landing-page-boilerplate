@@ -1,5 +1,5 @@
 /* ============================================
-   Validators - GNRC Medishop
+   Validators - Landing Page Boilerplate
    Form validation utilities
    ============================================ */
 

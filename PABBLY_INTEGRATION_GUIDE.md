@@ -1,12 +1,12 @@
-# Pabbly Connect — Webhook Integration Guide for GNRC Medishop Franchise Leads
+# Pabbly Connect — Webhook Integration Guide for Lead Capture
 
-This guide explains how to connect the franchise enquiry forms to a live Pabbly Connect webhook.
+This guide explains how to connect the enquiry forms to a live Pabbly Connect webhook.
 
 ## Step 1: Create a Pabbly Connect Workflow
 
 1. Log in to [Pabbly Connect](https://www.pabbly.com/connect/)
 2. Click **"Create Workflow"**
-3. Name it: `GNRC Medishop Franchise — Lead Capture`
+3. Name it: `Your Business — Lead Capture`
 
 ## Step 2: Set Up the Trigger (Webhook)
 
@@ -23,19 +23,19 @@ This guide explains how to connect the franchise enquiry forms to a live Pabbly 
    curl -X POST "YOUR_PABBLY_WEBHOOK_URL" \
      -H "Content-Type: application/json" \
      -d '{
-       "name": "Rahul Sharma",
+       "name": "John Doe",
        "mobile": "9876543210",
-       "email": "rahul@example.com",
-       "investment_interest": "700 Sq.Ft. Store (~₹28L)",
+       "email": "john@example.com",
+       "investment_interest": "Standard Plan",
        "current_occupation": "Business Owner",
        "source": "hero-form",
        "submitted_at": "2026-03-17T10:30:00.000Z",
-       "page_url": "https://gnrcmedishop.com/?utm_source=google",
+       "page_url": "https://yourbusiness.com/?utm_source=google",
        "user_agent": "Mozilla/5.0...",
        "utm_source": "google",
        "utm_medium": "cpc",
-       "utm_campaign": "franchise-assam-2026",
-       "utm_term": "pharmacy franchise guwahati",
+       "utm_campaign": "campaign-2026",
+       "utm_term": "your keyword",
        "utm_content": "ad-variant-1",
        "gclid": "EAIaIQobChMI..."
      }'
@@ -84,13 +84,13 @@ After the webhook trigger, add actions in your Pabbly workflow:
 
 ### Option B: Send Email Notification
 1. Add action → **Email by Pabbly** → **"Send Email"**
-2. To: `info@gnrcmedishop.com`
-3. Subject: `New Franchise Lead: {{name}} - {{investment_interest}}`
+2. To: `info@yourbusiness.com`
+3. Subject: `New Lead: {{name}} - {{investment_interest}}`
 4. Body: Include all lead fields
 
 ### Option C: Send WhatsApp Notification (via Pabbly)
 1. Add action → **WhatsApp Cloud API** or third-party
-2. Send to your team's WhatsApp number (7086036887 / 8638604899)
+2. Send to your team's WhatsApp number
 3. Message template with lead details
 
 ### Option D: Add to CRM
@@ -105,12 +105,12 @@ The landing page has multiple forms, each identified by a unique `source` value:
 |---|---|---|
 | `hero-form` | Hero section | Desktop right-side enquiry form |
 | `contact-form` | Contact section | Footer contact form |
-| `drawer-form-apply-now` | Drawer | "Apply for Franchise" CTA |
-| `drawer-form-get-details` | Drawer | "Get Franchise Details" CTA |
+| `drawer-form-apply-now` | Drawer | "Get Started" CTA |
+| `drawer-form-get-details` | Drawer | "Get Details" CTA |
 | `drawer-form-book-meeting` | Drawer | "Book a Meeting" CTA |
-| `drawer-form-download-brochure` | Drawer | "Download Prospectus" CTA |
+| `drawer-form-download-brochure` | Drawer | "Download Brochure" CTA |
 | `drawer-form-request-callback` | Drawer | "Request a Callback" CTA |
-| `drawer-form-investment-plans` | Drawer | "View Investment Plans" CTA |
+| `drawer-form-investment-plans` | Drawer | "View Plans" CTA |
 | `foundation-course` | Secondary CTA section | Secondary enquiry form |
 
 You can use the `source` field in Pabbly to **filter** or **route** leads to different sheets, email recipients, or CRM pipelines based on which form they came from.
@@ -121,34 +121,34 @@ Every form submission sends these fields to the webhook:
 
 | Field | Description | Example |
 |-------|-------------|---------|
-| `name` | Applicant's full name | "Rahul Sharma" |
-| `mobile` | Mobile number (10 digits) | "7086036887" |
-| `email` | Email address | "rahul@example.com" |
-| `investment_interest` | Selected store/investment plan | "700 Sq.Ft. Store (~₹28L)" |
+| `name` | Applicant's full name | "John Doe" |
+| `mobile` | Mobile number (10 digits) | "9876543210" |
+| `email` | Email address | "john@example.com" |
+| `investment_interest` | Selected plan | "Standard Plan" |
 | `current_occupation` | Applicant's occupation | "Business Owner" |
 | `source` | Form identifier | "hero-form", "drawer-form-apply-now", etc. |
 | `submitted_at` | ISO timestamp | "2026-03-17T10:30:00.000Z" |
-| `page_url` | Full page URL with query params | "https://gnrcmedishop.com/?utm_source=google" |
+| `page_url` | Full page URL with query params | "https://yourbusiness.com/?utm_source=google" |
 | `user_agent` | Browser info | "Mozilla/5.0..." |
 | `utm_source` | Google Ads source | "google" |
 | `utm_medium` | Traffic medium | "cpc" |
-| `utm_campaign` | Campaign name | "franchise-assam-2026" |
-| `utm_term` | Search keyword | "pharmacy franchise guwahati" |
+| `utm_campaign` | Campaign name | "campaign-2026" |
+| `utm_term` | Search keyword | "your keyword" |
 | `utm_content` | Ad content ID | "ad-variant-1" |
 | `gclid` | Google Click ID | "EAIaIQobChMI..." |
 
 ### Investment Interest Options
 
-- 500 Sq.Ft. Store (~₹22L)
-- 700 Sq.Ft. Store (~₹28L)
-- 1000 Sq.Ft. Store (~₹38L)
+- Basic Plan
+- Standard Plan
+- Premium Plan
 - Not Sure — Need Guidance
 
 ### Current Occupation Options
 
 - Business Owner
-- Salaried Professional
-- Retired / Looking for New Venture
+- Professional
+- Retired / New Venture
 - First-Time Entrepreneur
 - Investor / Partner
 
@@ -156,7 +156,7 @@ Every form submission sends these fields to the webhook:
 
 When setting up Google Ads, use this URL template:
 ```
-https://gnrcmedishop.com/?utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&utm_content={creative}&gclid={gclid}
+https://yourbusiness.com/?utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&utm_content={creative}&gclid={gclid}
 ```
 
 The landing page automatically captures all these parameters from the URL and includes them with every lead submission.
@@ -165,6 +165,6 @@ The landing page automatically captures all these parameters from the URL and in
 
 - **Leads not appearing:** Check browser console for errors. Verify `WEBHOOK_URL` is correct in `src/utils/webhookSubmit.js`.
 - **CORS errors:** Pabbly webhooks accept POST from any origin, so this shouldn't happen. If it does, check your Pabbly plan.
-- **Duplicate leads:** The app prevents duplicate submissions by mobile number (stored in `localStorage['gnrc_franchise_submitted_leads']`). To reset, clear browser storage.
-- **Test mode:** To re-enable test mode, set `DUMMY_MODE = true` in `webhookSubmit.js`. Test leads are stored in `localStorage['gnrc_franchise_test_leads']`.
+- **Duplicate leads:** The app prevents duplicate submissions by mobile number (stored in `localStorage['boilerplate_submitted_leads']`). To reset, clear browser storage.
+- **Test mode:** To re-enable test mode, set `DUMMY_MODE = true` in `webhookSubmit.js`. Test leads are stored in `localStorage['boilerplate_test_leads']`.
 - **Thank-you page not showing lead name:** The form stores `lead_submitted` and `lead_name` in `sessionStorage` after success — ensure the thank-you page reads from there.

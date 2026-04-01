@@ -1,5 +1,5 @@
 /* ============================================
-   MUI Theme Configuration - GNRC Medishop Franchise
+   MUI Theme Configuration - Landing Page Boilerplate
    Landing Page
    ============================================ */
 

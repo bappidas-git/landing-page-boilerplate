@@ -1,5 +1,5 @@
 /* ============================================
-   useInView Hook - GNRC Medishop
+   useInView Hook - Landing Page Boilerplate
    Custom hook for detecting element visibility
    ============================================ */
 

@@ -1,5 +1,5 @@
 /* ============================================
-   Entry Point - GNRC Medishop
+   Entry Point - Landing Page Boilerplate
    Franchise Landing Page
 
    Performance optimized with:
@@ -133,7 +133,7 @@ reportWebVitals(handleWebVitals);
 
 if (process.env.NODE_ENV === 'development') {
   // Log when app is ready
-  console.log('%c GNRC Medishop - Franchise Opportunity ', 'background: #2D3561; color: #2EC4B6; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px;');
+  console.log('%c Landing Page Boilerplate ', 'background: #2D3561; color: #2EC4B6; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 4px;');
   console.log('%c Development Mode ', 'background: #4CAF50; color: white; padding: 5px 10px; font-size: 12px; border-radius: 4px;');
 }
 

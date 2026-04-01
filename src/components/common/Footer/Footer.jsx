@@ -1,5 +1,5 @@
 /* ============================================
-   Footer Component - GNRC Medishop
+   Footer Component
    Multi-column footer with links, contact info,
    social media, and legal modals
    ============================================ */
@@ -11,16 +11,17 @@ import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import styles from "./Footer.module.css";
 
+{/* TODO: Replace with actual content */}
 // Privacy Policy Content Component
 const PrivacyPolicyContent = () => (
   <div className={styles.legalContent}>
     <section className={styles.legalSection}>
       <h3>Introduction</h3>
       <p>
-        GNRC Medishop Pvt. Ltd. ("we," "our," or "us") respects your privacy and
+        Your Company Pvt. Ltd. ("we," "our," or "us") respects your privacy and
         is committed to protecting your personal data. This Privacy Policy
         explains how we collect, use, disclose, and safeguard your information
-        when you visit our website or engage with our franchise services.
+        when you visit our website or engage with our services.
       </p>
     </section>
 
@@ -31,7 +32,7 @@ const PrivacyPolicyContent = () => (
         <li>
           <strong>Personal Information:</strong> Name, email address, phone
           number, and other contact details you provide when filling out
-          franchise inquiry forms or contacting us.
+          inquiry forms or contacting us.
         </li>
         <li>
           <strong>Business Preferences:</strong> Information about your
@@ -56,9 +57,9 @@ const PrivacyPolicyContent = () => (
       <p>We use the collected information for the following purposes:</p>
       <ul>
         <li>
-          To respond to your franchise inquiries and provide investment details
+          To respond to your inquiries and provide service details
         </li>
-        <li>To schedule business consultations and store visits</li>
+        <li>To schedule business consultations and visits</li>
         <li>
           To send relevant business updates and promotional communications (with
           your consent)
@@ -103,11 +104,11 @@ const PrivacyPolicyContent = () => (
         data practices, please contact us at:
       </p>
       <p>
-        <strong>GNRC Medishop Pvt. Ltd.</strong>
+        <strong>Your Company Pvt. Ltd.</strong>
         <br />
-        Email: info@gnrcmedishop.com
+        Email: info@yourbusiness.com
         <br />
-        Phone: +91-7086036887
+        Phone: +91-XXXXXXXXXX
       </p>
     </section>
 
@@ -115,6 +116,7 @@ const PrivacyPolicyContent = () => (
   </div>
 );
 
+{/* TODO: Replace with actual content */}
 // Terms & Conditions Content Component
 const TermsConditionsContent = () => (
   <div className={styles.legalContent}>
@@ -123,7 +125,7 @@ const TermsConditionsContent = () => (
       <p>
         By accessing and using this website, you accept and agree to be bound by
         these Terms and Conditions. If you do not agree to these terms, please
-        do not use this website. GNRC Medishop Pvt. Ltd. reserves the right to
+        do not use this website. Your Company Pvt. Ltd. reserves the right to
         modify these terms at any time without prior notice.
       </p>
     </section>
@@ -131,9 +133,9 @@ const TermsConditionsContent = () => (
     <section className={styles.legalSection}>
       <h3>About This Website</h3>
       <p>
-        This website is operated by GNRC Medishop Pvt. Ltd. for the purpose of
-        providing information about our franchise opportunity, investment plans,
-        and services. All content is for general informational purposes only.
+        This website is operated by Your Company Pvt. Ltd. for the purpose of
+        providing information about our services, investment plans,
+        and offerings. All content is for general informational purposes only.
       </p>
     </section>
 
@@ -145,16 +147,16 @@ const TermsConditionsContent = () => (
       </p>
       <ul>
         <li>
-          All franchise details, investment amounts, and offerings are subject
+          All service details, investment amounts, and offerings are subject
           to change without prior notice.
         </li>
         <li>
-          Revenue projections and margins mentioned are based on existing store
+          Revenue projections and margins mentioned are based on existing
           performance and do not guarantee future outcomes.
         </li>
         <li>Images and representations are for illustrative purposes only.</li>
         <li>
-          Availability of franchise territories is subject to real-time status.
+          Availability of services is subject to real-time status.
         </li>
       </ul>
     </section>
@@ -185,7 +187,7 @@ const TermsConditionsContent = () => (
       <h3>Intellectual Property</h3>
       <p>
         All content on this website, including but not limited to text,
-        graphics, logos, images, and software, is the property of GNRC Medishop
+        graphics, logos, images, and software, is the property of Your Company
         Pvt. Ltd. and is protected by intellectual property laws. You may not
         reproduce, distribute, or create derivative works without prior written
         consent.
@@ -195,7 +197,7 @@ const TermsConditionsContent = () => (
     <section className={styles.legalSection}>
       <h3>Limitation of Liability</h3>
       <p>
-        GNRC Medishop Pvt. Ltd. shall not be liable for any direct, indirect,
+        Your Company Pvt. Ltd. shall not be liable for any direct, indirect,
         incidental, consequential, or punitive damages arising from your use of
         this website or reliance on any information provided herein.
       </p>
@@ -207,7 +209,7 @@ const TermsConditionsContent = () => (
         These Terms and Conditions shall be governed by and construed in
         accordance with the laws of India. Any disputes arising from or related
         to these terms shall be subject to the exclusive jurisdiction of the
-        courts in Guwahati, Assam.
+        courts in Your City, Your State.
       </p>
     </section>
 
@@ -218,11 +220,11 @@ const TermsConditionsContent = () => (
         us at:
       </p>
       <p>
-        <strong>GNRC Medishop Pvt. Ltd.</strong>
+        <strong>Your Company Pvt. Ltd.</strong>
         <br />
-        Email: info@gnrcmedishop.com
+        Email: info@yourbusiness.com
         <br />
-        Phone: +91-7086036887
+        Phone: +91-XXXXXXXXXX
       </p>
     </section>
 
@@ -230,6 +232,7 @@ const TermsConditionsContent = () => (
   </div>
 );
 
+{/* TODO: Replace with actual content */}
 // Disclaimer Content Component
 const DisclaimerContent = () => (
   <div className={styles.legalContent}>
@@ -249,8 +252,8 @@ const DisclaimerContent = () => (
       <h3>Earnings Disclaimer</h3>
       <p>
         Revenue projections and profit margins mentioned are based on existing
-        store performance data and are not indicative of guaranteed future
-        outcomes. Individual franchise results may vary based on location,
+        performance data and are not indicative of guaranteed future
+        outcomes. Individual results may vary based on location,
         market conditions, management, and other factors.
       </p>
     </section>
@@ -259,7 +262,7 @@ const DisclaimerContent = () => (
       <h3>Contact</h3>
       <p>
         For any questions or concerns, please contact us at
-        info@gnrcmedishop.com or call +91-7086036887.
+        info@yourbusiness.com or call +91-XXXXXXXXXX.
       </p>
     </section>
 
@@ -326,28 +329,30 @@ const LegalModal = ({ isOpen, onClose, title, children }) => {
   );
 };
 
+{/* TODO: Replace with actual content */}
 // Quick Links data
 const quickLinks = [
-  { label: "About GNRC", href: "#about" },
-  { label: "Why GNRC", href: "#why-gnrc" },
-  { label: "Investment", href: "#investment" },
-  { label: "Stores", href: "#stores" },
+  { label: "About Us", href: "#about" },
+  { label: "Why Us", href: "#why-gnrc" },
+  { label: "Services", href: "#investment" },
+  { label: "Location", href: "#stores" },
   {
-    label: "Careers",
-    href: "https://www.gnrcmedishop.com",
+    label: "Website",
+    href: "https://yourbusiness.com",
     external: true,
   },
 ];
 
+{/* TODO: Replace with actual content */}
 // Franchise links data
 const franchiseLinks = [
-  { label: "500 Sq Ft Store", href: "#investment" },
-  { label: "700 Sq Ft Store", href: "#investment" },
-  { label: "1000 Sq Ft Store", href: "#investment" },
+  { label: "Basic Plan", href: "#investment" },
+  { label: "Standard Plan", href: "#investment" },
+  { label: "Premium Plan", href: "#investment" },
   { label: "Support & Training", href: "#support" },
   {
-    label: "GNRC Medishop Website",
-    href: "https://www.gnrcmedishop.com",
+    label: "Our Website",
+    href: "https://yourbusiness.com",
     external: true,
   },
 ];
@@ -373,11 +378,12 @@ const Footer = () => {
           <Container maxWidth="xl">
             <div className={styles.footerGrid}>
               {/* Column 1: Logo & Tagline */}
+              {/* TODO: Replace with actual content */}
               <div className={styles.footerBrand}>
                 <div className={styles.logoWrapper}>
                   <img
-                    src="https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png"
-                    alt="GNRC Medishop"
+                    src="https://placehold.co/180x50/2D3561/FFFFFF?text=YOUR+LOGO"
+                    alt="Your Business Name"
                     style={{
                       height: "36px",
                       width: "auto",
@@ -386,8 +392,7 @@ const Footer = () => {
                   />
                 </div>
                 <p className={styles.tagline}>
-                  Building North East India's Most Trusted Essentials Retail
-                  Chain.
+                  Lorem ipsum dolor sit amet, building trusted services.
                 </p>
                 {/* Social Icons */}
                 <div className={styles.socialIcons}>
@@ -429,9 +434,9 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Column 3: Franchise */}
+              {/* Column 3: Services */}
               <div className={styles.footerColumn}>
-                <h4 className={styles.columnTitle}>Franchise</h4>
+                <h4 className={styles.columnTitle}>Services</h4>
                 <ul className={styles.footerLinks}>
                   {franchiseLinks.map((link, index) => (
                     <li key={index}>
@@ -453,6 +458,7 @@ const Footer = () => {
               </div>
 
               {/* Column 4: Contact */}
+              {/* TODO: Replace with actual content */}
               <div className={styles.footerColumn}>
                 <h4 className={styles.columnTitle}>Contact</h4>
                 <ul className={styles.contactList}>
@@ -460,11 +466,12 @@ const Footer = () => {
                     <div className={styles.contactLabelRow}>
                       <Icon icon="mdi:phone" className={styles.contactIcon} />
                       <span className={styles.contactLabel}>
-                        Franchise Support
+                        {/* TODO: Replace with actual content */}
+                        Support
                       </span>
                     </div>
-                    <a href="tel:+917086036887" className={styles.contactValue}>
-                      7086036887
+                    <a href="tel:+91XXXXXXXXXX" className={styles.contactValue}>
+                      XXXXXXXXXX
                     </a>
                   </li>
                   {/* <li className={styles.contactItem}>
@@ -475,8 +482,8 @@ const Footer = () => {
                       />
                       <span className={styles.contactLabel}>Alternate</span>
                     </div>
-                    <a href="tel:+918638604899" className={styles.contactValue}>
-                      8638604899
+                    <a href="tel:+91XXXXXXXXXX" className={styles.contactValue}>
+                      XXXXXXXXXX
                     </a>
                   </li> */}
                   <li className={styles.contactItem}>
@@ -485,10 +492,10 @@ const Footer = () => {
                       <span className={styles.contactLabel}>Email</span>
                     </div>
                     <a
-                      href="mailto:info@gnrcmedishop.com"
+                      href="mailto:info@yourbusiness.com"
                       className={styles.contactValue}
                     >
-                      info@gnrcmedishop.com
+                      info@yourbusiness.com
                     </a>
                   </li>
                   <li className={styles.contactItem}>
@@ -500,9 +507,10 @@ const Footer = () => {
                       <span className={styles.contactLabel}>Address</span>
                     </div>
                     <span className={styles.contactValue}>
-                      GNRC Medishop Pvt. Ltd.
+                      {/* TODO: Replace with actual content */}
+                      Your Company Pvt. Ltd.
                       <br />
-                      Guwahati, Assam
+                      Your City, Your State
                     </span>
                   </li>
                 </ul>
@@ -516,7 +524,8 @@ const Footer = () => {
           <Container maxWidth="xl">
             <div className={styles.bottomContent}>
               <p className={styles.copyright}>
-                &copy; 2025 GNRC Medishop Pvt. Ltd. All Rights Reserved.
+                {/* TODO: Replace with actual content */}
+                &copy; 2025 Your Company Pvt. Ltd. All Rights Reserved.
               </p>
               <div className={styles.legalLinks}>
                 <button
@@ -548,14 +557,15 @@ const Footer = () => {
         <div className={styles.developerBar}>
           <Container maxWidth="xl">
             <p className={styles.developerText}>
+              {/* TODO: Replace with actual content */}
               Designed and Developed by{" "}
               <a
-                href="https://assamdigital.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.developerLink}
               >
-                Assam Digital
+                Your Developer
               </a>
             </p>
           </Container>

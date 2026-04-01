@@ -1,5 +1,5 @@
 /* ============================================
-   Formatters - GNRC Medishop
+   Formatters - Landing Page Boilerplate
    Utility functions for formatting data
    ============================================ */
 

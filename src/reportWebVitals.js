@@ -1,6 +1,6 @@
 /* ============================================
    Web Vitals Performance Monitoring
-   GNRC Medishop
+   Landing Page Boilerplate
 
    Measures Core Web Vitals:
    - CLS (Cumulative Layout Shift)

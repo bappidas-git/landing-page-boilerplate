@@ -6,6 +6,7 @@
    - Consent text
    - Redirect to Thank You page
    - Customizable title, subtitle, and phone CTA
+   TODO: Replace brand-specific content with actual content
    ============================================ */
 
 import React, { useState, useCallback, useRef } from "react";
@@ -36,21 +37,23 @@ import {
 import styles from "./UnifiedLeadForm.module.css";
 
 // Local storage key for leads
-const LEADS_STORAGE_KEY = "gnrc_franchise_submitted_leads";
+const LEADS_STORAGE_KEY = "boilerplate_submitted_leads";
 
 // Investment interest options
+{/* TODO: Replace with actual content */}
 const COURSE_OPTIONS = [
-  "500 Sq.Ft. Store (~₹22L)",
-  "700 Sq.Ft. Store (~₹28L)",
-  "1000 Sq.Ft. Store (~₹38L)",
+  "Basic Plan",
+  "Standard Plan",
+  "Premium Plan",
   "Not Sure — Need Guidance",
 ];
 
 // Current occupation options
+{/* TODO: Replace with actual content */}
 const CLASS_OPTIONS = [
   "Business Owner",
-  "Salaried Professional",
-  "Retired / Looking for New Venture",
+  "Professional",
+  "Retired / New Venture",
   "First-Time Entrepreneur",
   "Investor / Partner",
 ];
@@ -88,10 +91,10 @@ const PrivacyPolicyContent = () => (
         Introduction
       </h3>
       <p style={{ fontSize: "14px", lineHeight: 1.6, color: "#374151" }}>
-        GNRC Medishop Pvt. Ltd. ("we," "our," or "us") respects your privacy
+        Your Company Pvt. Ltd. ("we," "our," or "us") respects your privacy
         and is committed to protecting your personal data. This Privacy Policy
         explains how we collect, use, disclose, and safeguard your information
-        when you visit our website or engage with our franchise services.
+        when you visit our website or engage with our services.
       </p>
     </section>
 
@@ -132,7 +135,7 @@ const PrivacyPolicyContent = () => (
         </li>
         <li style={{ marginBottom: "6px" }}>
           <strong>Business Preferences:</strong> Information about your
-          investment preferences, occupation, and franchise requirements shared
+          investment preferences, occupation, and service requirements shared
           during consultations.
         </li>
         <li style={{ marginBottom: "6px" }}>
@@ -179,13 +182,13 @@ const PrivacyPolicyContent = () => (
         }}
       >
         <li style={{ marginBottom: "6px" }}>
-          To respond to your inquiries and provide franchise information
+          To respond to your inquiries and provide service information
         </li>
         <li style={{ marginBottom: "6px" }}>
-          To schedule store visits and franchise consultations
+          To schedule store visits and consultations
         </li>
         <li style={{ marginBottom: "6px" }}>
-          To send relevant franchise updates and promotional communications
+          To send relevant service updates and promotional communications
           (with your consent)
         </li>
         <li style={{ marginBottom: "6px" }}>
@@ -229,8 +232,8 @@ const PrivacyPolicyContent = () => (
         }}
       >
         <li style={{ marginBottom: "6px" }}>
-          <strong>GNRC Medishop Pvt. Ltd.:</strong> We share inquiry details within our
-          group for processing your franchise enquiry interests.
+          <strong>Your Company Pvt. Ltd.:</strong> We share inquiry details within our
+          group for processing your enquiry interests.
         </li>
         <li style={{ marginBottom: "6px" }}>
           <strong>Service Providers:</strong> Third-party vendors who assist us
@@ -342,11 +345,11 @@ const PrivacyPolicyContent = () => (
           marginTop: "8px",
         }}
       >
-        <strong>GNRC Medishop Pvt. Ltd.</strong>
+        <strong>Your Company Pvt. Ltd.</strong>
         <br />
-        Email: info@gnrcmedishop.com
+        Email: info@yourbusiness.com
         <br />
-        Phone: +91-7086036887
+        Phone: +91-XXXXXXXXXX
       </p>
     </section>
 
@@ -462,7 +465,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
 const UnifiedLeadForm = ({
   variant = "default", // 'default', 'dark', 'hero', 'drawer'
   title = "Apply Now",
-  subtitle = "Fill in your details and our franchise team will assist you",
+  subtitle = "Fill in your details and our team will assist you",
   submitButtonText = "Submit Enquiry",
   showTitle = true,
   showSubtitle = true,
@@ -642,7 +645,7 @@ const UnifiedLeadForm = ({
     if (isDuplicateLead(formData.mobile)) {
       await showInfo(
         'Already Registered!',
-        'This mobile number has already been registered. Our franchise team will contact you soon.'
+        'This mobile number has already been registered. Our team will contact you soon.'
       );
       return;
     }
@@ -684,8 +687,8 @@ const UnifiedLeadForm = ({
 
         // Show success alert ON TOP of drawer
         await showSuccess(
-          'Franchise Enquiry Received! \uD83C\uDFEA',
-          'Thank you for your interest in GNRC Medishop Franchise! Our business development team will contact you within 24 hours.'
+          'Enquiry Received!',
+          'Thank you for your interest! Our team will contact you within 24 hours.'
         );
 
         // THEN reset form
@@ -712,7 +715,7 @@ const UnifiedLeadForm = ({
       console.error('Form submission error:', error);
       await showError(
         'Something went wrong',
-        'Please try again or call us directly at +91-7086036887.'
+        'Please try again or call us directly at +91-XXXXXXXXXX.'
       );
     } finally {
       setIsSubmitting(false);
@@ -956,7 +959,7 @@ const UnifiedLeadForm = ({
                   if (!selected) {
                     return (
                       <span style={{ color: variant === "dark" || variant === "drawer" ? "#FFFFFF80" : undefined, opacity: variant === "dark" || variant === "drawer" ? 1 : 0.5 }}>
-                        Select Investment Plan
+                        Select Plan
                       </span>
                     );
                   }
@@ -1101,6 +1104,7 @@ const UnifiedLeadForm = ({
             animate="visible"
             className={styles.trustBadges}
           >
+            {/* TODO: Replace with actual content */}
             <div
               className={styles.trustBadge}
               style={
@@ -1110,7 +1114,7 @@ const UnifiedLeadForm = ({
               }
             >
               <Icon icon="mdi:trophy-award" className={styles.trustIcon} />
-              <span>20+ Years Legacy</span>
+              <span>10+ Years</span>
             </div>
             <div
               className={styles.trustBadge}
@@ -1120,8 +1124,8 @@ const UnifiedLeadForm = ({
                   : undefined
               }
             >
-              <Icon icon="mdi:currency-inr" className={styles.trustIcon} />
-              <span>₹80 Cr Turnover</span>
+              <Icon icon="mdi:check-decagram" className={styles.trustIcon} />
+              <span>Proven Model</span>
             </div>
             <div
               className={styles.trustBadge}
@@ -1132,7 +1136,7 @@ const UnifiedLeadForm = ({
               }
             >
               <Icon icon="mdi:percent-circle" className={styles.trustIcon} />
-              <span>20-22% Gross Margin</span>
+              <span>Strong Margins</span>
             </div>
           </motion.div>
         )}
@@ -1168,7 +1172,8 @@ const UnifiedLeadForm = ({
               >
                 Terms & Conditions and Privacy Policy
               </button>
-              . By submitting this form, I agree to receive communication from GNRC Medishop regarding franchise opportunities.
+              {/* TODO: Replace with actual content */}
+              . By submitting this form, I agree to receive communication from us regarding our services.
             </Typography>
           </motion.div>
         )}
@@ -1183,9 +1188,10 @@ const UnifiedLeadForm = ({
           >
             Or call us directly
           </Typography>
-          <a href="tel:+917086036887" className={styles.phoneLink}>
+          {/* TODO: Replace with actual content */}
+          <a href="tel:+91XXXXXXXXXX" className={styles.phoneLink}>
             <Icon icon="mdi:phone" />
-            <span>+91-7086036887</span>
+            <span>+91-XXXXXXXXXX</span>
           </a>
         </div>
       )}

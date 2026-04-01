@@ -1,14 +1,20 @@
-# GNRC Medishop Franchise — Google Ads Landing Page
+# Landing Page Boilerplate
 
-## Business Overview
+## Overview
 
-GNRC Medishop is NE India's fastest-growing multi-category essentials retail chain (Pharmacy + Grocery + Household Essentials). Founded by Dr. Nomal Chandra Borah, 20+ years legacy, ₹80 Cr annual turnover, 9 company-owned profitable stores, 50K+ products, 1200+ brand partners, 1.6M customers served.
+A high-converting, mobile-first landing page boilerplate built with React 18, Material UI, and Framer Motion. Designed for lead generation via Google Ads or any paid traffic source.
 
-## Landing Page Purpose
+## Project Structure
 
-Collect franchise enquiry leads from aspiring entrepreneurs via Google Ads.
+- `src/components/sections/` — Page sections (Hero, About, Services, Features, etc.)
+- `src/components/common/` — Reusable components (Header, Footer, LeadForm, etc.)
+- `src/data/` — Content data files (services, features, stats, locations)
+- `src/context/` — React context providers (Modal, Theme)
+- `src/utils/` — Utility functions (webhook submit, validators, formatters)
+- `src/pages/` — Full pages (ThankYou)
+- `public/` — Static assets, index.html, manifest
 
-## Brand Colors
+## Brand Color System (Defaults)
 
 - Primary: #2D3561 (Deep Navy)
 - Secondary/Accent: #2EC4B6 (Teal Green)
@@ -17,20 +23,16 @@ Collect franchise enquiry leads from aspiring entrepreneurs via Google Ads.
 - White: #FFFFFF
 - Text: #1B2A4A
 
-## Contact
+To customize colors, update `src/theme/muiTheme.js` and the CSS variables in component `.module.css` files.
 
-- Phone: 7086036887
-- Alt Phone: 8638604899
-- Email: info@gnrcmedishop.com
-- Website: www.gnrcmedishop.com
-- Logo: https://res.cloudinary.com/dn9gyaiik/image/upload/v1773293282/logo_ashuyz.png
+## Customization Guide
 
-## Key Stats
-
-- 20+ years legacy | ₹80 Cr turnover | 9 stores | 50K+ products
-- 30K+ SKUs | 1200+ brands | 175+ employees | 1.6M customers
-- Franchise fee: ₹2.95L | Security: ₹2L | Investment: ₹22L-38L
-- Gross margin: 20-22% | Expected ROI: 30%
+1. **Content**: Update data files in `src/data/` and hardcoded text in section components
+2. **Branding**: Replace logo URL in `Header.jsx`, `Footer.jsx`, `MobileDrawer.jsx`, and `public/index.html`
+3. **Contact Info**: Update `.env` file and `src/data/locationData.js`
+4. **SEO**: Update meta tags, JSON-LD schemas, and sitemap in `public/`
+5. **Forms**: Configure webhook URL in `src/utils/webhookSubmit.js`
+6. **Analytics**: Update GTM ID in `public/index.html`
 
 ## DO NOT MODIFY
 

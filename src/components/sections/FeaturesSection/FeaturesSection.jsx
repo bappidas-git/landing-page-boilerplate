@@ -1,5 +1,5 @@
 /* ============================================
-   FeaturesSection Component - Benefits of Joining GNRC Medishop
+   FeaturesSection Component - Benefits of Joining
    Tabbed benefits showcase with franchise highlights and CTA
    ============================================ */
 
@@ -28,11 +28,11 @@ const categoryAccentIcons = {
 // Course highlights strip items
 const courseHighlights = [
   { icon: "mdi:map-marker-check", label: "Location Support" },
-  { icon: "mdi:store-check", label: "Turnkey Interior" },
-  { icon: "mdi:account-group", label: "Staff Hiring & Training" },
-  { icon: "mdi:cog-sync", label: "Zoho Technology" },
+  { icon: "mdi:store-check", label: "Turnkey Setup" },
+  { icon: "mdi:account-group", label: "Staff Training" },
+  { icon: "mdi:cog-sync", label: "Technology Platform" },
   { icon: "mdi:package-variant-closed", label: "Automated Inventory" },
-  { icon: "mdi:hospital-building", label: "Hospital-Driven Marketing" },
+  { icon: "mdi:bullhorn", label: "Marketing Support" },
 ];
 
 // Animation variants
@@ -120,7 +120,7 @@ const FeaturesSection = () => {
                 marginTop: "0.75rem",
               }}
             >
-              We don't just offer a franchise — we build your success from day one
+              Lorem ipsum dolor sit amet — we build your success from day one
             </Typography>
           </motion.div>
 
@@ -268,7 +268,7 @@ const FeaturesSection = () => {
                 marginBottom: "1rem",
               }}
             >
-              Ready to become a Retailpreneur?
+              Ready to get started?
             </Typography>
             <Button
               variant="contained"
