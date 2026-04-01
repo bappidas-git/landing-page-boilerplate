@@ -15,7 +15,7 @@
 .bgOverlay {
   position: absolute;
   inset: 0;
-  background-image: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&h=600&fit=crop");
+  background-image: url("https://placehold.co/1920x600/E8EDF2/2D3561?text=CTA+Background+1920x600");
   background-size: cover;
   background-position: center;
   opacity: 0.08;

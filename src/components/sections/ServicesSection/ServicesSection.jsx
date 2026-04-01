@@ -374,7 +374,7 @@ const ServicesSection = () => {
                 {/* TODO: Replace with actual content */}
                 <Box
                   component="img"
-                  src="https://placehold.co/64x64/2D3561/FFFFFF?text=CEO"
+                  src="https://placehold.co/96x96/E8EDF2/2D3561?text=Founder+Photo"
                   alt="Company Founder"
                   sx={{
                     width: { xs: 56, md: 64 },

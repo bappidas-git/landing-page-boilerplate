@@ -12,7 +12,7 @@ export const locationData = {
   website: "www.yourbusiness.com",
   whatsapp: "91XXXXXXXXXX",
   mapUrl:
-    "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=400&fit=crop&q=80",
+    "https://placehold.co/800x400/E8EDF2/2D3561?text=Map+Placeholder+800x400",
   warehouses: ["Location A", "Location B", "Location C"],
   nearbyAreas: [
     "Area 1",

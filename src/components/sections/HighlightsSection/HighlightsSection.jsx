@@ -125,7 +125,7 @@ const HighlightsSection = () => {
   };
 
   return (
-    <section className={styles.resultsSection} id="why-gnrc" ref={ref}>
+    <section className={styles.resultsSection} id="why-us" ref={ref}>
       <Container maxWidth="xl">
         <motion.div
           variants={containerVariants}

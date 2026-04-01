@@ -51,7 +51,7 @@ const contactInfo = {
 // Quick links
 const quickLinks = [
   { icon: "mdi:currency-inr", label: "Services", href: "/#investment" },
-  { icon: "mdi:star-circle", label: "Why Us", href: "/#why-gnrc" },
+  { icon: "mdi:star-circle", label: "Why Us", href: "/#why-us" },
   { icon: "mdi:store", label: "Location", href: "/#stores" },
   { icon: "mdi:headset", label: "Support", href: "/#support" },
 ];

@@ -24,7 +24,7 @@ const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#investment" },
-  { label: "Why Us", href: "#why-gnrc" },
+  { label: "Why Us", href: "#why-us" },
   { label: "Features", href: "#support" },
   { label: "Location", href: "#stores" },
   { label: "Contact", href: "#contact" },

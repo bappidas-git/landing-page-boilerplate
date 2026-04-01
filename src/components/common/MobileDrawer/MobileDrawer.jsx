@@ -41,10 +41,10 @@ const menuItems = [
     href: "#investment",
   },
   {
-    id: "why-gnrc",
+    id: "why-us",
     label: "Why Us",
     icon: "ic:outline-star",
-    href: "#why-gnrc",
+    href: "#why-us",
   },
   {
     id: "support",

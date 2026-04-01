@@ -83,15 +83,15 @@ const keyStats = [
 // Image grid data
 const gridImages = [
   {
-    src: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400&h=300&fit=crop&q=80",
+    src: "https://placehold.co/400x300/E8EDF2/2D3561?text=About+Image+1+400x300",
     alt: "Business location exterior",
   },
   {
-    src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=80",
+    src: "https://placehold.co/400x300/E8EDF2/2D3561?text=About+Image+2+400x300",
     alt: "Customer shopping experience",
   },
   {
-    src: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=400&h=300&fit=crop&q=80",
+    src: "https://placehold.co/400x300/E8EDF2/2D3561?text=About+Image+3+400x300",
     alt: "Product showcase",
   },
 ];

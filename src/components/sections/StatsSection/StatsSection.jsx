@@ -141,7 +141,7 @@ const StatsSection = () => {
               <motion.div variants={imageVariants} className={styles.imageWrapper}>
                 <div className={styles.towerImageContainer}>
                   <img
-                    src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=800&fit=crop"
+                    src="https://placehold.co/600x800/E8EDF2/2D3561?text=Feature+Image+600x800"
                     alt="Business location"
                     className={styles.towerImage}
                     loading="lazy"
