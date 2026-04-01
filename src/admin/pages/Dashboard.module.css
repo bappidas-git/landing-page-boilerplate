@@ -20,13 +20,13 @@
   font-family: var(--font-heading);
   font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
-  color: var(--primary-dark);
+  color: var(--admin-primary);
   margin: 0;
 }
 
 .pageSubtitle {
   font-size: var(--fs-sm);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   margin: var(--space-1) 0 0;
 }
 
@@ -37,10 +37,10 @@
 }
 
 .statCard {
-  background: var(--white);
+  background: var(--admin-card-bg);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   display: flex;
   align-items: flex-start;
   gap: var(--space-4);
@@ -62,23 +62,23 @@
 }
 
 .statIconBlue {
-  background: rgba(33, 150, 243, 0.1);
-  color: var(--info);
+  background: rgba(43, 123, 213, 0.1);
+  color: var(--admin-accent);
 }
 
 .statIconGreen {
-  background: rgba(76, 175, 80, 0.1);
-  color: var(--success);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--admin-success);
 }
 
 .statIconOrange {
-  background: rgba(255, 107, 53, 0.1);
-  color: var(--accent-orange);
+  background: rgba(214, 36, 110, 0.1);
+  color: var(--admin-magenta);
 }
 
 .statIconTeal {
-  background: rgba(46, 196, 182, 0.1);
-  color: var(--accent-gold);
+  background: rgba(60, 200, 200, 0.1);
+  color: var(--admin-cyan);
 }
 
 .statContent {
@@ -90,14 +90,14 @@
   font-family: var(--font-heading);
   font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
-  color: var(--primary-dark);
+  color: var(--admin-primary);
   margin: 0;
   line-height: 1;
 }
 
 .statLabel {
   font-size: var(--fs-sm);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   margin: var(--space-1) 0 0;
 }
 
@@ -105,14 +105,14 @@
   font-family: var(--font-heading);
   font-size: var(--fs-lg);
   font-weight: var(--fw-semibold);
-  color: var(--primary-dark);
+  color: var(--admin-primary);
   margin: 0;
 }
 
 .recentSection {
-  background: var(--white);
+  background: var(--admin-card-bg);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   overflow: hidden;
 }
 
@@ -121,19 +121,19 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-5);
-  border-bottom: 1px solid var(--medium-gray);
+  border-bottom: 1px solid var(--admin-border);
 }
 
 .viewAllLink {
   font-size: var(--fs-sm);
-  color: var(--accent-gold);
+  color: var(--admin-accent);
   text-decoration: none;
   font-weight: var(--fw-medium);
   transition: var(--transition-fast);
 }
 
 .viewAllLink:hover {
-  color: var(--accent-gold-dark);
+  color: var(--admin-primary);
 }
 
 .emptyState {
@@ -142,25 +142,25 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-12) var(--space-6);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   text-align: center;
 }
 
 .emptyIcon {
-  color: var(--border-gray);
+  color: var(--admin-border);
   margin-bottom: var(--space-4);
 }
 
 .emptyText {
   font-size: var(--fs-base);
   margin: 0 0 var(--space-1);
-  color: var(--text-dark-gray);
+  color: var(--admin-text-primary);
 }
 
 .emptySubtext {
   font-size: var(--fs-sm);
   margin: 0;
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
 }
 
 /* Recent Leads Table */
@@ -174,32 +174,32 @@
   padding: var(--space-3) var(--space-4);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: #FAFBFC;
-  border-bottom: 1px solid var(--medium-gray);
+  background: var(--admin-bg);
+  border-bottom: 1px solid var(--admin-border);
 }
 
 .recentTable tbody td {
   padding: var(--space-3) var(--space-4);
   font-size: var(--fs-sm);
-  color: var(--text-dark-gray);
+  color: var(--admin-text-primary);
   border-bottom: 1px solid #f5f5f5;
 }
 
 .recentTable tbody tr:hover {
-  background: #FAFBFC;
+  background: var(--admin-bg);
 }
 
 .leadName {
   font-weight: var(--fw-medium);
-  color: var(--primary-dark);
+  color: var(--admin-primary);
 }
 
 .leadDate {
   white-space: nowrap;
-  color: var(--text-gray);
+  color: var(--admin-text-secondary);
   font-size: var(--fs-xs);
 }
 

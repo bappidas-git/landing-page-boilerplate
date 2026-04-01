@@ -8,7 +8,7 @@
   left: 0;
   height: 100vh;
   width: 260px;
-  background: var(--primary-dark);
+  background: var(--admin-primary-dark);
   color: var(--white);
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
 .logoIcon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+  background: var(--admin-gradient-accent);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -110,13 +110,13 @@
 }
 
 .navItemActive {
-  background: rgba(46, 196, 182, 0.2);
-  color: var(--accent-gold);
+  background: rgba(43, 123, 213, 0.25);
+  color: var(--admin-cyan);
 }
 
 .navItemActive:hover {
-  background: rgba(46, 196, 182, 0.25);
-  color: var(--accent-gold);
+  background: rgba(43, 123, 213, 0.3);
+  color: var(--admin-cyan);
 }
 
 .navIcon {
