@@ -42,9 +42,6 @@ import {
 } from "../../../utils/validators";
 import styles from "./UnifiedLeadForm.module.css";
 
-// Local storage key for leads
-const LEADS_STORAGE_KEY = "lp_submitted_leads";
-
 // Investment interest options
 // TODO: Replace with actual content
 const COURSE_OPTIONS = [
@@ -500,23 +497,6 @@ const UnifiedLeadForm = ({
   const courseRef = useRef(null);
   const classRef = useRef(null);
 
-  // Save lead to localStorage
-  const saveLeadToStorage = useCallback((leadData) => {
-    try {
-      const storedLeads = JSON.parse(
-        localStorage.getItem(LEADS_STORAGE_KEY) || "[]"
-      );
-      storedLeads.push({
-        email: leadData.email,
-        mobile: leadData.mobile,
-        submittedAt: new Date().toISOString(),
-      });
-      localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(storedLeads));
-    } catch (error) {
-      console.error("Error saving lead to storage:", error);
-    }
-  }, []);
-
   // Handle input change
   const handleChange = useCallback(
     (field) => (event) => {
@@ -617,6 +597,7 @@ const UnifiedLeadForm = ({
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return; // Guard against double-click
 
     // Validate form
     if (!validateForm()) {
@@ -697,9 +678,6 @@ const UnifiedLeadForm = ({
 
         // Mark as submitted for duplicate prevention
         markLeadAsSubmitted(formData.mobile);
-
-        // Also save to localStorage for local duplicate checking
-        saveLeadToStorage(formData);
 
         // Set lead submitted flag for thank you page access
         sessionStorage.setItem("lead_submitted", "true");

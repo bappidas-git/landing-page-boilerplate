@@ -42,6 +42,12 @@ const generateUUID = () => {
 const storeLeadForLMS = (leadData, isTest = false) => {
   const key = isTest ? TEST_LEADS_KEY : LEADS_KEY;
   const existingLeads = JSON.parse(localStorage.getItem(key) || "[]");
+
+  // Dedup: skip if lead_id already exists
+  if (leadData.lead_id && existingLeads.some(l => l.lead_id === leadData.lead_id)) {
+    return leadData;
+  }
+
   const leadWithMeta = {
     ...leadData,
     lead_id: leadData.lead_id || generateUUID(),
