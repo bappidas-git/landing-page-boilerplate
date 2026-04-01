@@ -29,6 +29,9 @@ import useGTMTracking from './hooks/useGTMTracking';
 import { initGTM } from './utils/gtm';
 import { initConsentMode } from './utils/consentMode';
 import { initPixel, trackPageView as trackMetaPageView } from './utils/metaPixel';
+import { captureGclid } from './utils/gclidManager';
+import { initGoogleAds } from './utils/googleAds';
+import { setupEnhancedConversions } from './utils/enhancedConversions';
 
 // Admin
 import { AdminAuthProvider } from './admin/context/AdminAuthContext';
@@ -523,6 +526,12 @@ const App = () => {
     }
     // Initialize Meta Pixel (only if REACT_APP_META_PIXEL_ID is set)
     initPixel();
+    // Initialize Google Ads conversion tracking
+    initGoogleAds();
+    // Setup enhanced conversions if enabled
+    setupEnhancedConversions();
+    // Capture gclid from URL on page load (persists in localStorage)
+    captureGclid();
   }, []);
 
   // Hide initial loader after mount

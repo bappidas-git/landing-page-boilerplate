@@ -32,6 +32,9 @@ import { trackFormSubmission } from "../../../utils/gtm";
 import { trackLead as trackMetaLead } from "../../../utils/metaPixel";
 import { sendLeadEvent } from "../../../utils/metaCAPI";
 import { generateEventId } from "../../../utils/eventDedup";
+import { trackFormSubmission as trackGoogleAdsFormSubmission } from "../../../utils/googleAds";
+import { sendEnhancedConversionData } from "../../../utils/enhancedConversions";
+import { getStoredGclid } from "../../../utils/gclidManager";
 import Button from "../Button/Button";
 import {
   getMobileErrorMessage,
@@ -695,6 +698,18 @@ const UnifiedLeadForm = ({
           source: formId || 'general',
         }).catch((err) => {
           console.error('[MetaCAPI] Lead event failed:', err);
+        });
+
+        // 3. Fire Google Ads conversion event
+        trackGoogleAdsFormSubmission(formId || 'general');
+
+        // 4. Send enhanced conversion data (hashed PII) for Google Ads
+        sendEnhancedConversionData(
+          formData.email,
+          formData.mobile,
+          formData.name
+        ).catch((err) => {
+          console.error('[EnhancedConversions] Failed:', err);
         });
 
         // Mark as submitted for duplicate prevention
