@@ -1,0 +1,128 @@
+/* ============================================
+   Admin Topbar Styles
+   ============================================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  height: 64px;
+  background: var(--white);
+  border-bottom: 1px solid var(--medium-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  z-index: var(--z-sticky);
+}
+
+.topbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-gray);
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+}
+
+.menuButton:hover {
+  background: var(--light-gray);
+  color: var(--primary-dark);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-gray);
+}
+
+.breadcrumbLink {
+  color: var(--text-gray);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.breadcrumbLink:hover {
+  color: var(--accent-gold);
+}
+
+.breadcrumbCurrent {
+  color: var(--primary-dark);
+  font-weight: var(--fw-medium);
+}
+
+.breadcrumbSeparator {
+  color: var(--border-gray);
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-dark-gray);
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+
+.logoutBtn {
+  background: none;
+  border: 1px solid var(--border-gray);
+  color: var(--text-gray);
+  cursor: pointer;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: var(--transition-fast);
+}
+
+.logoutBtn:hover {
+  border-color: var(--error-light);
+  color: var(--error);
+  background: rgba(211, 47, 47, 0.04);
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 var(--space-4);
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .userInfo span {
+    display: none;
+  }
+}
