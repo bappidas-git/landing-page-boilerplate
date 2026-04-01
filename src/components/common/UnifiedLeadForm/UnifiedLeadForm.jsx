@@ -34,7 +34,6 @@ import { sendLeadEvent } from "../../../utils/metaCAPI";
 import { generateEventId } from "../../../utils/eventDedup";
 import { trackFormSubmission as trackGoogleAdsFormSubmission } from "../../../utils/googleAds";
 import { sendEnhancedConversionData } from "../../../utils/enhancedConversions";
-import { getStoredGclid } from "../../../utils/gclidManager";
 import Button from "../Button/Button";
 import {
   getMobileErrorMessage,
@@ -47,7 +46,7 @@ import styles from "./UnifiedLeadForm.module.css";
 const LEADS_STORAGE_KEY = "lp_submitted_leads";
 
 // Investment interest options
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 const COURSE_OPTIONS = [
   "Basic Plan",
   "Standard Plan",
@@ -56,7 +55,7 @@ const COURSE_OPTIONS = [
 ];
 
 // Current occupation options
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 const CLASS_OPTIONS = [
   "Business Owner",
   "Professional",
@@ -500,22 +499,6 @@ const UnifiedLeadForm = ({
   const emailRef = useRef(null);
   const courseRef = useRef(null);
   const classRef = useRef(null);
-
-  // Check if lead already exists in localStorage
-  const checkDuplicateLead = useCallback((email, mobile) => {
-    try {
-      const storedLeads = JSON.parse(
-        localStorage.getItem(LEADS_STORAGE_KEY) || "[]"
-      );
-      return storedLeads.some(
-        (lead) =>
-          lead.email.toLowerCase() === email.toLowerCase() ||
-          lead.mobile === mobile
-      );
-    } catch {
-      return false;
-    }
-  }, []);
 
   // Save lead to localStorage
   const saveLeadToStorage = useCallback((leadData) => {

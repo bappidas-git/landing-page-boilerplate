@@ -9,8 +9,6 @@ import {
   Container,
   Typography,
   Button,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Icon } from "@iconify/react";
 import AnimatedCounter from "../../common/AnimatedCounter/AnimatedCounter";
@@ -40,7 +38,7 @@ const itemVariants = {
   },
 };
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Stats data
 const keyStats = [
   {
@@ -121,8 +119,6 @@ const differentiators = [
 ];
 
 const AboutSection = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 

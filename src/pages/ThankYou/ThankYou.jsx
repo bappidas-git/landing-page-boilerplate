@@ -5,7 +5,7 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Typography, Box, Grid } from "@mui/material";
+import { Container, Typography, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import confetti from "canvas-confetti";
@@ -60,7 +60,7 @@ const quickLinks = [
 
 const ThankYou = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+  const [, setUserName] = useState("");
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   // Check if user is authorized to view this page

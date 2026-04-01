@@ -20,7 +20,7 @@ import { useModal } from "../../../context/ModalContext";
 import { trackCTAClick } from "../../../utils/gtm";
 import styles from "./HeroSection.module.css";
 
-{/* Set REACT_APP_HERO_VIDEO_URL in .env to enable hero background video */}
+// Set REACT_APP_HERO_VIDEO_URL in .env to enable hero background video
 // Hero images with fallbacks
 const HERO_IMAGES = {
   desktop: [
@@ -79,7 +79,7 @@ const buttonVariants = {
   },
 };
 
-{/* TODO: Replace with actual content */}
+// TODO: Replace with actual content
 // Trust indicators data
 const trustIndicators = [
   { icon: "mdi:trophy-outline", text: "10+ Years" },
@@ -98,9 +98,6 @@ const HeroSection = () => {
   // Fallback image state
   const [heroImageUrl, setHeroImageUrl] = useState("");
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Video disabled — use gradient + image only
-  const videoError = true;
 
   // Try loading fallback images in order
   useEffect(() => {

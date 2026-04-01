@@ -219,7 +219,7 @@ export const sanitizeInput = (input) => {
     .replace(/'/g, '&#039;');
 };
 
-export default {
+const validators = {
   INDIAN_MOBILE_REGEX,
   EMAIL_REGEX,
   NAME_REGEX,
@@ -235,3 +235,5 @@ export default {
   formatPhoneNumber,
   sanitizeInput,
 };
+
+export default validators;

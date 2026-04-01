@@ -6,7 +6,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Box,
   Container,
   IconButton,
   useMediaQuery,
@@ -43,7 +42,7 @@ const Header = ({ forceCloseMenu = false }) => {
     if (forceCloseMenu && isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
-  }, [forceCloseMenu]);
+  }, [forceCloseMenu, isMobileMenuOpen]);
 
   // Handle scroll event
   const handleScroll = useCallback(() => {

@@ -12,8 +12,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { showAlert } from '../../../utils/swalHelper';
 import styles from './Modal.module.css';
-import { useModal, MODAL_TYPES } from '../../../context/ModalContext';
-import Button from '../Button/Button';
+import { useModal } from '../../../context/ModalContext';
 
 // Initialize SweetAlert with React
 const MySwal = withReactContent(Swal);

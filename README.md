@@ -1,36 +1,64 @@
 # Landing Page Boilerplate
 
-A high-converting, mobile-first landing page boilerplate for lead generation. Built with React 18, Material UI v5, and Framer Motion.
+A high-converting, mobile-first landing page boilerplate for lead generation via Google Ads or any paid traffic source. Built with React 18, Material UI v5, and Framer Motion.
 
 ## Features
 
+### Landing Page
 - Responsive, mobile-first design with bottom navigation
 - Animated sections with scroll-triggered transitions (Framer Motion)
-- Lead capture forms with validation, duplicate prevention, and webhook integration
-- SEO-optimized with JSON-LD structured data templates
-- PWA-ready with manifest and service worker support
-- Google Tag Manager integration
-- Swiper-based carousels for mobile
+- Lead capture forms with validation and duplicate prevention
+- Multiple form entry points (hero, contact, drawer, secondary CTA)
 - SweetAlert2 success/error modals
-- Legal modals (Privacy Policy, Terms, Disclaimer)
 - Thank You page with confetti animation
+- Legal modals (Privacy Policy, Terms, Disclaimer)
+- PWA-ready with manifest and service worker
+
+### Admin Panel (`/admin`)
+- Secure login with environment-variable credentials
+- Dashboard with lead analytics and charts
+- Lead Management System (LMS) with search, filter, sort, pagination
+- Lead status tracking (New, Contacted, Qualified, Converted, Lost)
+- Per-lead notes and activity log
+- CSV export for offline use
+- Google Ads offline conversion import format
+
+### Tracking & Analytics
+- Google Tag Manager integration with dataLayer events
+- Google Ads conversion tracking (browser-side + offline import)
+- Meta Pixel + Conversions API (CAPI) for server-side tracking
+- Google Consent Mode v2 support
+- Enhanced conversions support
+- GCLID capture and persistence
+- Event deduplication (browser + server)
+
+### SEO
+- JSON-LD structured data (Organization, LocalBusiness, FAQPage, BreadcrumbList, WebPage)
+- Dynamic SEO head management via `SEOHead` component
+- Open Graph and Twitter Card meta tags
+- Canonical URLs, robots.txt, sitemap.xml
+- Configurable via `src/config/seo.js`
 
 ## Tech Stack
 
-- React 18
+- React 18 (concurrent features, lazy loading)
 - Material UI v5
 - Framer Motion
-- CSS Modules
-- Swiper
+- CSS Modules + CSS Custom Properties
+- React Router v6
+- Swiper (mobile carousels)
 - SweetAlert2
 - Iconify (MDI icons)
-- React Router v6
+- Web Vitals monitoring
 
 ## Quick Start
 
 ```bash
 # Install dependencies
 npm install
+
+# Copy environment template
+cp .env.example .env
 
 # Start development server
 npm start
@@ -39,76 +67,76 @@ npm start
 npm run build
 ```
 
+Default admin credentials: `admin` / `admin123` (change in `.env`).
+
 ## Folder Structure
 
 ```
 ├── public/
-│   ├── index.html          # HTML template with loader, SEO meta, JSON-LD
+│   ├── api/                # Server-side endpoints (CAPI, conversions)
+│   ├── index.html          # HTML template with SEO meta, JSON-LD schemas
 │   ├── manifest.json       # PWA manifest
+│   ├── robots.txt          # Search engine directives
 │   └── sitemap.xml         # Sitemap template
 ├── src/
+│   ├── admin/
+│   │   ├── components/     # AdminLayout, AdminLogin, Sidebar, Topbar
+│   │   ├── context/        # AdminAuthContext
+│   │   ├── pages/          # Dashboard, LeadManagement
+│   │   └── utils/          # adminAuth, leadService, googleAdsExport
 │   ├── components/
-│   │   ├── common/         # Header, Footer, LeadForm, MobileNav, etc.
+│   │   ├── common/         # Header, Footer, LeadForm, MobileNav, SEO, etc.
 │   │   └── sections/       # Hero, About, Services, Features, CTA, etc.
+│   ├── config/             # SEO configuration
 │   ├── context/            # ModalContext, ThemeContext
 │   ├── data/               # Content data files (edit these first!)
-│   ├── hooks/              # Custom hooks (useInView, useMediaQuery, etc.)
+│   ├── hooks/              # useGTMTracking, useInView, useMediaQuery, etc.
 │   ├── pages/              # ThankYou page
+│   ├── styles/             # Global CSS, variables, animations, responsive
 │   ├── theme/              # MUI theme configuration
-│   └── utils/              # Webhook submit, validators, formatters
-├── .env                    # Environment variables
+│   └── utils/              # Webhook, GTM, Meta, Google Ads, validators, etc.
 ├── .env.example            # Environment variables template
-└── CLAUDE.md               # AI assistant instructions
+├── CHANGELOG.md            # What changed from the original codebase
+├── CLAUDE.md               # AI assistant instructions
+├── CUSTOMIZATION_GUIDE.md  # Step-by-step setup for a new landing page
+├── GTM_GUIDE.md            # Google Tag Manager setup guide
+├── PABBLY_GUIDE.md         # Pabbly Connect webhook setup guide
+└── SEO_GUIDE.md            # SEO configuration guide
 ```
 
-## Customization Guide
+## Customization
 
-### 1. Content (Start here)
+See **[CUSTOMIZATION_GUIDE.md](CUSTOMIZATION_GUIDE.md)** for a complete step-by-step walkthrough.
 
-Edit the data files in `src/data/`:
-- `servicesData.js` — Service/plan cards
-- `serviceDetailsData.js` — Detailed service info
-- `featuresData.js` — Feature categories and items
-- `statsData.js` — Key statistics/highlights
-- `locationData.js` — Location and contact info
+### Quick Summary
 
-Then update hardcoded text in section components under `src/components/sections/`.
+1. **Environment** — Copy `.env.example` to `.env`, fill in your business details
+2. **Content** — Edit data files in `src/data/` and section text in `src/components/sections/`
+3. **Branding** — Update colors in `src/styles/variables.css` and `src/theme/muiTheme.js`
+4. **Images** — Replace `placehold.co` URLs with your actual images
+5. **SEO** — Update meta tags and schemas in `public/index.html` and `src/config/seo.js`
+6. **Webhook** — Configure Pabbly URL in `src/utils/webhookSubmit.js` (see [PABBLY_GUIDE.md](PABBLY_GUIDE.md))
+7. **Analytics** — Set up GTM container (see [GTM_GUIDE.md](GTM_GUIDE.md))
+8. **Deploy** — Run `npm run build` and deploy the `build/` folder
 
-### 2. Branding
+## Routes
 
-- Replace logo URLs in `Header.jsx`, `Footer.jsx`, `MobileDrawer.jsx`, and `public/index.html`
-- Update brand colors in `src/theme/muiTheme.js`
-- Update favicon and PWA icons in `public/`
+| Route | Description |
+|-------|-------------|
+| `/` | Landing page with all sections |
+| `/thank-you` | Post-submission thank you page (requires session flag) |
+| `/admin` | Redirects to `/admin/login` |
+| `/admin/login` | Admin authentication |
+| `/admin/dashboard` | Lead analytics dashboard |
+| `/admin/lms` | Lead Management System |
 
-### 3. Contact & Environment
+## Documentation
 
-- Copy `.env.example` to `.env` and fill in your values
-- Update contact info in `src/data/locationData.js`
-
-### 4. SEO
-
-- Update meta tags and JSON-LD schemas in `public/index.html`
-- Update `public/sitemap.xml` with your domain
-- Update `public/manifest.json` with your app name
-
-### 5. Form & Webhook
-
-- Configure your webhook URL in `src/utils/webhookSubmit.js`
-- See `PABBLY_INTEGRATION_GUIDE.md` for webhook setup
-
-### 6. Analytics
-
-- Replace GTM ID in `public/index.html` (search for `GTM-XXXXXXX`)
-
-## Deployment
-
-Build the production bundle:
-
-```bash
-npm run build
-```
-
-The `build/` folder is ready to deploy to any static hosting service (Netlify, Vercel, AWS S3, etc.).
+- **[CUSTOMIZATION_GUIDE.md](CUSTOMIZATION_GUIDE.md)** — Quick-start guide for creating a new landing page
+- **[PABBLY_GUIDE.md](PABBLY_GUIDE.md)** — Pabbly Connect webhook integration
+- **[GTM_GUIDE.md](GTM_GUIDE.md)** — Google Tag Manager setup and dataLayer events
+- **[SEO_GUIDE.md](SEO_GUIDE.md)** — SEO configuration and schema setup
+- **[CHANGELOG.md](CHANGELOG.md)** — Detailed changelog
 
 ## License
 

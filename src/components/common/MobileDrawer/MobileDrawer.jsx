@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { trackPhoneClick, trackWhatsAppClick, trackNavigation } from "../../../utils/gtm";
+import { trackPhoneClick, trackWhatsAppClick } from "../../../utils/gtm";
 import styles from "./MobileDrawer.module.css";
 
 // Navigation menu items

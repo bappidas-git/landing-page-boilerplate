@@ -74,7 +74,6 @@ const useGTMTracking = () => {
   useEffect(() => {
     if (!isEnabled) return;
 
-    const startTime = Date.now();
     const timers = TIME_MILESTONES.map((seconds) =>
       setTimeout(() => {
         if (!timeMilestonesHit.current.has(seconds)) {
