@@ -5,7 +5,7 @@
    ============================================ */
 
 import React, { Suspense, lazy, useEffect, useState, memo } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { CircularProgress, useMediaQuery, useTheme, Skeleton, Box } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,8 +25,14 @@ import MobileNavigation from './components/common/MobileNavigation/MobileNavigat
 import MobileDrawer from './components/common/MobileDrawer/MobileDrawer';
 import LeadFormDrawer from './components/common/LeadFormDrawer/LeadFormDrawer';
 
-// Pages
+// Admin
+import { AdminAuthProvider } from './admin/context/AdminAuthContext';
+import AdminLogin from './admin/components/AdminLogin';
+import ProtectedRoute from './admin/components/ProtectedRoute';
+
+// Pages (Lazy loaded)
 const ThankYouPage = lazy(() => import('./pages/ThankYou/ThankYou'));
+const AdminLayout = lazy(() => import('./admin/components/AdminLayout'));
 
 // Lazy loaded sections for performance (Below the fold)
 const AboutSection = lazy(() => import('./components/sections/AboutSection/AboutSection'));
@@ -553,6 +559,28 @@ const App = () => {
                   <Suspense fallback={<SectionLoader height={400} variant="default" />}>
                     <ThankYouPage />
                   </Suspense>
+                }
+              />
+
+              {/* Admin Routes */}
+              <Route
+                path="/admin/login"
+                element={
+                  <AdminAuthProvider>
+                    <AdminLogin />
+                  </AdminAuthProvider>
+                }
+              />
+              <Route
+                path="/admin/*"
+                element={
+                  <AdminAuthProvider>
+                    <ProtectedRoute>
+                      <Suspense fallback={<SectionLoader height={400} variant="default" />}>
+                        <AdminLayout />
+                      </Suspense>
+                    </ProtectedRoute>
+                  </AdminAuthProvider>
                 }
               />
             </Routes>

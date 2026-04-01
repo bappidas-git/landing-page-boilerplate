@@ -1,0 +1,40 @@
+/* ============================================
+   Admin Layout Styles
+   ============================================ */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--light-gray);
+}
+
+.mainArea {
+  flex: 1;
+  margin-left: 260px;
+  transition: margin-left var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainAreaCollapsed {
+  margin-left: 72px;
+}
+
+.content {
+  flex: 1;
+  padding: var(--space-6);
+  max-width: 1400px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mainArea,
+  .mainAreaCollapsed {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: var(--space-4);
+  }
+}
