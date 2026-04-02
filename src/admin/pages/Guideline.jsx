@@ -11,6 +11,7 @@ import styles from './Guideline.module.css';
 import PabblySetupGuide from './guidelineContent/PabblySetupGuide';
 import GoogleAdsGuide from './guidelineContent/GoogleAdsGuide';
 import MetaAdsGuide from './guidelineContent/MetaAdsGuide';
+import GTMSetupGuide from './guidelineContent/GTMSetupGuide';
 
 const GUIDELINE_PASSWORD = 'ad@9707112233';
 const SESSION_KEY = 'guideline_unlocked';
@@ -160,7 +161,8 @@ const Guideline = () => {
         {activeTab === 0 && <PabblySetupGuide styles={styles} />}
         {activeTab === 1 && <GoogleAdsGuide styles={styles} />}
         {activeTab === 2 && <MetaAdsGuide styles={styles} />}
-        {activeTab > 2 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
+        {activeTab === 3 && <GTMSetupGuide styles={styles} />}
+        {activeTab > 3 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
       </div>
     </div>
   );
