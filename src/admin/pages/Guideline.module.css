@@ -20,7 +20,7 @@
 }
 
 .modalCard {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 24px;
   max-width: 400px;
   width: 100%;
@@ -31,7 +31,7 @@
 
 .modalLogo {
   height: 40px;
-  margin-bottom: 24px;
+  margin: 0 auto 24px auto;
 }
 
 .modalTitle {
@@ -71,7 +71,7 @@
   border: none;
   border-radius: 12px;
   background: var(--admin-gradient-accent);
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -157,7 +157,9 @@
   cursor: pointer;
   white-space: nowrap;
   border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
   flex-shrink: 0;
 }
 
@@ -264,11 +266,11 @@
 
 /* Code block */
 .guideCode {
-  background: #F1F5F9;
+  background: #f1f5f9;
   border: 1px solid var(--admin-border);
   border-radius: 8px;
   padding: 16px;
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
   font-size: 0.8125rem;
   overflow-x: auto;
   white-space: pre;
@@ -279,11 +281,11 @@
 
 /* Inline code */
 .guideInlineCode {
-  background: #F1F5F9;
+  background: #f1f5f9;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.85em;
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
   color: var(--admin-primary);
 }
 
@@ -316,7 +318,7 @@
 
 /* Note box */
 .guideNote {
-  background: #EBF5FF;
+  background: #ebf5ff;
   border-left: 4px solid var(--admin-accent);
   padding: 14px 18px;
   border-radius: 0 8px 8px 0;
@@ -328,8 +330,8 @@
 
 /* Warning box */
 .guideNoteWarning {
-  background: #FEF3C7;
-  border-left: 4px solid #F59E0B;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
   padding: 14px 18px;
   border-radius: 0 8px 8px 0;
   margin: 16px 0;
@@ -340,8 +342,8 @@
 
 /* Tip box */
 .guideTip {
-  background: #ECFDF5;
-  border-left: 4px solid #10B981;
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
   padding: 14px 18px;
   border-radius: 0 8px 8px 0;
   margin: 16px 0;
