@@ -9,6 +9,7 @@ import { TextField, IconButton, CircularProgress } from '@mui/material';
 import { Icon } from '@iconify/react';
 import styles from './Guideline.module.css';
 import PabblySetupGuide from './guidelineContent/PabblySetupGuide';
+import GoogleAdsGuide from './guidelineContent/GoogleAdsGuide';
 
 const GUIDELINE_PASSWORD = 'ad@9707112233';
 const SESSION_KEY = 'guideline_unlocked';
@@ -155,10 +156,9 @@ const Guideline = () => {
 
       {/* Tab Content */}
       <div className={styles.tabContent}>
-        {activeTab === 0
-          ? <PabblySetupGuide styles={styles} />
-          : <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />
-        }
+        {activeTab === 0 && <PabblySetupGuide styles={styles} />}
+        {activeTab === 1 && <GoogleAdsGuide styles={styles} />}
+        {activeTab > 1 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
       </div>
     </div>
   );
