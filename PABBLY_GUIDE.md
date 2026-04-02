@@ -180,7 +180,78 @@ JSON.parse(localStorage.getItem("lp_submitted_leads"))
 
 ---
 
-## 8. Troubleshooting
+## 8. Admin Panel Webhooks
+
+When `USE_PABBLY = true` and `DUMMY_MODE = false`, the admin panel can sync status updates, notes, and deletions back to Pabbly via a second webhook.
+
+### Setup
+
+1. **Create a second Pabbly workflow** — Go to Pabbly Connect → Create Workflow → Select **Webhook** as the trigger.
+2. **Copy the webhook URL** — Pabbly generates a unique URL.
+3. **Set the URL in `.env`:**
+   ```env
+   REACT_APP_ADMIN_PABBLY_WEBHOOK_URL="https://connect.pabbly.com/webhook-listener/webhook/YOUR_ADMIN_WEBHOOK_ID"
+   ```
+
+### Payload Formats
+
+The admin webhook sends JSON payloads with an `action` field to identify the event type.
+
+**Status Update** — fired when a lead's status is changed:
+```json
+{
+  "action": "status_update",
+  "lead_id": "a1b2c3d4-e5f6-4g7h-8i9j-k0l1m2n3",
+  "new_status": "contacted",
+  "old_status": "new",
+  "timestamp": "2026-04-01T10:30:00.000Z"
+}
+```
+
+**Note Added** — fired when a note is added to a lead:
+```json
+{
+  "action": "note_added",
+  "lead_id": "a1b2c3d4-e5f6-4g7h-8i9j-k0l1m2n3",
+  "note_text": "Called and left voicemail",
+  "timestamp": "2026-04-01T11:00:00.000Z"
+}
+```
+
+**Lead Deleted** — fired when a lead is deleted:
+```json
+{
+  "action": "lead_deleted",
+  "lead_id": "a1b2c3d4-e5f6-4g7h-8i9j-k0l1m2n3",
+  "timestamp": "2026-04-01T11:30:00.000Z"
+}
+```
+
+### Google Sheets Mapping for Admin Actions
+
+Create a separate Google Sheet (or a new tab) and map columns:
+
+| Column | Header      | Pabbly Field        |
+|--------|-------------|---------------------|
+| A      | Action      | `{{action}}`        |
+| B      | Lead ID     | `{{lead_id}}`       |
+| C      | New Status  | `{{new_status}}`    |
+| D      | Old Status  | `{{old_status}}`    |
+| E      | Note Text   | `{{note_text}}`     |
+| F      | Timestamp   | `{{timestamp}}`     |
+
+> Use a Pabbly **Router** or **Filter** step to route different actions to different sheets or actions (e.g., only update the lead row status when `action = status_update`).
+
+### Mode Behavior
+
+| Mode | Behavior |
+|------|----------|
+| `DUMMY_MODE=true, USE_PABBLY=false` | All data stored in localStorage only. No webhooks fired. |
+| `USE_PABBLY=true, DUMMY_MODE=false` | Admin actions fire webhooks. Leftover test leads are auto-cleared on admin panel load. |
+
+---
+
+## 9. Troubleshooting
 
 | Issue | Fix |
 |-------|-----|

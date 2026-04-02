@@ -1,7 +1,14 @@
 /* ============================================
    Lead Service Utility
    CRUD operations for leads stored in localStorage
+   With Pabbly webhook support for admin actions
    ============================================ */
+
+import { isPabblyMode } from './adminConfig';
+
+// Pabbly webhook for admin actions (status change, notes, deletions)
+// Set this to your Pabbly admin workflow webhook URL
+const ADMIN_WEBHOOK_URL = process.env.REACT_APP_ADMIN_PABBLY_WEBHOOK_URL || "";
 
 const LEADS_KEY = "lp_submitted_leads";
 const TEST_LEADS_KEY = "lp_test_leads";
@@ -124,6 +131,22 @@ export const updateLeadStatus = (id, status) => {
   });
 
   saveLeads(leads);
+
+  // If Pabbly mode, also send to webhook
+  if (isPabblyMode() && ADMIN_WEBHOOK_URL) {
+    fetch(ADMIN_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'status_update',
+        lead_id: id,
+        new_status: status,
+        old_status: oldStatus,
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(err => console.error('[LeadService] Pabbly webhook failed:', err));
+  }
+
   return lead;
 };
 
@@ -151,6 +174,21 @@ export const addLeadNote = (id, noteText) => {
   });
 
   saveLeads(leads);
+
+  // If Pabbly mode, also send to webhook
+  if (isPabblyMode() && ADMIN_WEBHOOK_URL) {
+    fetch(ADMIN_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'note_added',
+        lead_id: id,
+        note_text: noteText,
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(err => console.error('[LeadService] Pabbly webhook failed:', err));
+  }
+
   return lead;
 };
 
@@ -161,6 +199,20 @@ export const deleteLead = (id) => {
   const leads = getAllLeadsRaw();
   const filtered = leads.filter((l) => l.lead_id !== id);
   saveLeads(filtered);
+
+  // If Pabbly mode, also send to webhook
+  if (isPabblyMode() && ADMIN_WEBHOOK_URL) {
+    fetch(ADMIN_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'lead_deleted',
+        lead_id: id,
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(err => console.error('[LeadService] Pabbly webhook failed:', err));
+  }
+
   return true;
 };
 
@@ -172,6 +224,22 @@ export const deleteLeads = (ids) => {
   const leads = getAllLeadsRaw();
   const filtered = leads.filter((l) => !idSet.has(l.lead_id));
   saveLeads(filtered);
+
+  // If Pabbly mode, also send to webhook for each deleted lead
+  if (isPabblyMode() && ADMIN_WEBHOOK_URL) {
+    ids.forEach(id => {
+      fetch(ADMIN_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'lead_deleted',
+          lead_id: id,
+          timestamp: new Date().toISOString(),
+        }),
+      }).catch(err => console.error('[LeadService] Pabbly webhook failed:', err));
+    });
+  }
+
   return true;
 };
 

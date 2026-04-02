@@ -2,10 +2,11 @@
    Admin Layout Component
    ============================================ */
 
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CircularProgress, Box } from '@mui/material';
 import AdminTopbar from './AdminTopbar';
+import { initAdminConfig } from '../utils/adminConfig';
 import styles from './AdminLayout.module.css';
 
 const Dashboard = lazy(() => import('../pages/Dashboard'));
@@ -20,6 +21,10 @@ const PageLoader = () => (
 );
 
 const AdminLayout = () => {
+  useEffect(() => {
+    initAdminConfig();
+  }, []);
+
   return (
     <div className={styles.layout}>
       <AdminTopbar />
