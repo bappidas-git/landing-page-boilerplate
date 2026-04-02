@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, IconButton, CircularProgress } from '@mui/material';
 import { Icon } from '@iconify/react';
 import styles from './Guideline.module.css';
+import PabblySetupGuide from './guidelineContent/PabblySetupGuide';
 
 const GUIDELINE_PASSWORD = 'ad@9707112233';
 const SESSION_KEY = 'guideline_unlocked';
@@ -154,7 +155,10 @@ const Guideline = () => {
 
       {/* Tab Content */}
       <div className={styles.tabContent}>
-        <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />
+        {activeTab === 0
+          ? <PabblySetupGuide styles={styles} />
+          : <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />
+        }
       </div>
     </div>
   );
