@@ -5,8 +5,8 @@
    ============================================ */
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  Box,
   Typography,
   TextField,
   InputAdornment,
@@ -17,7 +17,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
   TablePagination,
@@ -25,8 +24,6 @@ import {
   Checkbox,
   IconButton,
   Chip,
-  Drawer,
-  Divider,
   Button,
   Menu,
   Tooltip,
@@ -41,17 +38,13 @@ import {
 import { Icon } from "@iconify/react";
 import {
   getLeads,
-  getLeadById,
   updateLeadStatus,
-  addLeadNote,
   deleteLead,
   deleteLeads,
   exportLeadsCSV,
   importLeadsCSV,
   getLeadStats,
 } from "../utils/leadService";
-import { sendConversionEvent } from "../../utils/metaCAPI";
-import { generateEventId } from "../../utils/eventDedup";
 import { exportGoogleAdsCSV } from "../utils/googleAdsExport";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import styles from "./LeadManagement.module.css";
@@ -105,17 +98,9 @@ const COLUMNS = [
   { id: "submitted_at", label: "Date", sortable: true, width: 100 },
 ];
 
-// Conversion type options
-const CONVERSION_TYPES = [
-  "Sale",
-  "Qualified Lead",
-  "Meeting Booked",
-  "Site Visit",
-  "Document Signed",
-  "Other",
-];
-
 const LeadManagement = () => {
+  const navigate = useNavigate();
+
   // Data state
   const [leads, setLeads] = useState([]);
   const [stats, setStats] = useState(null);
@@ -136,18 +121,10 @@ const LeadManagement = () => {
   const [selected, setSelected] = useState([]);
 
   // UI state
-  const [detailLead, setDetailLead] = useState(null);
-  const [detailOpen, setDetailOpen] = useState(false);
-  const [noteText, setNoteText] = useState("");
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null); // null = bulk, string = single id
   const [bulkStatusMenu, setBulkStatusMenu] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
-  const [conversionModalOpen, setConversionModalOpen] = useState(false);
-  const [conversionLead, setConversionLead] = useState(null);
-  const [conversionValue, setConversionValue] = useState("");
-  const [conversionType, setConversionType] = useState("");
-  const [conversionSending, setConversionSending] = useState(false);
   const [moreMenuAnchor, setMoreMenuAnchor] = useState(null);
   const fileInputRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -231,9 +208,6 @@ const LeadManagement = () => {
   const handleStatusChange = (id, newStatus) => {
     updateLeadStatus(id, newStatus);
     loadData();
-    if (detailLead && detailLead.lead_id === id) {
-      setDetailLead(getLeadById(id));
-    }
     showSnackbar(`Status updated to "${newStatus}"`);
   };
 
@@ -246,18 +220,7 @@ const LeadManagement = () => {
   };
 
   const handleViewDetail = (lead) => {
-    setDetailLead(lead);
-    setDetailOpen(true);
-    setNoteText("");
-  };
-
-  const handleAddNote = () => {
-    if (!noteText.trim() || !detailLead) return;
-    const updated = addLeadNote(detailLead.lead_id, noteText.trim());
-    setDetailLead(updated);
-    setNoteText("");
-    loadData();
-    showSnackbar("Note added");
+    navigate(`/admin/lms/lead/${lead.lead_id}`);
   };
 
   const handleDeleteConfirm = () => {
@@ -271,10 +234,6 @@ const LeadManagement = () => {
     }
     setDeleteDialogOpen(false);
     setDeleteTarget(null);
-    if (detailOpen) {
-      setDetailOpen(false);
-      setDetailLead(null);
-    }
     loadData();
   };
 
@@ -332,81 +291,6 @@ const LeadManagement = () => {
   };
 
   const hasActiveFilters = search || statusFilter !== "all" || sourceFilter !== "all" || dateRange !== "all";
-
-  const handleOpenConversionModal = (lead) => {
-    setConversionLead(lead);
-    setConversionValue("");
-    setConversionType("");
-    setConversionModalOpen(true);
-  };
-
-  const handleSendConversion = async () => {
-    if (!conversionLead || !conversionValue || !conversionType) return;
-    setConversionSending(true);
-
-    try {
-      const eventId = generateEventId();
-      const result = await sendConversionEvent(
-        {
-          name: conversionLead.name,
-          email: conversionLead.email,
-          mobile: conversionLead.mobile,
-        },
-        {
-          value: parseFloat(conversionValue),
-          currency: 'INR',
-          conversion_type: conversionType,
-          event_id: eventId,
-        }
-      );
-
-      // Update lead status to converted
-      updateLeadStatus(conversionLead.lead_id, 'converted');
-
-      // Store conversion value on the lead for Google Ads export
-      const allLeads = JSON.parse(localStorage.getItem('lp_submitted_leads') || '[]');
-      const targetLead = allLeads.find((l) => l.lead_id === conversionLead.lead_id);
-      if (targetLead) {
-        targetLead.conversion_value = parseFloat(conversionValue);
-        targetLead.conversion_type = conversionType;
-        targetLead.converted_at = new Date().toISOString();
-        localStorage.setItem('lp_submitted_leads', JSON.stringify(allLeads));
-      }
-
-      // Add activity note about conversion
-      addLeadNote(
-        conversionLead.lead_id,
-        `Conversion sent to Meta CAPI: ${conversionType} - \u20B9${parseFloat(conversionValue).toLocaleString('en-IN')} (Event ID: ${eventId})`
-      );
-
-      // Log Google Ads offline conversion status
-      if (conversionLead.gclid) {
-        addLeadNote(
-          conversionLead.lead_id,
-          `Google Ads offline conversion ready for export (GCLID: ${conversionLead.gclid.slice(0, 12)}...)`
-        );
-      }
-
-      loadData();
-
-      if (detailLead && detailLead.lead_id === conversionLead.lead_id) {
-        setDetailLead(getLeadById(conversionLead.lead_id));
-      }
-
-      setConversionModalOpen(false);
-      showSnackbar(
-        result.success
-          ? 'Conversion event sent to Meta successfully'
-          : 'Conversion recorded locally (CAPI endpoint not available)',
-        result.success ? 'success' : 'warning'
-      );
-    } catch (error) {
-      console.error('Conversion error:', error);
-      showSnackbar('Failed to send conversion event', 'error');
-    } finally {
-      setConversionSending(false);
-    }
-  };
 
   return (
     <div className={styles.page}>
@@ -1003,29 +887,6 @@ const LeadManagement = () => {
         )}
       </div>
 
-      {/* Detail Drawer */}
-      <Drawer
-        anchor="right"
-        open={detailOpen}
-        onClose={() => setDetailOpen(false)}
-        PaperProps={{ sx: { width: { xs: "100%", sm: 420 }, p: 0 } }}
-      >
-        {detailLead && (
-          <LeadDetailPanel
-            lead={detailLead}
-            onClose={() => setDetailOpen(false)}
-            onStatusChange={(status) => {
-              handleStatusChange(detailLead.lead_id, status);
-            }}
-            noteText={noteText}
-            setNoteText={setNoteText}
-            onAddNote={handleAddNote}
-            onDelete={() => { setDeleteTarget(detailLead.lead_id); setDeleteDialogOpen(true); }}
-            onSendConversion={() => handleOpenConversionModal(detailLead)}
-          />
-        )}
-      </Drawer>
-
       {/* Delete Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
         <DialogTitle>Confirm Delete</DialogTitle>
@@ -1051,80 +912,6 @@ const LeadManagement = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Conversion Modal */}
-      <Dialog
-        open={conversionModalOpen}
-        onClose={() => setConversionModalOpen(false)}
-        maxWidth="xs"
-        fullWidth
-      >
-        <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Icon icon="mdi:send-check" width={22} style={{ color: "#4CAF50" }} />
-          Record Conversion
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText sx={{ mb: 2 }}>
-            Record a conversion for{" "}
-            <strong>{conversionLead?.name || "this lead"}</strong>. This will
-            send a conversion event to Meta CAPI and{conversionLead?.gclid ? ' mark it for Google Ads offline conversion export' : ' record it locally'}.
-          </DialogContentText>
-          <TextField
-            fullWidth
-            label="Conversion Value"
-            type="number"
-            value={conversionValue}
-            onChange={(e) => setConversionValue(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">{"\u20B9"}</InputAdornment>
-              ),
-            }}
-            sx={{ mb: 2 }}
-          />
-          <FormControl fullWidth>
-            <InputLabel>Conversion Type</InputLabel>
-            <Select
-              value={conversionType}
-              label="Conversion Type"
-              onChange={(e) => setConversionType(e.target.value)}
-            >
-              {CONVERSION_TYPES.map((type) => (
-                <MenuItem key={type} value={type}>
-                  {type}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => setConversionModalOpen(false)}
-            sx={{ textTransform: "none" }}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSendConversion}
-            variant="contained"
-            disabled={!conversionValue || !conversionType || conversionSending}
-            startIcon={
-              conversionSending ? (
-                <Icon icon="mdi:loading" width={18} className="spin" />
-              ) : (
-                <Icon icon="mdi:send" width={18} />
-              )
-            }
-            sx={{
-              textTransform: "none",
-              bgcolor: "#4CAF50",
-              "&:hover": { bgcolor: "#388E3C" },
-            }}
-          >
-            {conversionSending ? "Sending..." : "Send Conversion"}
-          </Button>
-        </DialogActions>
-      </Dialog>
-
       {/* Snackbar */}
       <Snackbar
         open={snackbar.open}
@@ -1142,283 +929,6 @@ const LeadManagement = () => {
         </Alert>
       </Snackbar>
     </div>
-  );
-};
-
-/* ============================================
-   Lead Detail Panel (Slide-out)
-   ============================================ */
-const LeadDetailPanel = ({
-  lead,
-  onClose,
-  onStatusChange,
-  noteText,
-  setNoteText,
-  onAddNote,
-  onDelete,
-  onSendConversion,
-}) => {
-  const sc = getStatusConfig(lead.status);
-
-  const Section = ({ title, icon, children }) => (
-    <div style={{ marginBottom: 20 }}>
-      <Typography
-        variant="subtitle2"
-        sx={{ display: "flex", alignItems: "center", gap: 0.8, mb: 1.2, color: "#2D3561", fontWeight: 600 }}
-      >
-        <Icon icon={icon} width={18} />
-        {title}
-      </Typography>
-      {children}
-    </div>
-  );
-
-  const InfoRow = ({ label, value }) => (
-    <Box sx={{ display: "flex", justifyContent: "space-between", py: 0.6 }}>
-      <Typography variant="caption" sx={{ color: "#888", minWidth: 100 }}>{label}</Typography>
-      <Typography variant="body2" sx={{ fontWeight: 500, textAlign: "right", wordBreak: "break-word", maxWidth: "60%" }}>
-        {value || "—"}
-      </Typography>
-    </Box>
-  );
-
-  return (
-    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      {/* Header */}
-      <Box
-        sx={{
-          px: 2.5,
-          py: 2,
-          bgcolor: "#F8FAFC",
-          borderBottom: "1px solid #E2E8F0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <Typography variant="h6" sx={{ fontWeight: 700, color: "#2D3561" }}>
-            {lead.name || "Unknown Lead"}
-          </Typography>
-          <Typography variant="caption" sx={{ color: "#888" }}>
-            ID: {lead.lead_id?.slice(0, 8)}...
-          </Typography>
-        </div>
-        <IconButton onClick={onClose} size="small">
-          <Icon icon="mdi:close" width={22} />
-        </IconButton>
-      </Box>
-
-      {/* Scrollable Content */}
-      <Box sx={{ flex: 1, overflowY: "auto", px: 2.5, py: 2 }}>
-        {/* Status */}
-        <Box sx={{ mb: 2.5 }}>
-          <Typography variant="caption" sx={{ color: "#888", mb: 0.5, display: "block" }}>
-            Status
-          </Typography>
-          <Select
-            value={lead.status || "new"}
-            size="small"
-            fullWidth
-            onChange={(e) => onStatusChange(e.target.value)}
-            sx={{
-              fontWeight: 600,
-              bgcolor: sc.bg,
-              color: sc.color,
-              "& .MuiOutlinedInput-notchedOutline": { borderColor: sc.color + "44" },
-            }}
-          >
-            {STATUS_OPTIONS.map((s) => (
-              <MenuItem key={s.value} value={s.value}>
-                <Chip label={s.label} size="small" sx={{ bgcolor: s.bg, color: s.color, fontWeight: 600 }} />
-              </MenuItem>
-            ))}
-          </Select>
-        </Box>
-
-        <Divider sx={{ mb: 2 }} />
-
-        {/* Contact Details */}
-        <Section title="Contact Details" icon="mdi:account-circle-outline">
-          <InfoRow label="Name" value={lead.name} />
-          <InfoRow label="Mobile" value={lead.mobile} />
-          <InfoRow label="Email" value={lead.email} />
-        </Section>
-
-        {/* Interest Details */}
-        <Section title="Interest Details" icon="mdi:briefcase-outline">
-          <InfoRow label="Service Interest" value={lead.investment_interest} />
-          <InfoRow label="Occupation" value={lead.current_occupation} />
-        </Section>
-
-        {/* Source & UTM */}
-        <Section title="Source & UTM Data" icon="mdi:web">
-          <InfoRow label="Source" value={lead.source} />
-          <InfoRow label="UTM Source" value={lead.utm_source} />
-          <InfoRow label="UTM Medium" value={lead.utm_medium} />
-          <InfoRow label="UTM Campaign" value={lead.utm_campaign} />
-          <InfoRow label="UTM Term" value={lead.utm_term} />
-          <InfoRow label="UTM Content" value={lead.utm_content} />
-          <InfoRow label="GCLID" value={lead.gclid} />
-        </Section>
-
-        {/* Conversion Tracking */}
-        <Section title="Conversion Tracking" icon="mdi:chart-timeline-variant-shimmer">
-          <InfoRow label="GCLID" value={lead.gclid ? (lead.gclid.length > 20 ? lead.gclid.slice(0, 20) + '...' : lead.gclid) : '—'} />
-          <InfoRow label="UTM Source" value={lead.utm_source || '—'} />
-          <InfoRow label="UTM Medium" value={lead.utm_medium || '—'} />
-          <InfoRow label="UTM Campaign" value={lead.utm_campaign || '—'} />
-          <InfoRow label="UTM Term" value={lead.utm_term || '—'} />
-          <InfoRow label="UTM Content" value={lead.utm_content || '—'} />
-          <Divider sx={{ my: 1 }} />
-          <InfoRow
-            label="Google Ads"
-            value={
-              lead.gclid
-                ? lead.status === 'converted'
-                  ? 'Ready for export'
-                  : 'GCLID captured'
-                : 'No GCLID'
-            }
-          />
-          <InfoRow
-            label="Meta CAPI"
-            value={
-              (lead.notes || []).some((n) => n.text?.includes('Meta CAPI'))
-                ? 'Conversion sent'
-                : 'Pending'
-            }
-          />
-          {lead.conversion_value && (
-            <InfoRow label="Conv. Value" value={`\u20B9${parseFloat(lead.conversion_value).toLocaleString('en-IN')}`} />
-          )}
-          {lead.conversion_type && (
-            <InfoRow label="Conv. Type" value={lead.conversion_type} />
-          )}
-          {lead.converted_at && (
-            <InfoRow label="Converted At" value={formatDate(lead.converted_at)} />
-          )}
-        </Section>
-
-        {/* Submission Details */}
-        <Section title="Submission Details" icon="mdi:information-outline">
-          <InfoRow label="Submitted" value={formatDate(lead.submitted_at)} />
-          <InfoRow label="Page URL" value={lead.page_url} />
-          <InfoRow label="User Agent" value={lead.user_agent?.slice(0, 60) + (lead.user_agent?.length > 60 ? "..." : "")} />
-        </Section>
-
-        <Divider sx={{ mb: 2 }} />
-
-        {/* Notes */}
-        <Section title="Notes" icon="mdi:note-text-outline">
-          <Box sx={{ display: "flex", gap: 1, mb: 1.5 }}>
-            <TextField
-              size="small"
-              fullWidth
-              multiline
-              minRows={2}
-              placeholder="Add a note..."
-              value={noteText}
-              onChange={(e) => setNoteText(e.target.value)}
-            />
-          </Box>
-          <Button
-            size="small"
-            variant="contained"
-            onClick={onAddNote}
-            disabled={!noteText.trim()}
-            startIcon={<Icon icon="mdi:plus" />}
-            sx={{ textTransform: "none", mb: 1.5, bgcolor: "#2EC4B6", "&:hover": { bgcolor: "#26A69A" } }}
-          >
-            Add Note
-          </Button>
-          {(lead.notes || []).length === 0 ? (
-            <Typography variant="caption" sx={{ color: "#aaa" }}>No notes yet.</Typography>
-          ) : (
-            [...(lead.notes || [])].reverse().map((note) => (
-              <Box
-                key={note.id}
-                sx={{ bgcolor: "#F8FAFC", p: 1.5, borderRadius: 1.5, mb: 1, border: "1px solid #E2E8F0" }}
-              >
-                <Typography variant="body2" sx={{ whiteSpace: "pre-wrap", mb: 0.5 }}>
-                  {note.text}
-                </Typography>
-                <Typography variant="caption" sx={{ color: "#999" }}>
-                  {formatDate(note.timestamp)}
-                </Typography>
-              </Box>
-            ))
-          )}
-        </Section>
-
-        <Divider sx={{ mb: 2 }} />
-
-        {/* Activity Timeline */}
-        <Section title="Activity Timeline" icon="mdi:timeline-clock-outline">
-          {(lead.activity || []).length === 0 ? (
-            <Typography variant="caption" sx={{ color: "#aaa" }}>No activity recorded.</Typography>
-          ) : (
-            [...(lead.activity || [])].reverse().map((act, i) => {
-              const actSc = getStatusConfig(act.status);
-              return (
-                <Box
-                  key={i}
-                  sx={{ display: "flex", gap: 1.5, mb: 1.2, alignItems: "flex-start" }}
-                >
-                  <Box
-                    sx={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      bgcolor: actSc.color,
-                      mt: 0.7,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <Box>
-                    <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
-                      {act.action}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: "#999" }}>
-                      {formatDate(act.timestamp)}
-                    </Typography>
-                  </Box>
-                </Box>
-              );
-            })
-          )}
-        </Section>
-      </Box>
-
-      {/* Footer Actions */}
-      <Box sx={{ px: 2.5, py: 1.5, borderTop: "1px solid #E2E8F0", bgcolor: "#F8FAFC", display: "flex", flexDirection: "column", gap: 1 }}>
-        <Button
-          fullWidth
-          size="small"
-          variant="contained"
-          startIcon={<Icon icon="mdi:send-check" />}
-          onClick={onSendConversion}
-          sx={{
-            textTransform: "none",
-            bgcolor: "#4CAF50",
-            "&:hover": { bgcolor: "#388E3C" },
-          }}
-        >
-          Mark as Converted
-        </Button>
-        <Button
-          fullWidth
-          size="small"
-          variant="outlined"
-          color="error"
-          startIcon={<Icon icon="mdi:delete-outline" />}
-          onClick={onDelete}
-          sx={{ textTransform: "none" }}
-        >
-          Delete Lead
-        </Button>
-      </Box>
-    </Box>
   );
 };
 
