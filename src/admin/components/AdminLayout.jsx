@@ -10,6 +10,7 @@ import styles from './AdminLayout.module.css';
 
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const LeadManagement = lazy(() => import('../pages/LeadManagement'));
+const LeadDetail = lazy(() => import('../pages/LeadDetail'));
 const Guideline = lazy(() => import('../pages/Guideline'));
 
 const PageLoader = () => (
@@ -29,6 +30,7 @@ const AdminLayout = () => {
               <Route index element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="lms" element={<LeadManagement />} />
+              <Route path="lms/lead/:leadId" element={<LeadDetail />} />
               <Route path="guideline" element={<Guideline />} />
             </Routes>
           </Suspense>
