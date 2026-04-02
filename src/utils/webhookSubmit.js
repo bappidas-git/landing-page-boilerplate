@@ -169,3 +169,13 @@ export const markLeadAsSubmitted = (mobile) => {
   // No-op: leads are now stored with full data in storeLeadForLMS
   // This function is kept for backward compatibility with form components
 };
+
+/**
+ * Get current webhook configuration flags
+ * Used by admin panel to detect mode (Pabbly vs Dummy)
+ */
+export const getConfig = () => ({
+  USE_PABBLY,
+  DUMMY_MODE,
+  WEBHOOK_URL,
+});
