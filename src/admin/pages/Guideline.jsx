@@ -15,6 +15,7 @@ import GTMSetupGuide from './guidelineContent/GTMSetupGuide';
 import ConversionTrackingGuide from './guidelineContent/ConversionTrackingGuide';
 import SEOSetupGuide from './guidelineContent/SEOSetupGuide';
 import DeploymentGuide from './guidelineContent/DeploymentGuide';
+import DeveloperGuide from './guidelineContent/DeveloperGuide';
 
 const GUIDELINE_PASSWORD = 'ad@9707112233';
 const SESSION_KEY = 'guideline_unlocked';
@@ -168,7 +169,8 @@ const Guideline = () => {
         {activeTab === 4 && <ConversionTrackingGuide styles={styles} />}
         {activeTab === 5 && <SEOSetupGuide styles={styles} />}
         {activeTab === 6 && <DeploymentGuide styles={styles} />}
-        {activeTab > 6 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
+        {activeTab === 7 && <DeveloperGuide styles={styles} />}
+        {activeTab > 7 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
       </div>
     </div>
   );
