@@ -12,6 +12,7 @@ import PabblySetupGuide from './guidelineContent/PabblySetupGuide';
 import GoogleAdsGuide from './guidelineContent/GoogleAdsGuide';
 import MetaAdsGuide from './guidelineContent/MetaAdsGuide';
 import GTMSetupGuide from './guidelineContent/GTMSetupGuide';
+import ConversionTrackingGuide from './guidelineContent/ConversionTrackingGuide';
 
 const GUIDELINE_PASSWORD = 'ad@9707112233';
 const SESSION_KEY = 'guideline_unlocked';
@@ -162,7 +163,8 @@ const Guideline = () => {
         {activeTab === 1 && <GoogleAdsGuide styles={styles} />}
         {activeTab === 2 && <MetaAdsGuide styles={styles} />}
         {activeTab === 3 && <GTMSetupGuide styles={styles} />}
-        {activeTab > 3 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
+        {activeTab === 4 && <ConversionTrackingGuide styles={styles} />}
+        {activeTab > 4 && <TabPlaceholder title={currentTab.label} icon={currentTab.icon} />}
       </div>
     </div>
   );
