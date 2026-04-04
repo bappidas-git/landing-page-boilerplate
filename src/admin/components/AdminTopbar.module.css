@@ -68,6 +68,9 @@
   border-bottom: 3px solid transparent;
   transition: color 0.2s, background 0.2s, border-color 0.2s;
   position: relative;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .navLink:hover {
@@ -110,6 +113,7 @@
   color: #fff;
   font-size: 0.75rem;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .userName {
@@ -128,7 +132,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  min-height: 44px;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logoutBtn:hover {
@@ -143,10 +150,14 @@
   border: none;
   color: var(--admin-text-secondary, #64748B);
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger:hover {
@@ -154,20 +165,57 @@
   color: var(--admin-text-primary, #1E293B);
 }
 
-/* ---- Mobile Menu Dropdown ---- */
+/* ---- Mobile Overlay & Menu ---- */
 
-.mobileMenu {
-  position: absolute;
+.mobileOverlay {
+  position: fixed;
   top: 64px;
   left: 0;
   right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 199;
+  display: none;
+}
+
+.mobileMenu {
   background: var(--admin-card-bg, #FFFFFF);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
+  animation: slideDown 0.25s ease-out;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileMenuHeader {
+  padding: 20px 20px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.mobileMenuLogo {
+  height: 28px;
+  width: auto;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
   gap: 2px;
-  z-index: 199;
 }
 
 .mobileNavLink {
@@ -181,6 +229,9 @@
   text-decoration: none;
   border-radius: 8px;
   transition: color 0.2s, background 0.2s;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobileNavLink:hover {
@@ -194,6 +245,32 @@
   background: rgba(46, 196, 182, 0.1);
 }
 
+.mobileMenuDivider {
+  height: 1px;
+  background: var(--admin-border, #E2E8F0);
+  margin: 8px 20px;
+}
+
+.mobileUserSection {
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobileUserRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+}
+
+.mobileUserName {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--admin-text-primary, #1E293B);
+}
+
 .mobileLogout {
   display: flex;
   align-items: center;
@@ -201,38 +278,38 @@
   padding: 12px 16px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--admin-text-secondary, #64748B);
+  color: #EF5350;
   border: none;
   background: none;
   cursor: pointer;
   border-radius: 8px;
-  border-top: 1px solid var(--admin-border, #E2E8F0);
-  margin-top: 4px;
-  padding-top: 16px;
   width: 100%;
   font-family: inherit;
-  transition: color 0.2s, background 0.2s;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s;
 }
 
 .mobileLogout:hover {
-  color: #EF5350;
-  background: rgba(239, 83, 80, 0.04);
+  background: rgba(239, 83, 80, 0.06);
 }
 
-/* ---- Responsive ---- */
+.mobileMenuFooter {
+  text-align: center;
+  font-size: 0.6875rem;
+  color: var(--admin-text-muted, #94A3B8);
+  padding: 16px 20px;
+  margin: 0;
+  border-top: 1px solid var(--admin-border, #E2E8F0);
+  margin-top: auto;
+}
 
-@media (max-width: 768px) {
+/* ---- Responsive: Tablet (768-1024px) ---- */
+
+@media (max-width: 1024px) {
   .topbar {
     padding: 0 16px;
-  }
-
-  .logo {
-    height: 28px;
-  }
-
-  .divider,
-  .badge {
-    display: none;
   }
 
   .desktopNav {
@@ -246,5 +323,34 @@
 
   .hamburger {
     display: flex;
+  }
+
+  .mobileOverlay {
+    display: block;
+  }
+}
+
+/* ---- Responsive: Mobile (<768px) ---- */
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .logo {
+    height: 24px;
+  }
+
+  .divider,
+  .badge {
+    display: none;
+  }
+}
+
+/* ---- Print: hide navigation ---- */
+
+@media print {
+  .topbar {
+    display: none;
   }
 }

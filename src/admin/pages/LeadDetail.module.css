@@ -37,6 +37,9 @@
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .backBtn:hover {
@@ -142,6 +145,11 @@
   font-weight: 500;
   text-decoration: none;
   word-break: break-word;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .infoLink:hover {
@@ -187,6 +195,9 @@
   cursor: pointer;
   margin-left: 6px;
   transition: all 0.15s ease;
+  min-height: 32px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .copyBtn:hover {
@@ -234,6 +245,9 @@
   transition: background 0.15s ease;
   font-family: inherit;
   margin-top: 8px;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .addNoteBtn:hover {
@@ -419,6 +433,9 @@
   cursor: pointer;
   transition: background 0.15s ease;
   font-family: inherit;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .convertBtn:hover {
@@ -441,6 +458,9 @@
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .deleteBtn:hover {
@@ -457,6 +477,11 @@
   font-weight: 600;
   background: #EBF5FF;
   color: var(--admin-accent);
+}
+
+/* ---- Mobile Sticky Footer ---- */
+.mobileFooter {
+  display: none;
 }
 
 /* ---- Not Found ---- */
@@ -487,9 +512,8 @@
   margin: 0 0 16px;
 }
 
-/* ---- Responsive ---- */
+/* ---- Responsive: Tablet ---- */
 
-/* Tablet */
 @media (max-width: 1024px) {
   .columns {
     grid-template-columns: 55fr 45fr;
@@ -501,7 +525,8 @@
   }
 }
 
-/* Mobile */
+/* ---- Responsive: Mobile ---- */
+
 @media (max-width: 768px) {
   .columns {
     grid-template-columns: 1fr;
@@ -524,6 +549,10 @@
 
   .utmGrid {
     grid-template-columns: 1fr;
+  }
+
+  .noteTextarea {
+    min-height: 80px;
   }
 
   /* Sticky footer for action buttons on mobile */
@@ -559,9 +588,45 @@
   }
 }
 
-/* Desktop: hide mobile footer */
-@media (min-width: 769px) {
+/* Safe area insets for notched devices */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
   .mobileFooter {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---- Print Styles ---- */
+
+@media print {
+  .backBtn {
     display: none;
+  }
+
+  .desktopActions {
+    display: none;
+  }
+
+  .mobileFooter {
+    display: none !important;
+  }
+
+  .convertBtn,
+  .deleteBtn {
+    display: none;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+
+  .page {
+    color: #000;
+    padding-bottom: 0;
+  }
+
+  .columns {
+    grid-template-columns: 1fr 1fr;
   }
 }

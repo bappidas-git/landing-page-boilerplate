@@ -76,6 +76,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modalButton:hover {
@@ -97,6 +100,9 @@
   cursor: pointer;
   margin-top: 8px;
   text-decoration: underline;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modalCancel:hover {
@@ -161,6 +167,9 @@
     color 0.2s,
     border-color 0.2s;
   flex-shrink: 0;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .tabButton:hover {
@@ -277,6 +286,26 @@
   margin: 12px 0 16px;
   line-height: 1.6;
   color: var(--admin-text-primary);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Styled scrollbar for code blocks */
+.guideCode::-webkit-scrollbar {
+  height: 6px;
+}
+
+.guideCode::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+
+.guideCode::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+.guideCode::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 /* Inline code */
@@ -289,11 +318,41 @@
   color: var(--admin-primary);
 }
 
+/* Table wrapper for horizontal scroll with shadow indicators */
+.guideTableWrap {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 16px 0;
+}
+
+/* Shadow indicators on edges */
+.guideTableWrap::before,
+.guideTableWrap::after {
+  content: '';
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.guideTableWrap::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.9), transparent);
+}
+
+.guideTableWrap::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+}
+
 /* Table */
 .guideTable {
   width: 100%;
   border-collapse: collapse;
-  margin: 16px 0;
+  margin: 0;
 }
 
 .guideTableHead {
@@ -307,6 +366,7 @@
   font-weight: 600;
   color: var(--admin-text-primary);
   text-align: left;
+  white-space: nowrap;
 }
 
 .guideTableCell {
@@ -352,10 +412,16 @@
   color: var(--admin-text-secondary);
 }
 
-/* Responsive */
+/* ---- Responsive: Mobile ---- */
+
 @media (max-width: 768px) {
   .tabContent {
     padding: 16px;
+  }
+
+  .tabButton {
+    padding: 10px 14px;
+    font-size: 0.75rem;
   }
 
   .guideCode {
@@ -366,5 +432,71 @@
   .guideTable {
     display: block;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .guideStepList {
+    padding-left: 20px;
+  }
+
+  .guideTitle {
+    font-size: 1.125rem;
+    margin: 24px 0 12px;
+  }
+
+  .guideSubtitle {
+    font-size: 0.9375rem;
+    margin: 16px 0 8px;
+  }
+
+  .guideParagraph {
+    font-size: 0.875rem;
+  }
+
+  .guideStepItem {
+    font-size: 0.875rem;
+  }
+
+  .guideNote,
+  .guideNoteWarning,
+  .guideTip {
+    padding: 12px 14px;
+    font-size: 0.875rem;
+  }
+}
+
+/* ---- Print Styles ---- */
+
+@media print {
+  .tabBar {
+    display: none;
+  }
+
+  .tabContent {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .guideCode {
+    border: 1px solid #ddd;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .guideTable {
+    display: table;
+    overflow: visible;
+  }
+
+  .guideNote,
+  .guideNoteWarning,
+  .guideTip {
+    border-left-width: 3px;
+  }
+
+  .pageHeader {
+    margin-bottom: 16px;
   }
 }
