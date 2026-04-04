@@ -138,6 +138,9 @@
   white-space: nowrap;
   font-family: inherit;
   line-height: 1.4;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .actionOutlined {
@@ -207,6 +210,9 @@
   align-items: center;
   gap: 4px;
   transition: color 0.15s ease;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .viewAllLink:hover {
@@ -305,6 +311,8 @@
   border-bottom: 1px solid var(--admin-border);
   cursor: pointer;
   transition: background 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobileCard:last-child {
@@ -356,16 +364,35 @@
   margin: 32px 0 0;
 }
 
-/* ── Responsive ── */
+/* ── Responsive: Tablet ── */
 @media (max-width: 1024px) {
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Responsive: Mobile ── */
 @media (max-width: 768px) {
+  .dashboard {
+    gap: 16px;
+  }
+
   .statsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
   }
 
   .pageHeader {
@@ -401,5 +428,33 @@
 
   .recentHeader {
     padding: 16px 20px;
+  }
+}
+
+/* ── Print Styles ── */
+@media print {
+  .quickActions {
+    display: none;
+  }
+
+  .mobileCards {
+    display: none;
+  }
+
+  .statCard:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .footerBadge {
+    display: none;
+  }
+
+  .recentTable tbody tr:hover {
+    background: none;
+  }
+
+  .dashboard {
+    color: #000;
   }
 }

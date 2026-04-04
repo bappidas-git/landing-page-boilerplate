@@ -22,10 +22,12 @@ const AdminTopbar = () => {
 
   const initials = (user?.username || 'A').charAt(0).toUpperCase();
 
+  // Close menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -34,8 +36,22 @@ const AdminTopbar = () => {
     };
     if (mobileMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
     }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
   return (
@@ -84,25 +100,59 @@ const AdminTopbar = () => {
         </button>
       </div>
 
+      {/* Mobile Menu Overlay + Panel */}
       {mobileMenuOpen && (
-        <div className={styles.mobileMenu} ref={menuRef}>
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path === '/admin/dashboard'}
-              className={({ isActive }) =>
-                `${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`
-              }
-            >
-              <Icon icon={item.icon} width={20} height={20} />
-              {item.label}
-            </NavLink>
-          ))}
-          <button className={styles.mobileLogout} onClick={logout}>
-            <Icon icon="mdi:logout" width={20} height={20} />
-            Logout
-          </button>
+        <div className={styles.mobileOverlay} onClick={() => setMobileMenuOpen(false)}>
+          <div
+            className={styles.mobileMenu}
+            ref={menuRef}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Logo at top */}
+            <div className={styles.mobileMenuHeader}>
+              <img
+                src="https://assamdigital.com/wp-content/uploads/2022/04/logo.png"
+                alt="Assam Digital"
+                className={styles.mobileMenuLogo}
+              />
+            </div>
+
+            {/* Nav links */}
+            <nav className={styles.mobileNav}>
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  end={item.path === '/admin/dashboard'}
+                  className={({ isActive }) =>
+                    `${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`
+                  }
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Icon icon={item.icon} width={20} height={20} />
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* Divider */}
+            <div className={styles.mobileMenuDivider} />
+
+            {/* User info */}
+            <div className={styles.mobileUserSection}>
+              <div className={styles.mobileUserRow}>
+                <div className={styles.userAvatar}>{initials}</div>
+                <span className={styles.mobileUserName}>{user?.username || 'Admin'}</span>
+              </div>
+              <button className={styles.mobileLogout} onClick={logout}>
+                <Icon icon="mdi:logout" width={20} height={20} />
+                Logout
+              </button>
+            </div>
+
+            {/* Footer */}
+            <p className={styles.mobileMenuFooter}>Powered by Assam Digital</p>
+          </div>
         </div>
       )}
     </header>

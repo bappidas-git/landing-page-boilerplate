@@ -7,6 +7,8 @@
   flex-direction: column;
   min-height: 100vh;
   background: var(--admin-bg, #F4F7FC);
+  /* Remove 300ms tap delay on all touch elements */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mainArea {
@@ -22,10 +24,42 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 768px) {
   .content {
     padding: 16px;
+  }
+}
+
+/* ---- Print Styles ---- */
+@media print {
+  .layout {
+    background: #fff;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  * {
+    color: #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* Keep table/card borders visible */
+  table,
+  th,
+  td {
+    border-color: #ccc !important;
   }
 }
