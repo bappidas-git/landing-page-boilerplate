@@ -52,7 +52,7 @@ const Dashboard = () => {
   };
 
   const handleViewLead = (leadId) => {
-    navigate('/admin/lms');
+    navigate(`/admin/lms/lead/${leadId}`);
   };
 
   return (
